@@ -54,6 +54,7 @@ class ProjectsPage extends StatelessWidget {
                           downloadUrl: '',
                           demoType: DemoType.video,
                           isAssetImage: true,
+                          isFeatured: true,
                         ),
                         ProjectCard(
                           title: 'Ladangku.id',
@@ -107,6 +108,7 @@ class ProjectCard extends StatelessWidget {
   final String? downloadUrl;
   final DemoType demoType;
   final bool isAssetImage;
+  final bool isFeatured;
 
   const ProjectCard({
     super.key,
@@ -119,6 +121,7 @@ class ProjectCard extends StatelessWidget {
     this.downloadUrl,
     this.demoType = DemoType.none,
     this.isAssetImage = false,
+    this.isFeatured = false,
   });
 
   Future<void> _launch(String url) async {
@@ -134,9 +137,19 @@ class ProjectCard extends StatelessWidget {
     final isMobile = width < 600;
 
     return Card(
-      elevation: 4,
-      color: Theme.of(context).cardColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: isFeatured ? 8 : 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side:
+            isFeatured
+                ? BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 1.5,
+                )
+                : BorderSide.none,
+      ),
+      // color: Theme.of(context).cardColor,
+      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: null,
         borderRadius: BorderRadius.circular(12),
@@ -145,19 +158,48 @@ class ProjectCard extends StatelessWidget {
             // Image section with fixed height
             AspectRatio(
               aspectRatio: 16 / 9,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(12),
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(12),
+                      ),
+                      image: DecorationImage(
+                        image:
+                            isAssetImage
+                                ? AssetImage(imageUrl) as ImageProvider
+                                : NetworkImage(imageUrl),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                  image: DecorationImage(
-                    image:
-                        isAssetImage
-                            ? AssetImage(imageUrl) as ImageProvider
-                            : NetworkImage(imageUrl),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+
+                  if (isFeatured)
+                    Positioned(
+                      top: 10,
+                      left: 10,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Text(
+                          '⭐ FEATURED PROJECT',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
             // Content section
