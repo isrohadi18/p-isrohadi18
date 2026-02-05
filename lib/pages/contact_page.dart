@@ -47,8 +47,6 @@ class _ContactPageState extends State<ContactPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ContactCTA(),
-                  const QuickContactButtons(),
                   isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
                 ],
               ),
@@ -65,7 +63,9 @@ class _ContactPageState extends State<ContactPage> {
       children: [
         _buildContactForm(),
         const SizedBox(height: 32),
-        _buildContactInfo(),
+        _buildContactInfoCore(),
+        const SizedBox(height: 24),
+        _buildSocialOnly(),
       ],
     );
   }
@@ -74,9 +74,33 @@ class _ContactPageState extends State<ContactPage> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: _buildContactForm()),
+        // ================= KIRI =================
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ContactCTA(),
+              const SizedBox(height: 24),
+              _buildContactForm(),
+            ],
+          ),
+        ),
+
         const SizedBox(width: 40),
-        Expanded(child: _buildContactInfo()),
+
+        // ================= KANAN =================
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AvailabilityStatus(),
+              const SizedBox(height: 24),
+              _buildContactInfoCore(),
+              const SizedBox(height: 24),
+              _buildSocialOnly(),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -160,7 +184,7 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
-  Widget _buildContactInfo() {
+  Widget _buildContactInfoCore() {
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 600;
 
@@ -175,44 +199,77 @@ class _ContactPageState extends State<ContactPage> {
           ),
         ),
         const SizedBox(height: 20),
-        const ContactInfo(
+
+        ContactInfo(
           icon: Icons.email,
           title: 'Email',
           content: 'rysalaksanabhakti@gmail.com',
+          action: ElevatedButton.icon(
+            onPressed: () {
+              launchUrl(
+                Uri.parse(
+                  'mailto:rysalaksanabhakti@gmail.com?subject=Portfolio Contact',
+                ),
+              );
+            },
+            icon: const Icon(Icons.email),
+            label: const Text('Send Email'),
+          ),
         ),
-        const ContactInfo(
+
+        ContactInfo(
           icon: Icons.phone,
           title: 'Phone',
           content: '+62 831 1177 8069',
+          action: ElevatedButton.icon(
+            onPressed: () {
+              launchUrl(
+                Uri.parse(
+                  'https://wa.me/6283111778069?text=Hello,%20I%20found%20your%20portfolio',
+                ),
+                mode: LaunchMode.externalApplication,
+              );
+            },
+            icon: Image.network(
+              'https://img.icons8.com/color/24/whatsapp.png',
+              width: 18,
+            ),
+            label: const Text('WhatsApp'),
+          ),
         ),
+
         const ContactInfo(
           icon: Icons.location_on,
           title: 'Location',
           content: 'Malang, Indonesia',
         ),
-        const SizedBox(height: 30),
-        Text(
+      ],
+    );
+  }
+
+  Widget _buildSocialOnly() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
           'Follow Me',
-          style: TextStyle(
-            fontSize: isMobile ? 20 : 24,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
         Row(
-          children: [
+          children: const [
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/github.png',
               url: 'https://github.com/Rysalb',
               tooltip: 'GitHub',
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/linkedin.png',
               url: 'https://www.linkedin.com/in/rysa-laksana/',
               tooltip: 'LinkedIn',
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/instagram-new.png',
               url: 'https://www.instagram.com/rysalaksana/',
@@ -290,12 +347,14 @@ class ContactInfo extends StatelessWidget {
   final IconData icon;
   final String title;
   final String content;
+  final Widget? action;
 
   const ContactInfo({
     super.key,
     required this.icon,
     required this.title,
     required this.content,
+    this.action,
   });
 
   @override
@@ -311,6 +370,7 @@ class ContactInfo extends StatelessWidget {
             children: [
               Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               Text(content),
+              if (action != null) ...[const SizedBox(height: 4), action!],
             ],
           ),
         ],
@@ -458,6 +518,35 @@ class QuickContactButtons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AvailabilityStatus extends StatelessWidget {
+  const AvailabilityStatus({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.green.withOpacity(isDark ? 0.15 : 0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.green.withOpacity(0.4)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          Icon(Icons.circle, color: Colors.green, size: 10),
+          SizedBox(width: 8),
+          Text(
+            'Currently open for internship, freelance, or full-time opportunities',
+            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
           ),
         ],
       ),
