@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
 
@@ -46,11 +45,10 @@ class _ContactPageState extends State<ContactPage> {
             child: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Responsive layout for form and contact info
-                  isMobile
-                      ? _buildMobileLayout()
-                      : _buildDesktopLayout(),
+                  const ContactCTA(),
+                  isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
                 ],
               ),
             ),
@@ -118,7 +116,9 @@ class _ContactPageState extends State<ContactPage> {
               if (value == null || value.isEmpty) {
                 return 'Please enter your email';
               }
-              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+              if (!RegExp(
+                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+              ).hasMatch(value)) {
                 return 'Please enter a valid email';
               }
               return null;
@@ -243,12 +243,14 @@ $message
         final Uri emailUri = Uri(
           scheme: 'mailto',
           path: 'rysalaksanabhakti@gmail.com',
-          query: {
-            'subject': 'Portfolio Contact from $name',
-            'body': emailBody,
-          }.entries.fold('', (prev, e) => 
-            '$prev&${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}'
-          ).substring(1),
+          query: {'subject': 'Portfolio Contact from $name', 'body': emailBody}
+              .entries
+              .fold(
+                '',
+                (prev, e) =>
+                    '$prev&${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
+              )
+              .substring(1),
         );
 
         // Use window.open for web
@@ -306,10 +308,7 @@ class ContactInfo extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               Text(content),
             ],
           ),
@@ -341,7 +340,7 @@ class SocialButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Tooltip(
       message: tooltip,
       child: InkWell(
@@ -365,6 +364,37 @@ class SocialButton extends StatelessWidget {
               );
             },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ContactCTA extends StatelessWidget {
+  const ContactCTA({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final isMobile = width < 600;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+        ),
+      ),
+      child: Text(
+        'Have a project in mind, collaboration idea, or just want to say hi?\n'
+        'Feel free to reach out — I’d love to connect 👋',
+        style: TextStyle(
+          fontSize: isMobile ? 13 : 14,
+          height: 1.5,
+          color: Theme.of(context).textTheme.bodyMedium?.color,
         ),
       ),
     );
