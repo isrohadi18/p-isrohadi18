@@ -48,6 +48,7 @@ class _ContactPageState extends State<ContactPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const ContactCTA(),
+                  const QuickContactButtons(),
                   isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
                 ],
               ),
@@ -396,6 +397,69 @@ class ContactCTA extends StatelessWidget {
           height: 1.5,
           color: Theme.of(context).textTheme.bodyMedium?.color,
         ),
+      ),
+    );
+  }
+}
+
+class QuickContactButtons extends StatelessWidget {
+  const QuickContactButtons({super.key});
+
+  Future<void> _launch(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final isMobile = width < 600;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Wrap(
+        spacing: 12,
+        runSpacing: 12,
+        children: [
+          ElevatedButton.icon(
+            onPressed:
+                () => _launch(
+                  'mailto:rysalaksanabhakti@gmail.com'
+                  '?subject=Portfolio Contact',
+                ),
+            icon: const Icon(Icons.email),
+            label: const Text('Email Me'),
+            style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 14 : 18,
+                vertical: 12,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+          OutlinedButton.icon(
+            onPressed:
+                () => _launch(
+                  'https://wa.me/6283111778069'
+                  '?text=Hello,%20I%20found%20your%20portfolio',
+                ),
+            icon: const Icon(Icons.chat),
+            label: const Text('WhatsApp'),
+            style: OutlinedButton.styleFrom(
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 14 : 18,
+                vertical: 12,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
