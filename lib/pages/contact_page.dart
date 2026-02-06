@@ -25,7 +25,7 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final isMobile = width < 600;
+    final isMobile = width < 900;
 
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -57,6 +57,36 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
+  InputDecoration _inputDecoration({
+    required String label,
+    required IconData icon,
+    bool isMessage = false,
+  }) {
+    return InputDecoration(
+      labelText: label,
+      alignLabelWithHint: isMessage,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+
+      /// ICON POSITION
+      prefixIcon: Padding(
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 12,
+          top: isMessage ? 14 : 0, // 🔥 message sejajar atas
+        ),
+        child: Icon(icon),
+      ),
+
+      /// BIKIN TEKS LEBIH KE TENGAH
+      contentPadding: EdgeInsets.symmetric(
+        vertical: isMessage ? 18 : 20,
+        horizontal: 12,
+      ),
+
+      prefixIconConstraints: const BoxConstraints(minWidth: 54),
+    );
+  }
+
   Widget _buildMobileLayout() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,15 +108,11 @@ class _ContactPageState extends State<ContactPage> {
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const ContactCTA(),
-              const SizedBox(height: 24),
-              _buildContactForm(),
-            ],
+            children: [const ContactCTA(), _buildContactForm()],
           ),
         ),
 
-        const SizedBox(width: 40),
+        const SizedBox(width: 60),
 
         // ================= KANAN =================
         Expanded(
@@ -94,9 +120,9 @@ class _ContactPageState extends State<ContactPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const AvailabilityStatus(),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
               _buildContactInfoCore(),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
               _buildSocialOnly(),
             ],
           ),
@@ -113,30 +139,18 @@ class _ContactPageState extends State<ContactPage> {
         children: [
           TextFormField(
             controller: _nameController,
-            decoration: InputDecoration(
-              labelText: 'Name',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              prefixIcon: const Icon(Icons.person),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your name';
-              }
-              return null;
-            },
+            decoration: _inputDecoration(label: 'Name', icon: Icons.person),
+            validator:
+                (value) =>
+                    value == null || value.isEmpty
+                        ? 'Please enter your name'
+                        : null,
           ),
+
           const SizedBox(height: 16),
           TextFormField(
             controller: _emailController,
-            decoration: InputDecoration(
-              labelText: 'Email',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              prefixIcon: const Icon(Icons.email),
-            ),
+            decoration: _inputDecoration(label: 'Email', icon: Icons.email),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your email';
@@ -149,30 +163,28 @@ class _ContactPageState extends State<ContactPage> {
               return null;
             },
           ),
+
           const SizedBox(height: 16),
           TextFormField(
             controller: _messageController,
-            decoration: InputDecoration(
-              labelText: 'Message',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              prefixIcon: const Icon(Icons.message),
-              alignLabelWithHint: true,
+            maxLines: 6,
+            decoration: _inputDecoration(
+              label: 'Message',
+              icon: Icons.message,
+              isMessage: false,
             ),
-            maxLines: 5,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your message';
-              }
-              return null;
-            },
+            validator:
+                (value) =>
+                    value == null || value.isEmpty
+                        ? 'Please enter your message'
+                        : null,
           ),
+
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: _submitForm,
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
@@ -198,7 +210,7 @@ class _ContactPageState extends State<ContactPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 13),
 
         ContactInfo(
           icon: Icons.email,
@@ -256,20 +268,20 @@ class _ContactPageState extends State<ContactPage> {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
-        Row(
+        Wrap(
+          spacing: 16,
+          runSpacing: 16,
           children: const [
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/github.png',
               url: 'https://github.com/Rysalb',
               tooltip: 'GitHub',
             ),
-            SizedBox(width: 16),
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/linkedin.png',
               url: 'https://www.linkedin.com/in/rysa-laksana/',
               tooltip: 'LinkedIn',
             ),
-            SizedBox(width: 16),
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/instagram-new.png',
               url: 'https://www.instagram.com/rysalaksana/',
@@ -362,16 +374,30 @@ class ContactInfo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start, // 🔥 KUNCI
         children: [
-          Icon(icon, color: Theme.of(context).colorScheme.primary),
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Icon(icon, color: Theme.of(context).colorScheme.primary),
+          ),
           const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-              Text(content),
-              if (action != null) ...[const SizedBox(height: 4), action!],
-            ],
+
+          /// CONTENT
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 2),
+                Text(content),
+
+                /// BUTTON TURUN KE BAWAH
+                if (action != null) ...[const SizedBox(height: 8), action!],
+              ],
+            ),
           ),
         ],
       ),
@@ -541,12 +567,18 @@ class AvailabilityStatus extends StatelessWidget {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: const [
-          Icon(Icons.circle, color: Colors.green, size: 10),
-          SizedBox(width: 8),
-          Text(
-            'Currently open for internship, freelance, or full-time opportunities',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.circle, color: Colors.green, size: 10),
+          const SizedBox(width: 8),
+
+          /// 🔥 INI KUNCI ANTI OVERFLOW
+          Flexible(
+            child: Text(
+              'Currently open for internship, freelance, or full-time opportunities',
+              softWrap: true,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),
