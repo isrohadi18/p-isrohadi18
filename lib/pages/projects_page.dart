@@ -18,9 +18,46 @@ class ProjectsPage extends StatelessWidget {
             ? 2
             : 3;
 
+    final projects = [
+      ProjectCard(
+        title: 'Sistem Pengajuan PKN (Praktek Kerja Nyata)',
+        description:
+            'Sistem pengajuan PKN (Praktek Kerja Nyata) menggunakan koneksi Database mySql sebagai tempat penyimpanan data user ataupun inputan user',
+        technologies: ['Java', 'Mysql'],
+        imageUrl: 'assets/images/proyek1.png',
+        githubUrl: 'https://github.com/Rysalb/TubesPbo',
+        demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
+        demoType: DemoType.video,
+        isAssetImage: true,
+        isFeatured: true,
+      ),
+      ProjectCard(
+        title: 'Ladangku.id',
+        description:
+            'Ladangku.id is a web-based application that provides a platform for farmers to sell their products online.',
+        technologies: ['HTML', 'CSS'],
+        imageUrl: 'assets/images/proyek2.png',
+        githubUrl: 'https://github.com/Rysalb/Ladangku-UI',
+        demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
+        demoType: DemoType.web,
+        isAssetImage: true,
+      ),
+      ProjectCard(
+        title: 'Aplikasi Sistem Manajemen Kos',
+        description:
+            'Aplikasi manajemen kos adalah solusi digital untuk mengelola operasional kos secara efisien...',
+        technologies: ['Flutter', 'Laravel', 'MySQL'],
+        imageUrl: 'assets/images/proyek3.png',
+        githubUrl: 'https://github.com/Rysalb/fe_kos_hansarin',
+        isAssetImage: true,
+      ),
+    ];
+
     return Container(
-      height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.all(width < 600 ? 16 : 20),
+      constraints: const BoxConstraints(
+        minHeight: 600, // optional tapi aman
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,61 +70,24 @@ class ProjectsPage extends StatelessWidget {
             ),
           ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
           SizedBox(height: width < 600 ? 20 : 30),
+
           Expanded(
-            child: GridView.count(
+            child: GridView.builder(
               physics: const ClampingScrollPhysics(),
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: width < 600 ? 16 : 20,
-              mainAxisSpacing: width < 600 ? 16 : 20,
-              childAspectRatio: width < 600 ? 0.8 : 1.0, // Adjusted ratio
-              children:
-                  [
-                        ProjectCard(
-                          title: 'Sistem Pengajuan PKN (Praktek Kerja Nyata)',
-                          description:
-                              'Sistem pengajuan PKN (Praktek Kerja Nyata) menggunakan koneksi Database mySql sebagai tempat penyimpanan data user ataupun inputan user',
-                          technologies: ['Java', 'Mysql'],
-                          imageUrl: 'assets/images/proyek1.png',
-                          githubUrl: 'https://github.com/Rysalb/TubesPbo',
-                          demoUrl:
-                              'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
-                          downloadUrl: '',
-                          demoType: DemoType.video,
-                          isAssetImage: true,
-                          isFeatured: true,
-                        ),
-                        ProjectCard(
-                          title: 'Ladangku.id',
-                          description:
-                              'Ladangku.id is a web-based application that provides a platform for farmers to sell their products online.',
-                          technologies: ['HTML', 'CSS'],
-                          imageUrl: 'assets/images/proyek2.png',
-                          githubUrl: 'https://github.com/Rysalb/Ladangku-UI',
-                          demoUrl:
-                              'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
-                          downloadUrl: '',
-                          demoType: DemoType.web,
-                          isAssetImage: true,
-                        ),
-                        ProjectCard(
-                          title: 'Aplikasi Sistem Manajemen Kos',
-                          description:
-                              'Aplikasi manajemen kos adalah solusi digital untuk mengelola operasional kos secara efisien. Aplikasi ini terdiri dari dua platform: backend menggunakan Laravel dan frontend menggunakan Flutter.',
-                          technologies: ['Flutter', 'Laravel', 'MySQL'],
-                          imageUrl: 'assets/images/proyek3.png',
-                          githubUrl:
-                              'https://github.com/Rysalb/fe_kos_hansarin',
-                          isAssetImage: true,
-                        ),
-                      ]
-                      .mapIndexed(
-                        (index, card) => card
-                            .animate(delay: (200 * index).ms)
-                            .fadeIn()
-                            .slideY(begin: 0.2)
-                            .scale(begin: const Offset(0.8, 0.8)),
-                      )
-                      .toList(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                crossAxisSpacing: width < 600 ? 16 : 20,
+                mainAxisSpacing: width < 600 ? 16 : 20,
+                mainAxisExtent: width < 600 ? 420 : 460, // 🔥 STABIL
+              ),
+              itemCount: projects.length,
+              itemBuilder: (context, index) {
+                return projects[index]
+                    .animate(delay: (200 * index).ms)
+                    .fadeIn()
+                    .slideY(begin: 0.2)
+                    .scale(begin: const Offset(0.8, 0.8));
+              },
             ),
           ),
         ],
@@ -148,8 +148,6 @@ class ProjectCard extends StatelessWidget {
                 )
                 : BorderSide.none,
       ),
-      // color: Theme.of(context).cardColor,
-      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: null,
         borderRadius: BorderRadius.circular(12),
@@ -203,81 +201,80 @@ class ProjectCard extends StatelessWidget {
               ),
             ),
             // Content section
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(isMobile ? 8 : 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Title
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: isMobile ? 12 : 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 2,
+            Padding(
+              padding: EdgeInsets.all(isMobile ? 8 : 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min, // 🔥 KUNCI ANTI OVERFLOW
+                children: [
+                  // Title
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: isMobile ? 12 : 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  // Description
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: isMobile ? 48 : 72),
+                    child: Text(
+                      description,
+                      maxLines: isMobile ? 3 : 4,
                       overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    // Description
-                    SizedBox(
-                      height: isMobile ? 14 : 32, // ± 3–5 baris
-                      child: Text(
-                        description,
-                        style: TextStyle(
-                          fontSize: isMobile ? 10 : 12,
-                          color: Colors.grey[600],
-                          height: 1.4, // line height biar rapi
-                        ),
-                        maxLines: isMobile ? 3 : 5,
-                        overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: isMobile ? 10 : 12,
+                        color: Colors.grey[600],
+                        height: 1.4, // line height biar rapi
                       ),
                     ),
-                    const SizedBox(height: 15),
-                    Wrap(
-                      spacing: 6,
-                      runSpacing: 6,
-                      children:
-                          technologies
-                              .map((tech) => TechBadge(label: tech))
-                              .toList(),
-                    ),
-                    const SizedBox(height: 8),
+                  ),
+                  const SizedBox(height: 15),
+                  Wrap(
+                    spacing: 6,
+                    runSpacing: 6,
+                    children:
+                        technologies
+                            .map((tech) => TechBadge(label: tech))
+                            .toList(),
+                  ),
+                  const SizedBox(height: 8),
 
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      ProjectActionButton(
+                        label: 'GitHub',
+                        icon: Icons.code,
+                        onPressed: () => _launch(githubUrl),
+                      ),
+
+                      if (demoUrl != null && demoType != DemoType.none)
                         ProjectActionButton(
-                          label: 'GitHub',
-                          icon: Icons.code,
-                          onPressed: () => _launch(githubUrl),
+                          label:
+                              demoType == DemoType.video
+                                  ? 'Demo Video'
+                                  : 'Demo Web',
+                          icon:
+                              demoType == DemoType.video
+                                  ? Icons.play_circle_outline
+                                  : Icons.open_in_new,
+                          onPressed: () => _launch(demoUrl!),
                         ),
 
-                        if (demoUrl != null && demoType != DemoType.none)
-                          ProjectActionButton(
-                            label:
-                                demoType == DemoType.video
-                                    ? 'Demo Video'
-                                    : 'Demo Web',
-                            icon:
-                                demoType == DemoType.video
-                                    ? Icons.play_circle_outline
-                                    : Icons.open_in_new,
-                            onPressed: () => _launch(demoUrl!),
-                          ),
-
-                        if (downloadUrl != null)
-                          ProjectActionButton(
-                            label: 'Download',
-                            icon: Icons.download,
-                            onPressed: () => _launch(downloadUrl!),
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
+                      if (downloadUrl != null)
+                        ProjectActionButton(
+                          label: 'Download',
+                          icon: Icons.download,
+                          onPressed: () => _launch(downloadUrl!),
+                        ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
