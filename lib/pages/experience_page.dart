@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ExperiencePage extends StatelessWidget {
   const ExperiencePage({super.key});
@@ -15,7 +16,7 @@ class ExperiencePage extends StatelessWidget {
         children: [
           const SectionTitle(
             title: 'Experience',
-            subtitle: 'Professional experience and practical impact.',
+            subtitle: 'Professional background and roles',
           ),
           const SizedBox(height: 32),
           ...List.generate(
@@ -34,90 +35,40 @@ class ExperiencePage extends StatelessWidget {
   }
 }
 
-class SectionTitle extends StatefulWidget {
+class SectionTitle extends StatelessWidget {
   final String title;
   final String subtitle;
 
   const SectionTitle({super.key, required this.title, required this.subtitle});
 
   @override
-  State<SectionTitle> createState() => _SectionTitleState();
-}
-
-class _SectionTitleState extends State<SectionTitle>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _opacity;
-  late Animation<Offset> _slide;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 600),
-    );
-
-    _opacity = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
-
-    _slide = Tween<Offset>(
-      begin: const Offset(0, 0.2),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
-
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _opacity,
-      child: SlideTransition(
-        position: _slide,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 30), //
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height: 8),
-            Text(
-              widget.subtitle,
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-          ],
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
         ),
-      ),
+        const SizedBox(height: 2),
+        Padding(
+          padding: const EdgeInsets.only(left: 30), //
+          child: Text(
+            subtitle,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.15),
+        ),
+      ],
     );
   }
-}
-
-Widget _buildTitle() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: const [
-      Text(
-        'Experience',
-        style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Professional experience and practical impact.',
-        style: TextStyle(fontSize: 16, color: Colors.grey),
-      ),
-    ],
-  );
 }
 
 class Experience {

@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -60,15 +58,9 @@ class ProjectsPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 12), // margin bawah
-            child: Text(
-              'My Projects',
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.bold,
-              ),
-            ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
+          const SectionTitle(
+            title: 'My Project',
+            subtitle: 'Selected works and implementations',
           ),
           SizedBox(height: width < 600 ? 20 : 30),
 
@@ -93,6 +85,42 @@ class ProjectsPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SectionTitle extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
+  const SectionTitle({super.key, required this.title, required this.subtitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 10), //
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
+        ),
+        const SizedBox(height: 2),
+        Padding(
+          padding: const EdgeInsets.only(left: 10), //
+          child: Text(
+            subtitle,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.15),
+        ),
+      ],
     );
   }
 }

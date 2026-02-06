@@ -34,17 +34,8 @@ class _ContactPageState extends State<ContactPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 12), // margin bawah
-            child: Text(
-              'Contact Me',
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.bold,
-              ),
-            ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
-          ),
-          const SizedBox(height: 24),
+          const SectionTitle(title: 'Contact Me'),
+          const SizedBox(height: 15),
           Expanded(
             child: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
@@ -586,6 +577,31 @@ class AvailabilityStatus extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SectionTitle extends StatelessWidget {
+  final String title;
+
+  const SectionTitle({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 5), //
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
+        ),
+      ],
     );
   }
 }
