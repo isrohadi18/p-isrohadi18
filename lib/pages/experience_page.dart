@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+// bool isMobileLayout(BuildContext context) {
+//   return MediaQuery.of(context).size.width < 768;
+// }
+
 class ExperiencePage extends StatelessWidget {
   const ExperiencePage({super.key});
 
+  bool isMobileLayout(BuildContext context) {
+    return MediaQuery.of(context).size.width < 768;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 768;
+    final isMobile = isMobileLayout(context);
 
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,6 +26,7 @@ class ExperiencePage extends StatelessWidget {
             subtitle: 'Professional background and roles',
           ),
           const SizedBox(height: 32),
+
           ...List.generate(
             experienceList.length,
             (index) =>
@@ -29,6 +37,8 @@ class ExperiencePage extends StatelessWidget {
                       isLast: index == experienceList.length - 1,
                     ),
           ),
+
+          const SizedBox(height: 64), // 🔥 PENTING: ruang akhir
         ],
       ),
     );
@@ -96,9 +106,22 @@ final List<Experience> experienceList = [
     highlights: [
       'Developed responsive portfolio website using Flutter Web',
       'Implemented clean UI structure and reusable components',
-      'Tech: Flutter, Dart, Git',
+      'Implemented clean UI structure and reusable components',
     ],
   ),
+
+  Experience(
+    company: 'xaakn',
+    period: 'Jan 2023 – Present',
+    role: 'Flutter Developer',
+    logo: 'assets/images/company_placeholder.png',
+    highlights: [
+      'Developed responsive portfolio website using Flutter Web',
+      'Implemented clean UI structure and reusable components',
+      'Implemented clean UI structure and reusable components',
+    ],
+  ),
+
   Experience(
     company: 'Universitas',
     period: '2021 – 2025',
@@ -107,7 +130,7 @@ final List<Experience> experienceList = [
     highlights: [
       'Built academic projects using Java and Flutter',
       'Implemented AES encryption for final project',
-      'Tech: Java, Flutter, AES, Git',
+      'Implemented AES encryption for final project',
     ],
   ),
 ];
@@ -119,95 +142,6 @@ class ExperienceCard extends StatefulWidget {
 
   @override
   State<ExperienceCard> createState() => _ExperienceCardState();
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 24),
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade300),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildHeader(),
-          const SizedBox(height: 16),
-          Text(
-            experience.role,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 12),
-          ...experience.highlights.map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [const Text('•  '), Expanded(child: Text(item))],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        CircleAvatar(radius: 18, backgroundImage: AssetImage(experience.logo)),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            experience.company,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-        ),
-        Text(
-          experience.period,
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
-        ),
-      ],
-    );
-  }
-}
-
-class TimelineItem extends StatelessWidget {
-  final Experience experience;
-  final bool isLast;
-
-  const TimelineItem({
-    super.key,
-    required this.experience,
-    this.isLast = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Timeline indicator
-        Column(
-          children: [
-            Container(
-              width: 12,
-              height: 12,
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                shape: BoxShape.circle,
-              ),
-            ),
-            if (!isLast)
-              Container(width: 2, height: 120, color: Colors.grey.shade300),
-          ],
-        ),
-        const SizedBox(width: 24),
-
-        // Card
-        Expanded(child: ExperienceCard(experience: experience)),
-      ],
-    );
-  }
 }
 
 class _ExperienceCardState extends State<ExperienceCard> {
@@ -242,40 +176,73 @@ class _ExperienceCardState extends State<ExperienceCard> {
                   ]
                   : [],
         ),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                CircleAvatar(radius: 18, backgroundImage: AssetImage(exp.logo)),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    exp.company,
+            CompanyAvatar(companyName: exp.company),
+
+            const SizedBox(width: 16),
+
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // COMPANY + PERIOD
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          exp.company,
+                          style: const TextStyle(
+                            fontSize: ExperienceTextStyle.companySize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        exp.period,
+                        style: const TextStyle(
+                          fontSize: ExperienceTextStyle.periodSize,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 6),
+
+                  // ROLE
+                  Text(
+                    exp.role,
                     style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontSize: ExperienceTextStyle.roleSize,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                ),
-                Text(
-                  exp.period,
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              exp.role,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 12),
-            ...exp.highlights.map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  children: [const Text('•  '), Expanded(child: Text(item))],
-                ),
+
+                  const SizedBox(height: 12),
+
+                  // HIGHLIGHTS
+                  ...exp.highlights.map(
+                    (item) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('•  '),
+                          Expanded(
+                            child: Text(
+                              item,
+                              style: const TextStyle(
+                                fontSize: ExperienceTextStyle.bulletSize,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -283,4 +250,82 @@ class _ExperienceCardState extends State<ExperienceCard> {
       ),
     );
   }
+}
+
+class TimelineItem extends StatelessWidget {
+  final Experience experience;
+  final bool isLast;
+
+  const TimelineItem({
+    super.key,
+    required this.experience,
+    this.isLast = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // TIMELINE
+          Column(
+            children: [
+              Container(
+                width: 12,
+                height: 12,
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              if (!isLast)
+                Expanded(
+                  child: Container(width: 3, color: Colors.grey.shade300),
+                ),
+            ],
+          ),
+
+          const SizedBox(width: 24),
+
+          // CARD
+          Expanded(child: ExperienceCard(experience: experience)),
+        ],
+      ),
+    );
+  }
+}
+
+class CompanyAvatar extends StatelessWidget {
+  final String companyName;
+  final double size;
+
+  const CompanyAvatar({super.key, required this.companyName, this.size = 40});
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: size / 2,
+      backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+      child: Text(
+        _getInitial(companyName),
+        style: TextStyle(
+          fontSize: size / 2,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ),
+    );
+  }
+
+  String _getInitial(String name) {
+    return name.isNotEmpty ? name[0].toUpperCase() : '?';
+  }
+}
+
+class ExperienceTextStyle {
+  static const double companySize = 16;
+  static const double roleSize = 15;
+  static const double periodSize = 14;
+  static const double bulletSize = 14;
 }
