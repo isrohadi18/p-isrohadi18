@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -33,12 +34,15 @@ class _ContactPageState extends State<ContactPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Contact Me',
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            ),
+          Padding(
+            padding: const EdgeInsets.only(left: 12), // margin bawah
+            child: Text(
+              'Contact Me',
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
           ),
           const SizedBox(height: 24),
           Expanded(

@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:portoku_web/pages/about_page.dart';
-import 'package:portoku_web/pages/contact_page.dart';
 import 'package:portoku_web/pages/home_page.dart';
+import 'package:portoku_web/pages/about_page.dart';
+import 'package:portoku_web/pages/experience_page.dart';
 import 'package:portoku_web/pages/projects_page.dart';
+// import 'package:portoku_web/pages/certificate_page.dart';
+import 'package:portoku_web/pages/contact_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +14,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static final ValueNotifier<ThemeMode> themeNotifier = 
-      ValueNotifier(ThemeMode.system);
+  static final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(
+    ThemeMode.system,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -84,95 +87,105 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: isDark 
-            // ignore: deprecated_member_use
-            ? Colors.black.withOpacity(0.8)
-            // ignore: deprecated_member_use
-            : Colors.white.withOpacity(0.8),
+        backgroundColor:
+            isDark
+                // ignore: deprecated_member_use
+                ? Colors.black.withOpacity(0.8)
+                // ignore: deprecated_member_use
+                : Colors.white.withOpacity(0.8),
         flexibleSpace: ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(color: Colors.transparent),
           ),
         ),
-        title: isMobile
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.menu),
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) => _buildMobileMenu(),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      isDark ? Icons.light_mode : Icons.dark_mode,
+        title:
+            isMobile
+                ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.menu),
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => _buildMobileMenu(),
+                        );
+                      },
                     ),
-                    onPressed: () {
-                      MyApp.themeNotifier.value = isDark 
-                          ? ThemeMode.light 
-                          : ThemeMode.dark;
-                    },
-                  ),
-                ],
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AnimatedNavButton(
-                        title: 'Home',
-                        icon: Icons.home,
-                        isSelected: _selectedIndex == 0,
-                        onTap: () => _scrollToIndex(0),
-                      ),
-                      AnimatedNavButton(
-                        title: 'About',
-                        icon: Icons.person,
-                        isSelected: _selectedIndex == 1,
-                        onTap: () => _scrollToIndex(1),
-                      ),
-                      AnimatedNavButton(
-                        title: 'Projects',
-                        icon: Icons.work,
-                        isSelected: _selectedIndex == 2,
-                        onTap: () => _scrollToIndex(2),
-                      ),
-                      AnimatedNavButton(
-                        title: 'Contact',
-                        icon: Icons.contact_mail,
-                        isSelected: _selectedIndex == 3,
-                        onTap: () => _scrollToIndex(3),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    IconButton(
+                      icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                      onPressed: () {
+                        MyApp.themeNotifier.value =
+                            isDark ? ThemeMode.light : ThemeMode.dark;
+                      },
+                    ),
+                  ],
+                )
+                : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        IconButton(
-                          icon: Icon(
-                            isDark ? Icons.light_mode : Icons.dark_mode,
-                          ),
-                          onPressed: () {
-                            MyApp.themeNotifier.value = isDark 
-                                ? ThemeMode.light 
-                                : ThemeMode.dark;
-                          },
+                        AnimatedNavButton(
+                          title: 'Home',
+                          icon: Icons.home,
+                          isSelected: _selectedIndex == 0,
+                          onTap: () => _scrollToIndex(0),
                         ),
-                        const SizedBox(width: 16),
+                        AnimatedNavButton(
+                          title: 'About',
+                          icon: Icons.person,
+                          isSelected: _selectedIndex == 1,
+                          onTap: () => _scrollToIndex(1),
+                        ),
+                        AnimatedNavButton(
+                          title: 'Experience',
+                          icon: Icons.person,
+                          isSelected: _selectedIndex == 2,
+                          onTap: () => _scrollToIndex(2),
+                        ),
+                        AnimatedNavButton(
+                          title: 'Projects',
+                          icon: Icons.work,
+                          isSelected: _selectedIndex == 3,
+                          onTap: () => _scrollToIndex(3),
+                        ),
+                        AnimatedNavButton(
+                          title: 'Certificate',
+                          icon: Icons.work,
+                          isSelected: _selectedIndex == 4,
+                          onTap: () => _scrollToIndex(4),
+                        ),
+                        AnimatedNavButton(
+                          title: 'Contact',
+                          icon: Icons.contact_mail,
+                          isSelected: _selectedIndex == 5,
+                          onTap: () => _scrollToIndex(5),
+                        ),
                       ],
                     ),
-                  ),
-                ],
-              ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              isDark ? Icons.light_mode : Icons.dark_mode,
+                            ),
+                            onPressed: () {
+                              MyApp.themeNotifier.value =
+                                  isDark ? ThemeMode.light : ThemeMode.dark;
+                            },
+                          ),
+                          const SizedBox(width: 16),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
       ),
       body: SafeArea(
         child: PageView(
@@ -182,7 +195,9 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
           children: const [
             HomePage(),
             AboutPage(),
+            ExperiencePage(),
             ProjectsPage(),
+            // CertificatePage(),
             ContactPage(),
           ],
         ),
@@ -192,7 +207,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
 
   Widget _buildMobileMenu() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -217,8 +232,8 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.work),
-            title: const Text('Projects'),
+            leading: const Icon(Icons.person),
+            title: const Text('Experience'),
             selected: _selectedIndex == 2,
             onTap: () {
               _scrollToIndex(2);
@@ -226,8 +241,8 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.contact_mail),
-            title: const Text('Contact'),
+            leading: const Icon(Icons.work),
+            title: const Text('Projects'),
             selected: _selectedIndex == 3,
             onTap: () {
               _scrollToIndex(3);
@@ -235,12 +250,29 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.work),
+            title: const Text('Certificate'),
+            selected: _selectedIndex == 4,
+            onTap: () {
+              _scrollToIndex(4);
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.contact_mail),
+            title: const Text('Contact'),
+            selected: _selectedIndex == 5,
+            onTap: () {
+              _scrollToIndex(5);
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
             leading: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
             title: Text(isDark ? 'Light Mode' : 'Dark Mode'),
             onTap: () {
-              MyApp.themeNotifier.value = isDark 
-                  ? ThemeMode.light 
-                  : ThemeMode.dark;
+              MyApp.themeNotifier.value =
+                  isDark ? ThemeMode.light : ThemeMode.dark;
               Navigator.pop(context);
             },
           ),
@@ -267,7 +299,7 @@ class AnimatedNavButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: InkWell(
@@ -280,9 +312,10 @@ class AnimatedNavButton extends StatelessWidget {
             vertical: 8,
           ),
           decoration: BoxDecoration(
-            color: isSelected
-                ? Theme.of(context).colorScheme.primary
-                : Colors.transparent,
+            color:
+                isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : Colors.transparent,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -290,9 +323,10 @@ class AnimatedNavButton extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: isSelected 
-                    ? Colors.white 
-                    : isDark 
+                color:
+                    isSelected
+                        ? Colors.white
+                        : isDark
                         ? Colors.white
                         : Colors.black87,
                 size: 20,

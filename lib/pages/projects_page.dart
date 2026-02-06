@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -61,14 +60,16 @@ class ProjectsPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'My Projects',
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: width < 600 ? 24 : 32,
-            ),
-          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
+          Padding(
+            padding: const EdgeInsets.only(left: 12), // margin bawah
+            child: Text(
+              'My Projects',
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
+          ),
           SizedBox(height: width < 600 ? 20 : 30),
 
           Expanded(
