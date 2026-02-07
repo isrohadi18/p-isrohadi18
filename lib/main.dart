@@ -11,6 +11,35 @@ void main() {
   runApp(const MyApp());
 }
 
+final List<Map<String, dynamic>> _navItems = [
+  {'title': 'Home', 'icon': Icons.home_rounded, 'page': const HomePage()},
+  {
+    'title': 'About',
+    'icon': Icons.person_outline_rounded,
+    'page': const AboutPage(),
+  },
+  {
+    'title': 'Experience',
+    'icon': Icons.timeline_rounded,
+    'page': const ExperiencePage(),
+  },
+  {
+    'title': 'Projects',
+    'icon': Icons.code_rounded,
+    'page': const ProjectsPage(),
+  },
+  {
+    'title': 'Certificate',
+    'icon': Icons.school_rounded,
+    'page': const CertificatePage(),
+  },
+  {
+    'title': 'Contact',
+    'icon': Icons.mail_outline_rounded,
+    'page': const ContactPage(),
+  },
+];
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -70,6 +99,10 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
   }
 
   void _scrollToIndex(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
     _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 500),
@@ -128,45 +161,17 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                     const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AnimatedNavButton(
-                          title: 'Home',
-                          icon: Icons.home,
-                          isSelected: _selectedIndex == 0,
-                          onTap: () => _scrollToIndex(0),
-                        ),
-                        AnimatedNavButton(
-                          title: 'About',
-                          icon: Icons.person,
-                          isSelected: _selectedIndex == 1,
-                          onTap: () => _scrollToIndex(1),
-                        ),
-                        AnimatedNavButton(
-                          title: 'Experience',
-                          icon: Icons.person,
-                          isSelected: _selectedIndex == 2,
-                          onTap: () => _scrollToIndex(2),
-                        ),
-                        AnimatedNavButton(
-                          title: 'Projects',
-                          icon: Icons.work,
-                          isSelected: _selectedIndex == 3,
-                          onTap: () => _scrollToIndex(3),
-                        ),
-                        AnimatedNavButton(
-                          title: 'Certificate',
-                          icon: Icons.work,
-                          isSelected: _selectedIndex == 4,
-                          onTap: () => _scrollToIndex(4),
-                        ),
-                        AnimatedNavButton(
-                          title: 'Contact',
-                          icon: Icons.contact_mail,
-                          isSelected: _selectedIndex == 5,
-                          onTap: () => _scrollToIndex(5),
-                        ),
-                      ],
+                      children: List.generate(_navItems.length, (index) {
+                        final item = _navItems[index];
+                        return AnimatedNavButton(
+                          title: item['title'],
+                          icon: item['icon'],
+                          isSelected: _selectedIndex == index,
+                          onTap: () => _scrollToIndex(index),
+                        );
+                      }),
                     ),
+
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -192,14 +197,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
           controller: _pageController,
           onPageChanged: (index) => setState(() => _selectedIndex = index),
           scrollDirection: Axis.vertical,
-          children: const [
-            HomePage(),
-            AboutPage(),
-            ExperiencePage(),
-            ProjectsPage(),
-            CertificatePage(),
-            ContactPage(),
-          ],
+          children: _navItems.map((item) => item['page'] as Widget).toList(),
         ),
       ),
     );
@@ -208,75 +206,43 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
   Widget _buildMobileMenu() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text('Home'),
-            selected: _selectedIndex == 0,
-            onTap: () {
-              _scrollToIndex(0);
-              Navigator.pop(context);
-            },
+    return SafeArea(
+      child: Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.85,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // 🔹 MENU NAV (STEP 4 DI SINI)
+              ...List.generate(_navItems.length, (index) {
+                final item = _navItems[index];
+                return ListTile(
+                  leading: Icon(item['icon']),
+                  title: Text(item['title']),
+                  selected: _selectedIndex == index,
+                  onTap: () {
+                    _scrollToIndex(index);
+                    Navigator.pop(context);
+                  },
+                );
+              }),
+
+              const Divider(),
+
+              ListTile(
+                leading: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                title: Text(isDark ? 'Light Mode' : 'Dark Mode'),
+                onTap: () {
+                  MyApp.themeNotifier.value =
+                      isDark ? ThemeMode.light : ThemeMode.dark;
+                  Navigator.pop(context);
+                },
+              ),
+            ],
           ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('About'),
-            selected: _selectedIndex == 1,
-            onTap: () {
-              _scrollToIndex(1);
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Experience'),
-            selected: _selectedIndex == 2,
-            onTap: () {
-              _scrollToIndex(2);
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.work),
-            title: const Text('Projects'),
-            selected: _selectedIndex == 3,
-            onTap: () {
-              _scrollToIndex(3);
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.work),
-            title: const Text('Certificate'),
-            selected: _selectedIndex == 4,
-            onTap: () {
-              _scrollToIndex(4);
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.contact_mail),
-            title: const Text('Contact'),
-            selected: _selectedIndex == 5,
-            onTap: () {
-              _scrollToIndex(5);
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            title: Text(isDark ? 'Light Mode' : 'Dark Mode'),
-            onTap: () {
-              MyApp.themeNotifier.value =
-                  isDark ? ThemeMode.light : ThemeMode.dark;
-              Navigator.pop(context);
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -329,7 +295,7 @@ class AnimatedNavButton extends StatelessWidget {
                         : isDark
                         ? Colors.white
                         : Colors.black87,
-                size: 20,
+                size: isSelected ? 22 : 20,
               ),
               if (isSelected) ...[
                 const SizedBox(width: 8),
