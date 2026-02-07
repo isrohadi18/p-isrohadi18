@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-// bool isMobileLayout(BuildContext context) {
-//   return MediaQuery.of(context).size.width < 768;
-// }
+bool isMobileLayout(BuildContext context) {
+  return MediaQuery.of(context).size.width < 768;
+}
 
 class ExperiencePage extends StatelessWidget {
   const ExperiencePage({super.key});
-
-  bool isMobileLayout(BuildContext context) {
-    return MediaQuery.of(context).size.width < 768;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +175,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CompanyAvatar(companyName: exp.company),
+            CompanyAvatar(companyName: exp.company, role: exp.role),
 
             const SizedBox(width: 16),
 
@@ -247,7 +243,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
             ),
           ],
         ),
-      ),
+      ).animate(delay: 200.ms).fadeIn(duration: 500.ms).slideY(begin: 0.2),
     );
   }
 }
@@ -272,10 +268,10 @@ class TimelineItem extends StatelessWidget {
           Column(
             children: [
               Container(
-                width: 12,
-                height: 12,
+                width: 18,
+                height: 18,
                 decoration: const BoxDecoration(
-                  color: Colors.black,
+                  color: Color.fromARGB(123, 255, 86, 34),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -298,21 +294,41 @@ class TimelineItem extends StatelessWidget {
 
 class CompanyAvatar extends StatelessWidget {
   final String companyName;
+  final String role;
   final double size;
 
-  const CompanyAvatar({super.key, required this.companyName, this.size = 40});
+  const CompanyAvatar({
+    super.key,
+    required this.companyName,
+    required this.role,
+    this.size = 40,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: size / 2,
-      backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-      child: Text(
-        _getInitial(companyName),
-        style: TextStyle(
-          fontSize: size / 2,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.primary,
+    return Tooltip(
+      message: '$companyName\n$role',
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8),
+        ],
+      ),
+      textStyle: TextStyle(
+        color: Theme.of(context).colorScheme.onSurface,
+        fontSize: 12,
+      ),
+      child: CircleAvatar(
+        radius: size / 2,
+        backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        child: Text(
+          _getInitial(companyName),
+          style: TextStyle(
+            fontSize: size / 2,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
     );
