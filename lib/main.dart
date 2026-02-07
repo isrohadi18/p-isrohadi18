@@ -4,7 +4,7 @@ import 'package:portoku_web/pages/home_page.dart';
 import 'package:portoku_web/pages/about_page.dart';
 import 'package:portoku_web/pages/experience_page.dart';
 import 'package:portoku_web/pages/projects_page.dart';
-// import 'package:portoku_web/pages/certificate_page.dart';
+import 'package:portoku_web/pages/certificate_page.dart';
 import 'package:portoku_web/pages/contact_page.dart';
 
 void main() {
@@ -197,7 +197,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
             AboutPage(),
             ExperiencePage(),
             ProjectsPage(),
-            // CertificatePage(),
+            CertificatePage(),
             ContactPage(),
           ],
         ),
