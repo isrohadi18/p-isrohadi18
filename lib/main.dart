@@ -122,9 +122,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
         elevation: 0,
         backgroundColor:
             isDark
-                // ignore: deprecated_member_use
                 ? Colors.black.withOpacity(0.8)
-                // ignore: deprecated_member_use
                 : Colors.white.withOpacity(0.8),
         flexibleSpace: ClipRect(
           child: BackdropFilter(
@@ -171,7 +169,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                         );
                       }),
                     ),
-
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -192,13 +189,26 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                   ],
                 ),
       ),
-      body: SafeArea(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (index) => setState(() => _selectedIndex = index),
-          scrollDirection: Axis.vertical,
-          children: _navItems.map((item) => item['page'] as Widget).toList(),
-        ),
+
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) => setState(() => _selectedIndex = index),
+        scrollDirection: Axis.vertical,
+        physics:
+            isMobile
+                ? const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                )
+                : const ClampingScrollPhysics(),
+        children:
+            _navItems.map((item) {
+              return Padding(
+                padding: EdgeInsets.only(
+                  top: kToolbarHeight + MediaQuery.of(context).padding.top,
+                ),
+                child: SafeArea(top: false, child: item['page'] as Widget),
+              );
+            }).toList(),
       ),
     );
   }
