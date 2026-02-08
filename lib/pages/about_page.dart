@@ -17,13 +17,6 @@ class _AboutPageState extends State<AboutPage> {
   final ScrollController _skillsScrollController = ScrollController();
   Timer? _timer;
 
-  Future<void> _openVerificationLink(String linkVerifikasi) async {
-    final Uri url = Uri.parse(linkVerifikasi);
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw 'Tidak dapat membuka link verifikasi';
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -73,16 +66,6 @@ class _AboutPageState extends State<AboutPage> {
         isMobile ? 16 : 32,
         isMobile ? 16 : 32,
       ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        image: DecorationImage(
-          image: NetworkImage(
-            'https://images.unsplash.com/photo-1557683316-973673baf926',
-          ),
-          fit: BoxFit.cover,
-          opacity: Theme.of(context).brightness == Brightness.dark ? 0.05 : 0.1,
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -97,15 +80,12 @@ class _AboutPageState extends State<AboutPage> {
                   Text(
                     'I\'m a Computer Science student focusing on functional application development and familiar with various programming languages. I have experience developing full-stack applications, including front-end interfaces, back-end systems, and database integration. My projects involve real-world use cases, such as management systems and web platforms, which have helped me understand application flow. If you\'re concerned about spacing between lines of code and semicolons, let\'s talk about it.',
                     textAlign: TextAlign.justify,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      height: 1.5,
-                      color:
-                          isDark
-                              ? const Color.fromARGB(255, 255, 255, 255)
-                              : const Color.fromARGB(255, 0, 0, 0),
+                    style: const TextStyle(
+                      fontSize: AboutmeTextStyle.aboutSize,
+                      height: 1.6,
                     ),
                   ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.2),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 25),
                   Text(
                     'Skills',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -233,7 +213,7 @@ class _AboutPageState extends State<AboutPage> {
                               .toList(),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 25),
                   Text(
                     'Education',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -490,7 +470,7 @@ class EducationCard extends StatelessWidget {
                 ),
               ],
             ),
-
+            const SizedBox(height: 5),
             // ───────────────── VERIFICATION BUTTON ─────────────────
             OutlinedButton.icon(
               onPressed: () async {
@@ -546,4 +526,8 @@ class SectionTitle extends StatelessWidget {
       ],
     );
   }
+}
+
+class AboutmeTextStyle {
+  static const double aboutSize = 15.5;
 }

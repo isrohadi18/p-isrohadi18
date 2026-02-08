@@ -12,31 +12,30 @@ class ExperiencePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobile = isMobileLayout(context);
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionTitle(
-            title: 'Experience',
-            subtitle: 'Professional background and roles',
-          ),
-          const SizedBox(height: 32),
+    return CustomScrollView(
+      slivers: [
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: ExperienceHeaderDelegate(),
+        ),
 
-          ...List.generate(
-            experienceList.length,
-            (index) =>
-                isMobile
-                    ? ExperienceCard(experience: experienceList[index])
-                    : TimelineItem(
-                      experience: experienceList[index],
-                      isLast: index == experienceList.length - 1,
-                    ),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              final exp = experienceList[index];
+              return isMobile
+                  ? ExperienceCard(experience: exp)
+                  : TimelineItem(
+                    experience: exp,
+                    isLast: index == experienceList.length - 1,
+                  );
+            }, childCount: experienceList.length),
           ),
+        ),
 
-          const SizedBox(height: 64), // 🔥 PENTING: ruang akhir
-        ],
-      ),
+        const SliverToBoxAdapter(child: SizedBox(height: 64)),
+      ],
     );
   }
 }
@@ -53,7 +52,7 @@ class SectionTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 30), //
+          padding: const EdgeInsets.only(left: 15), //
           child: Text(
             title,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -64,7 +63,7 @@ class SectionTitle extends StatelessWidget {
         ),
         const SizedBox(height: 2),
         Padding(
-          padding: const EdgeInsets.only(left: 30), //
+          padding: const EdgeInsets.only(left: 15), //
           child: Text(
             subtitle,
             style: Theme.of(
@@ -95,38 +94,38 @@ class Experience {
 
 final List<Experience> experienceList = [
   Experience(
-    company: 'Freelance / Personal Project',
-    period: 'Jan 2023 – Present',
-    role: 'Flutter Developer',
-    logo: 'assets/images/company_placeholder.png',
+    company: 'GALLERY COMPUTER STORE',
+    period: 'Februari 2020 – April 2021',
+    role: 'Technical Assistant',
+    logo: 'assets/images/companygc.png',
     highlights: [
-      'Developed responsive portfolio website using Flutter Web',
-      'Implemented clean UI structure and reusable components',
-      'Implemented clean UI structure and reusable components',
+      'Maintaining the store and handling customer complaints',
+      'Installing software, updating operating systems, and troubleshooting hardware issues.',
+      'Assisting technicians with projects outside the assisting technicians with projects outside the store, both within the company and at schools, as requested by customers.',
     ],
   ),
 
   Experience(
-    company: 'xaakn',
-    period: 'Jan 2023 – Present',
-    role: 'Flutter Developer',
-    logo: 'assets/images/company_placeholder.png',
+    company: 'PT INDOSPS BOGATAMA SUKSES',
+    period: 'June 2021 – May 2022',
+    role: 'Information Technology Staff',
+    logo: 'assets/images/companyibs.png',
     highlights: [
-      'Developed responsive portfolio website using Flutter Web',
-      'Implemented clean UI structure and reusable components',
-      'Implemented clean UI structure and reusable components',
+      'Maintaining and maintaining the stability of network infrastructure lan/wan , as well as troubleshooting hardware and software issues, such as routers, switches, and firewalls.',
+      'Monitoring the performance of company servers and websites to ensure their stability.',
+      'Installing software, updating operating installing software, updating operating systems, and installing cctv.',
     ],
   ),
 
   Experience(
-    company: 'Universitas',
-    period: '2021 – 2025',
-    role: 'Software Engineering Student',
-    logo: 'assets/images/company_placeholder.png',
+    company: 'PT INDOSPS BOGATAMA SUKSES',
+    period: 'June 2022 – July 2024',
+    role: 'Graphic Design Marketing',
+    logo: 'assets/images/companyibs.png',
     highlights: [
-      'Built academic projects using Java and Flutter',
-      'Implemented AES encryption for final project',
-      'Implemented AES encryption for final project',
+      'Create a product design that will be uploaded on the companynn\'s social media every day.',
+      'Developing strategies with the team and developing customer interest in the companyn\'s products online.',
+      'Design project request in each division. Creating designs on food product packaging.',
     ],
   ),
 ];
@@ -175,7 +174,11 @@ class _ExperienceCardState extends State<ExperienceCard> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CompanyAvatar(companyName: exp.company, role: exp.role),
+            CompanyAvatar(
+              companyName: exp.company,
+              role: exp.role,
+              logo: exp.logo,
+            ),
 
             const SizedBox(width: 16),
 
@@ -295,19 +298,21 @@ class TimelineItem extends StatelessWidget {
 class CompanyAvatar extends StatelessWidget {
   final String companyName;
   final String role;
+  final String logo;
   final double size;
 
   const CompanyAvatar({
     super.key,
     required this.companyName,
     required this.role,
+    required this.logo,
     this.size = 40,
   });
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: '$companyName\n$role',
+      message: 'Company: $companyName',
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(8),
@@ -322,12 +327,22 @@ class CompanyAvatar extends StatelessWidget {
       child: CircleAvatar(
         radius: size / 2,
         backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-        child: Text(
-          _getInitial(companyName),
-          style: TextStyle(
-            fontSize: size / 2,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.primary,
+        child: ClipOval(
+          child: Image.asset(
+            logo,
+            width: size,
+            height: size,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Text(
+                _getInitial(companyName),
+                style: TextStyle(
+                  fontSize: size / 2,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              );
+            },
           ),
         ),
       ),
@@ -344,4 +359,51 @@ class ExperienceTextStyle {
   static const double roleSize = 15;
   static const double periodSize = 14;
   static const double bulletSize = 14;
+}
+
+class ExperienceHeaderDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  double get minExtent => 90;
+
+  @override
+  double get maxExtent => 90;
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    final theme = Theme.of(context);
+
+    return Container(
+      color: theme.scaffoldBackgroundColor,
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
+      alignment: Alignment.bottomLeft,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            'Experience',
+            style: theme.textTheme.headlineLarge?.copyWith(
+              color: theme.colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Professional background and job role',
+            style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+  }
 }
