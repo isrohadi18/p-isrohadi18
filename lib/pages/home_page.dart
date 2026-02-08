@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
             ).animate().fadeIn(duration: 600.ms).scale(delay: 200.ms),
             const SizedBox(height: 20),
             Text(
-                  'Rysa Laksana',
+                  'Rohadi Dwi Junianto',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -48,11 +48,11 @@ class HomePage extends StatelessWidget {
               child: AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
-                    'Fresh Graduate Computer Science',
+                    'Bachelor of Informatics Engineering',
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    'Flutter Developer',
+                    'UI/UX designers',
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
@@ -60,7 +60,11 @@ class HomePage extends StatelessWidget {
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    'Mobile Developer',
+                    'Flutter Developer',
+                    speed: const Duration(milliseconds: 100),
+                  ),
+                  TypewriterAnimatedText(
+                    'Network Engineer ',
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
@@ -78,7 +82,7 @@ class HomePage extends StatelessWidget {
                 ElevatedButton.icon(
                       onPressed: () async {
                         final Uri url = Uri.parse(
-                          'https://drive.google.com/file/d/1LbzodLMWeKQlKFR4N8mRTcf7pcjuajJz/view?usp=sharing',
+                          'https://drive.google.com/file/d/1Ci2baGwcGqTHBFlOCjuVo9d7ak-c7fbv/view?usp=sharing',
                         );
                         if (!await launchUrl(url)) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -108,7 +112,7 @@ class HomePage extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () async {
                     final Uri url = Uri.parse(
-                      'https://wa.me/6283111778069?text=Hello%20Rysa%2C%20I%20want%20to%20ask%20about...',
+                      'https://wa.me/628988064287?text=Hello%20Rohadi%2C%20I%20want%20to%20ask%20about...',
                     );
                     if (!await launchUrl(url)) {
                       ScaffoldMessenger.of(context).showSnackBar(
