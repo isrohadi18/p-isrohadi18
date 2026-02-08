@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 80,
-              backgroundImage: AssetImage('assets/images/foto_profile.png'),
+              backgroundImage: AssetImage('assets/images/profile.png'),
             ).animate().fadeIn(duration: 600.ms).scale(delay: 200.ms),
             const SizedBox(height: 20),
             Text(

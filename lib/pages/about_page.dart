@@ -55,13 +55,13 @@ class _AboutPageState extends State<AboutPage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final width = MediaQuery.of(context).size.width;
     final isMobile = width < 600;
-    final paddingTop = MediaQuery.of(context).padding.top + 20;
+    final paddingleft = MediaQuery.of(context).padding.left + 20;
 
     return Container(
       height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.fromLTRB(
         isMobile ? 16 : 32,
-        paddingTop, // Add padding for AppBar
+        paddingleft, // Add padding for AppBar
         isMobile ? 16 : 32,
         isMobile ? 16 : 32,
       ),
