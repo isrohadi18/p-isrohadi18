@@ -55,7 +55,7 @@ class _AboutPageState extends State<AboutPage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final width = MediaQuery.of(context).size.width;
     final isMobile = width < 600;
-    final paddingleft = MediaQuery.of(context).padding.left + 20;
+    final paddingleft = MediaQuery.of(context).padding.left;
 
     return Container(
       height: MediaQuery.of(context).size.height,
@@ -78,18 +78,8 @@ class _AboutPageState extends State<AboutPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'About Me',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color:
-                  isDark
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.primary,
-
-              fontWeight: FontWeight.bold,
-            ),
-          ).animate().slideX(begin: 0.2),
-          const SizedBox(height: 18),
+          const SectionTitle(title: 'About Me'),
+          const SizedBox(height: 10),
           Expanded(
             child: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
@@ -97,7 +87,7 @@ class _AboutPageState extends State<AboutPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'I am a Computer Science student focused on building functional and user-friendly applications using various programming languages. I have experience developing full-stack applications, covering front-end interfaces, back-end systems, and database integration. My projects involve real-world use cases, such as management systems and web platforms, which have helped me understand application flow. If you care about the spacing between lines of code and the semicolons in code, lets talk.',
+                    'I\'m a Computer Science student focusing on functional application development and familiar with various programming languages. I have experience developing full-stack applications, including front-end interfaces, back-end systems, and database integration. My projects involve real-world use cases, such as management systems and web platforms, which have helped me understand application flow. If you\'re concerned about spacing between lines of code and semicolons, let\'s talk about it.',
                     textAlign: TextAlign.justify,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       height: 1.5,
@@ -320,46 +310,6 @@ class SkillChip extends StatelessWidget {
         return '../../assets/icons/excel.png';
       default:
         return '';
-      // case 'flutter':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/flutter-2752187-2285004.png';
-      // case 'dart':
-      //   return 'https://img.icons8.com/color/48/dart.png';
-      // case 'java':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/java-43-569305.png';
-      // case 'python':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/python-3521655-2945099.png';
-      // case 'html/css':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/html5-40-1175193.png';
-      // case 'javascript':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/javascript-1-225993.png';
-      // case 'git':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/git-225996.png';
-      // case 'sql':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/sql-4-190807.png';
-      // case 'laravel':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/laravel-226015.png';
-      // case 'react':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/react-3-1175109.png';
-      // case 'php':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/php-2752101-2284918.png';
-      // case 'css':
-      //   return 'https://cdn.iconscout.com/icon/free/png-256/css3-11-1175239.png';
-      // case 'figma':
-      //   return 'https://img.icons8.com/color/48/figma--v1.png';
-      // case 'word':
-      //   return 'https://img.icons8.com/color/48/microsoft-word-2019--v2.png';
-      // case 'excel':
-      //   return 'https://img.icons8.com/color/48/microsoft-excel-2019--v1.png';
-      // case 'canva':
-      //   return 'https://img.icons8.com/fluency/48/canva.png';
-      // case 'photoshop':
-      //   return 'https://img.icons8.com/color/48/adobe-photoshop--v1.png';
-      // case 'capcut':
-      //   return 'https://images.seeklogo.com/logo-png/43/1/capcut-logo-png_seeklogo-437025.png';
-      // case 'go':
-      //   return '<https://static.cdnlogo.com/logos/g/35/golang.svg';
-      // default:
-      //   return '';
     }
   }
 
@@ -483,6 +433,32 @@ class EducationCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SectionTitle extends StatelessWidget {
+  final String title;
+
+  const SectionTitle({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.only(left: 0), //
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
+        ),
+      ],
     );
   }
 }
