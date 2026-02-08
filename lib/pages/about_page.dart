@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
 
 class AboutPage extends StatefulWidget {
@@ -15,6 +16,13 @@ class _AboutPageState extends State<AboutPage> {
   final ScrollController _mainScrollController = ScrollController();
   final ScrollController _skillsScrollController = ScrollController();
   Timer? _timer;
+
+  Future<void> _openVerificationLink(String linkVerifikasi) async {
+    final Uri url = Uri.parse(linkVerifikasi);
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Tidak dapat membuka link verifikasi';
+    }
+  }
 
   @override
   void initState() {
@@ -97,7 +105,7 @@ class _AboutPageState extends State<AboutPage> {
                               : const Color.fromARGB(255, 0, 0, 0),
                     ),
                   ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.2),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Text(
                     'Skills',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -109,7 +117,7 @@ class _AboutPageState extends State<AboutPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ).animate().fadeIn(delay: 400.ms),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 15),
                   SingleChildScrollView(
                     controller:
                         _skillsScrollController, // Use skills scroll controller here
@@ -225,7 +233,7 @@ class _AboutPageState extends State<AboutPage> {
                               .toList(),
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 20),
                   Text(
                     'Education',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -236,12 +244,14 @@ class _AboutPageState extends State<AboutPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ).animate().fadeIn(delay: 1300.ms),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 15),
                   const EducationCard(
                     university: 'INDRAPRASTA PGRI UNIVERSITY',
                     degree: 'Bachelor of informatics',
                     year: '2021/2025',
                     gpa: '3.45',
+                    linkVerifikasi:
+                        'https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/95rAqqeLm78ul9xYRP8NbZbdHoe_IbjvXgefdWdaDVKxYH-1Idy0u9uqIwC_Uqz9PzHUZA==',
                   ).animate().fadeIn(delay: 1400.ms).slideX(begin: 0.2),
                 ],
               ),
@@ -365,6 +375,7 @@ class EducationCard extends StatelessWidget {
   final String degree;
   final String year;
   final String gpa;
+  final String linkVerifikasi;
 
   const EducationCard({
     super.key,
@@ -372,6 +383,7 @@ class EducationCard extends StatelessWidget {
     required this.degree,
     required this.year,
     required this.gpa,
+    required this.linkVerifikasi,
   });
 
   @override
@@ -380,55 +392,128 @@ class EducationCard extends StatelessWidget {
 
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(30),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(16),
           gradient: LinearGradient(
             colors:
                 isDark
                     ? [const Color(0xFF1E1E1E), const Color(0xFF2A2A2A)]
                     : [
-                      Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                      Theme.of(context).colorScheme.primary.withOpacity(0.08),
                       Colors.white,
                     ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
         ),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              university,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              degree,
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            const SizedBox(height: 15),
+            // ───────────────── HEADER ROW ─────────────────
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Graduation Year: $year',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                // LEFT SIDE (MAIN INFO)
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        university,
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        degree,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  'GPA: $gpa',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color:
-                        isDark
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.primary,
+
+                // RIGHT SIDE (META INFO)
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Graduation Year',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey.shade600,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        year,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primary.withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          'GPA $gpa',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
+            ),
+
+            // ───────────────── VERIFICATION BUTTON ─────────────────
+            OutlinedButton.icon(
+              onPressed: () async {
+                final Uri url = Uri.parse(linkVerifikasi);
+                if (!await launchUrl(
+                  url,
+                  mode: LaunchMode.externalApplication,
+                )) {
+                  throw 'Tidak dapat membuka link verifikasi';
+                }
+              },
+              icon: const Icon(Icons.verified_outlined, size: 18),
+              label: const Text(
+                'Verifikasi Pendidikan (PDDIKTI)',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+
+            const SizedBox(height: 6),
+
+            Text(
+              '*Data pendidikan dapat diverifikasi melalui website resmi pemerintah',
+              style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
             ),
           ],
         ),
