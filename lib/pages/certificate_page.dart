@@ -309,10 +309,10 @@ class CertificateModel {
 
 class ExperienceHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
-  double get minExtent => 110;
+  double get minExtent => 90;
 
   @override
-  double get maxExtent => 140;
+  double get maxExtent => 90;
 
   @override
   Widget build(

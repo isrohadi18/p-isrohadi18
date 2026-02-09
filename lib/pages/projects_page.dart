@@ -7,20 +7,85 @@ class ProjectsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final crossAxisCount =
-        width < 600
-            ? 1
-            : width < 900
-            ? 2
-            : 3;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
 
-    final projects = [
+        // Centered layout max width
+        const double maxContentWidth = 1200;
+
+        final contentWidth = width > maxContentWidth ? maxContentWidth : width;
+
+        final horizontalPadding =
+            width > maxContentWidth ? (width - maxContentWidth) / 2 : 20.0;
+
+        // Fluid grid calculation
+        final crossAxisCount = (contentWidth / 350).floor().clamp(1, 4);
+
+        final childAspectRatio = width < 600 ? 1.05 : 0.86;
+
+        final projects = _buildProjects();
+
+        return CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: 10,
+              ),
+              sliver: SliverPersistentHeader(
+                pinned: true,
+                delegate: ProjectsHeaderDelegate(),
+              ),
+            ),
+
+            SliverPadding(
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: 20,
+              ),
+              sliver: SliverGrid(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return HoverCard(
+                    child: projects[index]
+                        .animate(delay: (120 * index).ms)
+                        .fadeIn(duration: 400.ms)
+                        .slideY(begin: 0.1),
+                  );
+                }, childCount: projects.length),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 30,
+                  mainAxisSpacing: 30,
+                  childAspectRatio: childAspectRatio,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  List<ProjectCard> _buildProjects() {
+    return const [
       ProjectCard(
         title: 'Sistem Pengajuan PKN (Praktek Kerja Nyata)',
         description:
-            'Sistem pengajuan PKN (Praktek Kerja Nyata) menggunakan koneksi Database mySql sebagai tempat penyimpanan data user ataupun inputan user',
-        technologies: ['Java', 'Mysql'],
+            'Sistem pengajuan PKN menggunakan koneksi Database MySQL sebagai tempat penyimpanan data user ataupun inputan user.',
+        technologies: ['Java', 'MySQL'],
+        imageUrl: 'assets/images/proyek1.png',
+        githubUrl: 'https://github.com/Rysalb/TubesPbo',
+        demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
+        demoType: DemoType.video,
+        isAssetImage: true,
+        isFeatured: true,
+      ),
+      ProjectCard(
+        title: 'Sistem Pengajuan PKN (Praktek Kerja Nyata)',
+        description:
+            'Sistem pengajuan PKN menggunakxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxan koneksi Database MySQL sebagai tempat penyimpanan data user ataupun inputan user.Sistem pengajuan PKN menggunakxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxan koneksi Database MySQL sebagai tempat penyimpanan data user ataupun inputan user.',
+        technologies: ['Java', 'MySQL'],
         imageUrl: 'assets/images/proyek1.png',
         githubUrl: 'https://github.com/Rysalb/TubesPbo',
         demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
@@ -31,7 +96,7 @@ class ProjectsPage extends StatelessWidget {
       ProjectCard(
         title: 'Ladangku.id',
         description:
-            'Ladangku.id is a web-based application that provides a platform for farmers to sell their products online.',
+            'Sistem pengajuan PKN menggunakxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxan koneksi Database MySQL sebagai tempat penyimpanan data user ataupun inputan user.Sistem pengajuan PKN menggunakxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxan koneksi Database MySQL sebagai tempat penyimpanan data user ataupun inputan user.',
         technologies: ['HTML', 'CSS'],
         imageUrl: 'assets/images/proyek2.png',
         githubUrl: 'https://github.com/Rysalb/Ladangku-UI',
@@ -42,50 +107,45 @@ class ProjectsPage extends StatelessWidget {
       ProjectCard(
         title: 'Aplikasi Sistem Manajemen Kos',
         description:
-            'Aplikasi manajemen kos adalah solusi digital untuk mengelola operasional kos secara efisien...',
+            'Solusi digital untuk mengelola operasional kos secara efisien xxxxxxxxxxxxxxx ....',
+        technologies: ['Flutter', 'Laravel', 'MySQL'],
+        imageUrl: 'assets/images/proyek3.png',
+        githubUrl: 'https://github.com/Rysalb/fe_kos_hansarin',
+        isAssetImage: true,
+      ),
+      ProjectCard(
+        title: 'Sistem Pengajuan PKN (Praktek Kerja Nyata)',
+        description:
+            'Sistem pengajuan PKN menggunakan koneksi Database MySQL sebagai tempat penyimpanan data user ataupun inputan user.',
+        technologies: ['Java', 'MySQL'],
+        imageUrl: 'assets/images/proyek1.png',
+        githubUrl: 'https://github.com/Rysalb/TubesPbo',
+        demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
+        demoType: DemoType.video,
+        isAssetImage: true,
+        isFeatured: true,
+      ),
+      ProjectCard(
+        title: 'Ladangku.id',
+        description:
+            'Web-based application providing a platform for farmers to sell their products online.',
+        technologies: ['HTML', 'CSS'],
+        imageUrl: 'assets/images/proyek2.png',
+        githubUrl: 'https://github.com/Rysalb/Ladangku-UI',
+        demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
+        demoType: DemoType.web,
+        isAssetImage: true,
+      ),
+      ProjectCard(
+        title: 'Aplikasi Sistem Manajemen Kos',
+        description:
+            'Solusi digital untuk mengelola operasional kos secaraxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx efisien.',
         technologies: ['Flutter', 'Laravel', 'MySQL'],
         imageUrl: 'assets/images/proyek3.png',
         githubUrl: 'https://github.com/Rysalb/fe_kos_hansarin',
         isAssetImage: true,
       ),
     ];
-
-    return Container(
-      padding: EdgeInsets.all(width < 600 ? 16 : 20),
-      constraints: const BoxConstraints(
-        minHeight: 600, // optional tapi aman
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionTitle(
-            title: 'My Project',
-            subtitle: 'Selected works and implementations',
-          ),
-          SizedBox(height: width < 600 ? 20 : 30),
-
-          Expanded(
-            child: GridView.builder(
-              physics: const ClampingScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: crossAxisCount,
-                crossAxisSpacing: width < 600 ? 16 : 20,
-                mainAxisSpacing: width < 600 ? 16 : 20,
-                mainAxisExtent: width < 600 ? 420 : 460, // 🔥 STABIL
-              ),
-              itemCount: projects.length,
-              itemBuilder: (context, index) {
-                return projects[index]
-                    .animate(delay: (200 * index).ms)
-                    .fadeIn()
-                    .slideY(begin: 0.2)
-                    .scale(begin: const Offset(0.8, 0.8));
-              },
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
 
@@ -101,7 +161,7 @@ class SectionTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10), //
+          padding: const EdgeInsets.only(left: 0), //
           child: Text(
             title,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -231,7 +291,7 @@ class ProjectCard extends StatelessWidget {
             ),
             // Content section
             Padding(
-              padding: EdgeInsets.all(isMobile ? 8 : 12),
+              padding: EdgeInsets.all(isMobile ? 12 : 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min, // 🔥 KUNCI ANTI OVERFLOW
@@ -252,7 +312,7 @@ class ProjectCard extends StatelessWidget {
                     constraints: BoxConstraints(maxHeight: isMobile ? 48 : 72),
                     child: Text(
                       description,
-                      maxLines: isMobile ? 3 : 4,
+                      maxLines: isMobile ? 3 : 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: isMobile ? 10 : 12,
@@ -382,5 +442,92 @@ class ProjectActionButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
     );
+  }
+}
+
+class HoverCard extends StatefulWidget {
+  final Widget child;
+
+  const HoverCard({super.key, required this.child});
+
+  @override
+  State<HoverCard> createState() => _HoverCardState();
+}
+
+class _HoverCardState extends State<HoverCard> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 800;
+
+    return MouseRegion(
+      onEnter: (_) {
+        if (isDesktop) setState(() => _isHovered = true);
+      },
+      onExit: (_) {
+        if (isDesktop) setState(() => _isHovered = false);
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+        transform:
+            _isHovered
+                ? (Matrix4.identity()..translate(0, -8))
+                : Matrix4.identity(),
+        child: AnimatedScale(
+          scale: _isHovered ? 1.02 : 1.0,
+          duration: const Duration(milliseconds: 200),
+          child: widget.child,
+        ),
+      ),
+    );
+  }
+}
+
+class ProjectsHeaderDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  double get minExtent => 90;
+
+  @override
+  double get maxExtent => 90;
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    final theme = Theme.of(context);
+
+    return Container(
+      color: theme.scaffoldBackgroundColor,
+      padding: const EdgeInsets.fromLTRB(2, 0, 24, 12),
+      alignment: Alignment.bottomLeft,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            'My Project',
+            style: theme.textTheme.headlineLarge?.copyWith(
+              color: theme.colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Selected works and implementations',
+            style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
