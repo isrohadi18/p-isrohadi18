@@ -81,7 +81,7 @@ class ProjectsPage extends StatelessWidget {
           'BCrypt',
           'Netbeans',
         ],
-        imageUrl: 'assets/images/project/aes.png',
+        imageUrl: '../../assets/images/project/aes.png',
         githubUrl: 'https://github.com/isrohadi18/crypto-file-aes-bcrypt',
         demoUrl: 'https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8',
         demoType: DemoType.video,
@@ -93,7 +93,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'Applikasi Cek Khodam adalah alat interaktif yang memungkinkan Anda untuk memeriksa keberadaan dan jenis khodam yang mungkin menemani Anda. Dengan antarmuka yang ramah pengguna dan teknologi terkini dari Electron, aplikasi ini menawarkan pengalaman yang menghibur bagi para pengguna yang tertarik dengan dunia mistis. Unduh versi terbaru dari aplikasi Cek Khodam (.exe) dari GitHub CRYEED. Setelah diunduh, buka file .exe, dan saya sebagai pengembang menerima kontribusi dari komunitas untuk meningkatkan aplikasi ini. Jika Anda tertarik untuk berkontribusi, silakan fork repository ini dan kirimkan pull request dengan perubahan yang Anda usulkan. Jika Anda menyukai aplikasi ini dan ingin mendukung pengembangan lebih lanjut',
         technologies: ['HTML', 'CSS', 'JavaScript', 'Electron', 'Node.Js'],
-        imageUrl: 'assets/images/project/khodam.png',
+        imageUrl: '../../assets/images/project/khodam.png',
         githubUrl: 'https://github.com/isrohadi18/Khodam-app',
         demoUrl: '',
         demoType: DemoType.web,
@@ -110,7 +110,7 @@ class ProjectsPage extends StatelessWidget {
           'JavaSwing',
           'JasperReports',
         ],
-        imageUrl: 'assets/images/project/lks.png',
+        imageUrl: '../../assets/images/project/lks.png',
         githubUrl: 'https://github.com/isrohadi18/App-Pengelola-Buku-Lks',
         demoUrl:
             'https://www.youtube.com/watch?v=77W9XhZUtYI&list=PLtcA926v9yHFdFkaujmU_D_d8-eAmVIn9&index=2',
@@ -122,7 +122,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'TechLogo Nexus is a modern company profile website designed to represent an IT & Digital Solutions company. This project showcases a clean UI, responsive layout, and interactive features using HTML, CSS, and JavaScript.',
         technologies: ['HTML', 'CSS', 'JavaScript'],
-        imageUrl: 'assets/images/project/techlogo.png',
+        imageUrl: '../../assets/images/project/techlogo.png',
         githubUrl: 'https://github.com/isrohadi18/CodingCamp-RohadiDJ',
         demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
         demoType: DemoType.web,
@@ -133,7 +133,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'Sistem pengajuan PKN menggunakan koneksi Database MySQL sebagai tempat penyimpanan data user ataupun inputan user.',
         technologies: ['HTML', 'CSS', 'JavaScript'],
-        imageUrl: 'assets/images/project/amalbaik.png',
+        imageUrl: '../../assets/images/project/amalbaik.png',
         githubUrl: 'https://github.com/isrohadi18/App-hisabamalbaik',
         demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
         demoType: DemoType.web,
