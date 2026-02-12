@@ -157,7 +157,7 @@ class _AboutPageState extends State<AboutPage> {
                                     .animate()
                                     .fadeIn(delay: 1600.ms)
                                     .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'NetBeans')
+                                const SkillChip(skill: 'Netbeans')
                                     .animate()
                                     .fadeIn(delay: 1600.ms)
                                     .slideX(begin: -1, end: 0, delay: 1600.ms),
@@ -166,6 +166,14 @@ class _AboutPageState extends State<AboutPage> {
                                     .fadeIn(delay: 1600.ms)
                                     .slideX(begin: -1, end: 0, delay: 1600.ms),
                                 const SkillChip(skill: 'Figma')
+                                    .animate()
+                                    .fadeIn(delay: 1600.ms)
+                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
+                                const SkillChip(skill: 'Balsamiq')
+                                    .animate()
+                                    .fadeIn(delay: 1600.ms)
+                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
+                                const SkillChip(skill: 'Draw.io')
                                     .animate()
                                     .fadeIn(delay: 1600.ms)
                                     .slideX(begin: -1, end: 0, delay: 1600.ms),

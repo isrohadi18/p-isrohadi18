@@ -62,15 +62,15 @@ class HomePage extends StatelessWidget {
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    'Flutter Developer',
+                    'Digital Strategy & Design',
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    'Network Engineer ',
+                    'Information Technology Professional',
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    'Full Stack Developer',
+                    'Fullstack Developer',
                     speed: const Duration(milliseconds: 100),
                   ),
                 ],

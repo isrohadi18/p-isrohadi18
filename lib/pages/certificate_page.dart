@@ -16,49 +16,113 @@ class _CertificatePageState extends State<CertificatePage> {
   // DATA CERTIFICATE
   static final List<CertificateModel> certificates = [
     CertificateModel(
-      title: 'Flutter Developer',
-      organization: 'Dicoding Indonesia',
-      year: '2024',
-      credentialUrl: 'https://www.dicoding.com',
-      skills: ['Flutter', 'Dart', 'UI/UX'],
+      title: 'Intro to Software Engineering',
+      organization: 'Coding Camp RevoU',
+      year: 'Diterbitkan pada 16 January 2026',
+      credentialUrl:
+          'https://drive.google.com/file/d/1S9soCji_UqqfNxWAV1Bvlyp4_bOX2q0i/view?usp=sharing',
+      skills: ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
       insight:
-          'Built responsive Flutter applications and applied clean architecture principles.',
+          'Melalui program ini, saya membangun fondasi kuat dalam pengembangan perangkat lunak. Saya tidak hanya belajar cara menulis kode, tetapi juga memahami bagaimana sebuah aplikasi dirancang, dikembangkan, dan dikelola secara terstruktur. Program ini membentuk pola pikir saya sebagai seorang problem solver yang sistematis, bukan sekadar coder.',
     ),
     CertificateModel(
-      title: 'Flutter Developer',
-      organization: 'Dicoding Indonesia',
-      year: '2024',
-      credentialUrl: 'https://www.dicoding.com',
-      skills: ['Flutter', 'Dart', 'UI/UX'],
+      title: 'Membentuk Pribadi Cerdas Digital',
+      organization: 'Kominfo',
+      year: 'Diterbitkan pada 29 July 2023',
+      credentialUrl:
+          'https://drive.google.com/file/d/1iIdkyOPowq-43auhkO_5MlFJAxDUX7tV/view?usp=drive_link',
+      skills: [
+        'Digital Ethics',
+        'Cyber Awareness',
+        'Data Privacy Fundamentals',
+      ],
       insight:
-          'Built responsive Flutter applications and applied clean architecture principles.',
+          'Program ini memperkuat pemahaman saya tentang pentingnya etika dan tanggung jawab dalam dunia digital. Saya belajar bahwa teknologi bukan hanya soal kemampuan teknis, tetapi juga tentang bagaimana menggunakannya secara aman, bijak, dan profesional.',
     ),
     CertificateModel(
-      title: 'Cyber Security Fundamental',
-      organization: 'Coursera',
-      year: '2023',
-      credentialUrl: 'https://www.coursera.org',
-      skills: ['Security', 'Cryptography', 'Networking'],
+      title: 'Mengenal Profesi IT Dan Hukum Cyber',
+      organization: 'Universitas Pancasila',
+      year: 'Diterbitkan pada 14 July 2022',
+      credentialUrl:
+          'https://drive.google.com/file/d/1i7J5L0gpBu9k6j39Y6596FYGe2Cd6qtZ/view?usp=drive_link',
+      skills: [
+        'Cyber Law Awarenes',
+        'IT Compliance',
+        'Legal Risk Awareness in Digital Systems',
+      ],
       insight:
-          'Learned fundamental security concepts including encryption, threats, and risk mitigation.',
+          'Sertifikat ini memberikan perspektif bahwa dunia IT selalu berjalan berdampingan dengan regulasi dan hukum. Saya memahami pentingnya kepatuhan terhadap aturan dalam pengembangan dan penggunaan sistem digital, terutama terkait keamanan data dan hukum siber.',
     ),
     CertificateModel(
-      title: 'Cyber Security Fundamental',
-      organization: 'Coursera',
-      year: '2023',
-      credentialUrl: 'https://www.coursera.org',
-      skills: ['Security', 'Cryptography', 'Networking'],
+      title: 'Improve Your Portofolio With UI/UX Design Trend',
+      organization: 'Hima If X Buildwith Angga',
+      year: 'Diterbitkan pada 31 October 2021',
+      credentialUrl:
+          'https://drive.google.com/file/d/17b2WewXQvUvVOHDUJVbVqCA8iKFufkFC/view?usp=drive_link',
+      skills: ['Figma', 'UI Design Principles', 'UX Thinking'],
       insight:
-          'Learned fundamental security concepts including encryption, threats, and risk mitigation.',
+          'Melalui program ini, saya belajar melihat sebuah produk dari sudut pandang pengguna. Saya memahami bahwa sistem yang baik bukan hanya berjalan dengan benar, tetapi juga harus nyaman dan mudah digunakan. Hal ini membantu saya menjadi developer yang lebih berorientasi pada pengalaman pengguna.',
     ),
     CertificateModel(
-      title: 'Cyber Security Fundamental',
-      organization: 'Coursera',
-      year: '2023',
-      credentialUrl: 'https://www.coursera.org',
-      skills: ['Security', 'Cryptography', 'Networking'],
+      title: 'Performance Reconnaissance For Ethical Hacking',
+      organization: 'PT XAI SYNDICATE INTERNASIONAL',
+      year: 'Diterbitkan pada 26 September 2021',
+      credentialUrl:
+          'https://drive.google.com/file/d/1VF962b67pUe-nK3IzsrsVe8gfG2Elkml/view?usp=drive_link',
+      skills: [
+        'OSINT Fundamentals',
+        'Security-Oriented Mindset',
+        'Basic Penetration Testing',
+      ],
       insight:
-          'Learned fundamental security concepts including encryption, threats, and risk mitigation.',
+          'Program ini memperkenalkan saya pada tahap awal penetration testing, khususnya dalam proses reconnaissance. Saya memahami bagaimana sebuah sistem dapat dianalisis dari sudut pandang keamanan, serta pentingnya membangun aplikasi dengan mindset security-first.',
+    ),
+    CertificateModel(
+      title: 'Konfigurasi Cisco Router untuk CCNA',
+      organization: 'Skill Academy By Ruangguru',
+      year: 'Diterbitkan pada 03 December 2020',
+      credentialUrl:
+          'https://drive.google.com/file/d/1jt7nVCSNLcwAJNx_ii55bTOU3gh0fmJP/view?usp=drive_link',
+      skills: [
+        'Cisco CLI',
+        'IP Addres',
+        'Basic Routing Configuration',
+        'Subnetting',
+      ],
+      insight:
+          'Melalui pelatihan ini, saya mempelajari dasar konfigurasi perangkat jaringan, khususnya Cisco router. Saya memahami bagaimana jaringan dirancang, dikonfigurasi, dan dioptimalkan untuk memastikan komunikasi data berjalan dengan baik.',
+    ),
+    CertificateModel(
+      title: 'Sukses Interview/ Wawancara Kerja',
+      organization: 'Skill Academy By Ruangguru',
+      year: 'Diterbitkan pada 01 December 2020',
+      credentialUrl:
+          'https://drive.google.com/file/d/13Ogtb9ddT2zN-QIoO7xYyAa1UvribUz5/view?usp=drive_link',
+      skills: [
+        'Communication Skill',
+        'Personal Branding',
+        'Behavioral Interview Strategy',
+        'Confidence Building',
+        'CV Optimization',
+      ],
+      insight:
+          'Program ini membantu saya mempersiapkan diri secara profesional untuk menghadapi dunia kerja. Saya belajar menyampaikan kemampuan dan pengalaman secara terstruktur serta membangun komunikasi yang lebih percaya diri.',
+    ),
+    CertificateModel(
+      title: 'Computer and Network Engineering Qualification II',
+      organization: 'Badan Nasional Sertifikasi Profesi',
+      year: 'Diterbitkan pada December 2019',
+      credentialUrl:
+          'https://drive.google.com/file/d/1S9soCji_UqqfNxWAV1Bvlyp4_bOX2q0i/view?usp=sharing',
+      skills: [
+        'LAN Network Settings',
+        'Mikrotik',
+        'IP Addressing Configuration',
+        'Router',
+        'Switch',
+      ],
+      insight:
+          'Sertifikasi ini merupakan validasi kompetensi teknis saya di bidang komputer dan jaringan sesuai standar nasional. Proses asesmen memastikan bahwa kemampuan saya tidak hanya berbasis teori, tetapi juga praktik langsung di lapangan.',
     ),
   ];
 

@@ -22,7 +22,7 @@ class ProjectsPage extends StatelessWidget {
         // Fluid grid calculation
         final crossAxisCount = (contentWidth / 350).floor().clamp(1, 4);
 
-        final childAspectRatio = width < 600 ? 1.05 : 0.86;
+        final childAspectRatio = width < 600 ? 1.05 : 0.83;
 
         final projects = _buildProjects();
 
