@@ -13,6 +13,63 @@ class _CertificatePageState extends State<CertificatePage> {
   int? expandedIndex;
   String selectedSkill = 'All';
 
+  int get newestIndex {
+    int latestYear = 0;
+    int index = 0;
+
+    for (int i = 0; i < certificates.length; i++) {
+      final yearMatch = RegExp(r'\d{4}').firstMatch(certificates[i].year);
+      if (yearMatch != null) {
+        final year = int.parse(yearMatch.group(0)!);
+        if (year > latestYear) {
+          latestYear = year;
+          index = i;
+        }
+      }
+    }
+    return index;
+  }
+
+  final Map<String, List<String>> categoryMap = {
+    'Software Engineering': ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
+    'UI/UX & Product Design': ['Figma', 'UI Design Principles', 'UX Thinking'],
+    'Cyber Security': [
+      'OSINT Fundamentals',
+      'Security-Oriented Mindset',
+      'Basic Penetration Testing',
+      'Cyber Law Awarenes',
+    ],
+    'Network Engineering': [
+      'Cisco CLI',
+      'IP Addres',
+      'LAN Network Settings',
+      'Router',
+      'Switch',
+      'Mikrotik',
+      'Subnetting',
+    ],
+  };
+
+  int categoryCount(String category) {
+    if (category == 'All') return certificates.length;
+
+    if (category == 'General') {
+      return certificates.where((cert) {
+        return !categoryMap.values
+            .expand((skills) => skills)
+            .toSet()
+            .intersection(cert.skills.toSet())
+            .isNotEmpty;
+      }).length;
+    }
+
+    final categorySkills = categoryMap[category] ?? [];
+
+    return certificates.where((cert) {
+      return cert.skills.any((skill) => categorySkills.contains(skill));
+    }).length;
+  }
+
   // DATA CERTIFICATE
   static final List<CertificateModel> certificates = [
     CertificateModel(
@@ -20,7 +77,7 @@ class _CertificatePageState extends State<CertificatePage> {
       organization: 'Coding Camp RevoU',
       year: 'Diterbitkan pada 16 January 2026',
       credentialUrl:
-          'https://drive.google.com/file/d/1S9soCji_UqqfNxWAV1Bvlyp4_bOX2q0i/view?usp=sharing',
+          'https://drive.google.com/file/d/1MoWcQGvNhktSTWhDkrpXVDc_Mg3sq81D/view?usp=drive_link',
       skills: ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
       insight:
           'Melalui program ini, saya membangun fondasi kuat dalam pengembangan perangkat lunak. Saya tidak hanya belajar cara menulis kode, tetapi juga memahami bagaimana sebuah aplikasi dirancang, dikembangkan, dan dikelola secara terstruktur. Program ini membentuk pola pikir saya sebagai seorang problem solver yang sistematis, bukan sekadar coder.',
@@ -126,70 +183,324 @@ class _CertificatePageState extends State<CertificatePage> {
     ),
   ];
 
+  List<String> get allSkills {
+    final skills = certificates.expand((c) => c.skills).toSet().toList();
+
+    skills.sort();
+    return ['All', ...skills];
+  }
+
+  int skillCount(String skill) {
+    if (skill == 'All') return certificates.length;
+    return certificates.where((c) => c.skills.contains(skill)).length;
+  }
+
+  final List<String> categories = [
+    'All',
+    'Software Engineering',
+    'UI/UX & Product Design',
+    'Cyber Security',
+    'Network Engineering',
+    'General',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final filteredCertificates =
         selectedSkill == 'All'
             ? certificates
-            : certificates
-                .where((c) => c.skills.contains(selectedSkill))
-                .toList();
+            : selectedSkill == 'General'
+            ? certificates.where((cert) {
+              return !categoryMap.values
+                  .expand((skills) => skills)
+                  .toSet()
+                  .intersection(cert.skills.toSet())
+                  .isNotEmpty;
+            }).toList()
+            : certificates.where((cert) {
+              final categorySkills = categoryMap[selectedSkill] ?? [];
+              return cert.skills.any((skill) => categorySkills.contains(skill));
+            }).toList();
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SectionTitle(
-              title: 'Certificates',
-              subtitle: 'Credentials and professional certifications',
-            ),
+    return CustomScrollView(
+      slivers: [
+        /// 🔥 Sticky Header (Pakai Delegate yang sudah kamu buat)
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: CertificateHeaderDelegate(),
+        ),
 
-            const SizedBox(height: 24),
+        /// 🔹 Filter Section
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// 🔹 FILTER CHIP
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 8,
+                  children:
+                      categories.map((category) {
+                        final isActive = selectedSkill == category;
 
-            Wrap(
-              spacing: 8,
-              children:
-                  ['All', 'Flutter', 'Security'].map((skill) {
-                    final isActive = selectedSkill == skill;
-                    return ChoiceChip(
-                      label: Text(skill),
-                      selected: isActive,
-                      onSelected: (_) {
-                        setState(() {
-                          selectedSkill = skill;
-                          expandedIndex =
-                              null; // reset expand saat filter berubah
-                        });
-                      },
+                        return ChoiceChip(
+                          label: Text('$category (${categoryCount(category)})'),
+                          selected: isActive,
+                          onSelected: (_) {
+                            setState(() {
+                              selectedSkill = category;
+                              expandedIndex = null;
+                            });
+                          },
+                        );
+                      }).toList(),
+                ),
+
+                const SizedBox(height: 24),
+
+                /// 🔹 LIST
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 400),
+                  transitionBuilder: (child, animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0, 0.05),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      ),
                     );
-                  }).toList(),
-            ),
-            const SizedBox(height: 24),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: filteredCertificates.length,
-              itemBuilder: (context, index) {
-                final cert = filteredCertificates[index];
-                return CertificateCard(
-                  title: cert.title,
-                  organization: cert.organization,
-                  year: cert.year,
-                  credentialUrl: cert.credentialUrl,
-                  skills: cert.skills,
-                  insight: cert.insight,
-                  isExpanded: expandedIndex == index,
-                  onTap: () {
-                    setState(() {
-                      expandedIndex = expandedIndex == index ? null : index;
-                    });
                   },
-                );
-              },
+                  child: Column(
+                    key: ValueKey(selectedSkill),
+                    children: List.generate(filteredCertificates.length, (
+                      index,
+                    ) {
+                      final cert = filteredCertificates[index];
+
+                      return CertificateCard(
+                            title: cert.title,
+                            organization: cert.organization,
+                            year: cert.year,
+                            credentialUrl: cert.credentialUrl,
+                            skills: cert.skills,
+                            insight: cert.insight,
+                            isExpanded: expandedIndex == index,
+                            onTap: () {
+                              setState(() {
+                                expandedIndex =
+                                    expandedIndex == index ? null : index;
+                              });
+                            },
+                            isNewest: index == newestIndex,
+                          )
+                          .animate(delay: (500 * index).ms)
+                          .fadeIn(duration: 400.ms)
+                        ..slideY(begin: 0.08, curve: Curves.easeOutCubic);
+                    }),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CertificateCard extends StatefulWidget {
+  final String title;
+  final String organization;
+  final String year;
+  final String? credentialUrl;
+  final List<String> skills;
+  final String insight;
+  final bool isExpanded;
+  final VoidCallback onTap;
+  final bool isNewest;
+
+  const CertificateCard({
+    super.key,
+    required this.title,
+    required this.organization,
+    required this.year,
+    this.credentialUrl,
+    this.skills = const [],
+    required this.insight,
+    required this.isExpanded,
+    required this.onTap,
+    this.isNewest = false,
+  });
+
+  @override
+  State<CertificateCard> createState() => _CertificateCardState();
+}
+
+class _CertificateCardState extends State<CertificateCard> {
+  bool isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDesktop = MediaQuery.of(context).size.width > 800;
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) {
+        if (isDesktop) setState(() => isHovered = true);
+      },
+      onExit: (_) {
+        if (isDesktop) setState(() => isHovered = false);
+      },
+      child: InkWell(
+        onTap: widget.onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.all(20),
+          transform:
+              isHovered
+                  ? (Matrix4.identity()..translate(0, -6))
+                  : Matrix4.identity(),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: theme.cardColor,
+            border: Border.all(
+              color: isHovered ? theme.colorScheme.primary : theme.dividerColor,
+            ),
+            boxShadow:
+                isHovered
+                    ? [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.08),
+                        blurRadius: 14,
+                        offset: const Offset(0, 6),
+                      ),
+                    ]
+                    : [],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// HEADER
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      widget.title,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+
+                  if (widget.isNewest)
+                    Container(
+                      margin: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Text(
+                        'NEW',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                  AnimatedRotation(
+                    turns: widget.isExpanded ? 0.5 : 0,
+                    duration: const Duration(milliseconds: 200),
+                    child: const Icon(Icons.expand_more),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+
+              Text(
+                widget.organization,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: Colors.grey.shade700,
+                ),
+              ),
+
+              const SizedBox(height: 4),
+
+              Text(
+                widget.year,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: Colors.grey.shade500,
+                ),
+              ),
+
+              /// 🔥 SMOOTH EXPAND
+              AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child:
+                    widget.isExpanded
+                        ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 12),
+
+                            if (widget.skills.isNotEmpty)
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 6,
+                                children:
+                                    widget.skills
+                                        .map(
+                                          (skill) => Chip(
+                                            label: Text(skill),
+                                            backgroundColor: theme
+                                                .colorScheme
+                                                .primary
+                                                .withOpacity(0.08),
+                                          ),
+                                        )
+                                        .toList(),
+                              ),
+
+                            const SizedBox(height: 10),
+
+                            Text(widget.insight),
+
+                            if (widget.credentialUrl != null)
+                              TextButton.icon(
+                                onPressed: () async {
+                                  final uri = Uri.parse(widget.credentialUrl!);
+                                  if (await canLaunchUrl(uri)) {
+                                    await launchUrl(
+                                      uri,
+                                      mode: LaunchMode.externalApplication,
+                                    );
+                                  }
+                                },
+                                icon: const Icon(Icons.open_in_new),
+                                label: const Text('View Credential'),
+                              ),
+                          ],
+                        )
+                        : const SizedBox.shrink(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -232,127 +543,6 @@ class SectionTitle extends StatelessWidget {
   }
 }
 
-class CertificateCard extends StatelessWidget {
-  final String title;
-  final String organization;
-  final String year;
-  final String? credentialUrl;
-  final List<String> skills;
-  final String insight;
-  final bool isExpanded;
-  final VoidCallback onTap;
-
-  const CertificateCard({
-    super.key,
-    required this.title,
-    required this.organization,
-    required this.year,
-    this.credentialUrl,
-    this.skills = const [],
-    required this.insight,
-    required this.isExpanded,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: InkWell(
-        onTap: onTap,
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade300),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // HEADER
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Icon(isExpanded ? Icons.expand_less : Icons.expand_more),
-                  ],
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  organization,
-                  style: TextStyle(color: Colors.grey.shade700),
-                ),
-                const SizedBox(height: 4),
-                Text(year, style: TextStyle(color: Colors.grey.shade500)),
-
-                // EXPANDED CONTENT
-                AnimatedCrossFade(
-                  firstChild: const SizedBox.shrink(),
-                  secondChild: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 12),
-
-                      // SKILLS
-                      if (skills.isNotEmpty)
-                        Wrap(
-                          spacing: 8,
-                          children:
-                              skills
-                                  .map(
-                                    (skill) => Chip(
-                                      label: Text(skill),
-                                      backgroundColor: Colors.grey.shade100,
-                                    ),
-                                  )
-                                  .toList(),
-                        ),
-
-                      const SizedBox(height: 10),
-                      Text(insight),
-
-                      if (credentialUrl != null)
-                        TextButton.icon(
-                          onPressed: () async {
-                            final uri = Uri.parse(credentialUrl!);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(
-                                uri,
-                                mode: LaunchMode.externalApplication,
-                              );
-                            }
-                          },
-                          icon: const Icon(Icons.open_in_new),
-                          label: const Text('View Credential'),
-                        ),
-                    ],
-                  ),
-                  crossFadeState:
-                      isExpanded
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                  duration: const Duration(milliseconds: 250),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class CertificateModel {
   final String title;
   final String organization;
@@ -371,12 +561,12 @@ class CertificateModel {
   });
 }
 
-class ExperienceHeaderDelegate extends SliverPersistentHeaderDelegate {
+class CertificateHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
-  double get minExtent => 90;
+  double get minExtent => 100;
 
   @override
-  double get maxExtent => 90;
+  double get maxExtent => 100;
 
   @override
   Widget build(
@@ -387,16 +577,23 @@ class ExperienceHeaderDelegate extends SliverPersistentHeaderDelegate {
     final theme = Theme.of(context);
 
     return Container(
-      color: theme.scaffoldBackgroundColor,
+      decoration: BoxDecoration(
+        color: theme.scaffoldBackgroundColor,
+        border:
+            overlapsContent
+                ? Border(
+                  bottom: BorderSide(color: theme.dividerColor, width: 0.5),
+                )
+                : null,
+      ),
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
       alignment: Alignment.bottomLeft,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            'Experience',
+            'Certificates',
             style: theme.textTheme.headlineLarge?.copyWith(
               color: theme.colorScheme.primary,
               fontWeight: FontWeight.bold,
@@ -404,7 +601,7 @@ class ExperienceHeaderDelegate extends SliverPersistentHeaderDelegate {
           ),
           const SizedBox(height: 4),
           Text(
-            'Professional background and roles',
+            'Credentials and professional certifications',
             style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
           ),
         ],
