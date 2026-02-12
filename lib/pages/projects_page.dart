@@ -85,6 +85,8 @@ class ProjectsPage extends StatelessWidget {
         githubUrl: 'https://github.com/isrohadi18/crypto-file-aes-bcrypt',
         demoUrl: 'https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8',
         demoType: DemoType.video,
+        downloadUrl:
+            'https://github.com/isrohadi18/crypto-file-aes-bcrypt/blob/main/CyrptoFileAES.exe',
         isAssetImage: true,
         isFeatured: true,
       ),
@@ -115,6 +117,7 @@ class ProjectsPage extends StatelessWidget {
         demoUrl:
             'https://www.youtube.com/watch?v=77W9XhZUtYI&list=PLtcA926v9yHFdFkaujmU_D_d8-eAmVIn9&index=2',
         demoType: DemoType.video,
+        downloadUrl: '',
         isAssetImage: true,
       ),
       ProjectCard(

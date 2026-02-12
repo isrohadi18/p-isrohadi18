@@ -430,16 +430,17 @@ class _CertificateCardState extends State<CertificateCard> {
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 5),
 
               Text(
                 widget.organization,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey.shade700,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: Colors.orange.shade400,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
 
-              const SizedBox(height: 4),
+              const SizedBox(height: 8),
 
               Text(
                 widget.year,
@@ -450,14 +451,14 @@ class _CertificateCardState extends State<CertificateCard> {
 
               /// 🔥 SMOOTH EXPAND
               AnimatedSize(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
                 child:
                     widget.isExpanded
                         ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 16),
 
                             if (widget.skills.isNotEmpty)
                               Wrap(
@@ -477,12 +478,25 @@ class _CertificateCardState extends State<CertificateCard> {
                                         .toList(),
                               ),
 
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 12),
 
-                            Text(widget.insight),
+                            Text(
+                              widget.insight,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.justify,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                height: 1.6, // line height biar rapi
+                              ),
+                            ),
+
+                            const SizedBox(height: 18),
 
                             if (widget.credentialUrl != null)
-                              TextButton.icon(
+                              ActionButton(
+                                label: 'View Credential',
+                                icon: Icons.open_in_new,
                                 onPressed: () async {
                                   final uri = Uri.parse(widget.credentialUrl!);
                                   if (await canLaunchUrl(uri)) {
@@ -492,8 +506,6 @@ class _CertificateCardState extends State<CertificateCard> {
                                     );
                                   }
                                 },
-                                icon: const Icon(Icons.open_in_new),
-                                label: const Text('View Credential'),
                               ),
                           ],
                         )
@@ -612,5 +624,40 @@ class CertificateHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;
+  }
+}
+
+class ActionButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const ActionButton({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 16),
+      label: Text(
+        label,
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+      ),
+      style: OutlinedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        side: BorderSide(
+          color: colorScheme.primary.withOpacity(isDark ? 0.6 : 0.8),
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+    );
   }
 }
