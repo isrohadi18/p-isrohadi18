@@ -173,7 +173,7 @@ class _AboutPageState extends State<AboutPage> {
                                     .animate()
                                     .fadeIn(delay: 1600.ms)
                                     .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Draw.io')
+                                const SkillChip(skill: 'Drawio')
                                     .animate()
                                     .fadeIn(delay: 1600.ms)
                                     .slideX(begin: -1, end: 0, delay: 1600.ms),
@@ -235,7 +235,7 @@ class _AboutPageState extends State<AboutPage> {
                   const SizedBox(height: 15),
                   const EducationCard(
                     university: 'INDRAPRASTA PGRI UNIVERSITY',
-                    degree: 'Bachelor of informatics',
+                    degree: 'Bachelor - Informatics Engineering',
                     year: '2021/2025',
                     gpa: '3.45',
                     linkVerifikasi:
@@ -505,7 +505,11 @@ class EducationCard extends StatelessWidget {
 
             Text(
               '*Data pendidikan dapat diverifikasi melalui website resmi pemerintah',
-              style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey.shade500,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ],
         ),

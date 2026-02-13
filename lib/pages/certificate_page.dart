@@ -13,23 +13,6 @@ class _CertificatePageState extends State<CertificatePage> {
   int? expandedIndex;
   String selectedSkill = 'All';
 
-  int get newestIndex {
-    int latestYear = 0;
-    int index = 0;
-
-    for (int i = 0; i < certificates.length; i++) {
-      final yearMatch = RegExp(r'\d{4}').firstMatch(certificates[i].year);
-      if (yearMatch != null) {
-        final year = int.parse(yearMatch.group(0)!);
-        if (year > latestYear) {
-          latestYear = year;
-          index = i;
-        }
-      }
-    }
-    return index;
-  }
-
   final Map<String, List<String>> categoryMap = {
     'Software Engineering': ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
     'UI/UX & Product Design': ['Figma', 'UI Design Principles', 'UX Thinking'],
@@ -206,6 +189,12 @@ class _CertificatePageState extends State<CertificatePage> {
 
   @override
   Widget build(BuildContext context) {
+    final newestCertificate = certificates.reduce((a, b) {
+      final yearA = int.parse(RegExp(r'\d{4}').firstMatch(a.year)!.group(0)!);
+      final yearB = int.parse(RegExp(r'\d{4}').firstMatch(b.year)!.group(0)!);
+      return yearA > yearB ? a : b;
+    });
+
     final filteredCertificates =
         selectedSkill == 'All'
             ? certificates
@@ -296,7 +285,7 @@ class _CertificatePageState extends State<CertificatePage> {
                                     expandedIndex == index ? null : index;
                               });
                             },
-                            isNewest: index == newestIndex,
+                            isNewest: cert == newestCertificate,
                           )
                           .animate(delay: (500 * index).ms)
                           .fadeIn(duration: 400.ms)

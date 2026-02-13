@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'dart:html' as html;
+
+void _downloadFile(String url) {
+  final anchor =
+      html.AnchorElement(href: url)
+        ..setAttribute("download", "")
+        ..click();
+}
 
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({super.key});
@@ -22,7 +30,7 @@ class ProjectsPage extends StatelessWidget {
         // Fluid grid calculation
         final crossAxisCount = (contentWidth / 350).floor().clamp(1, 4);
 
-        final childAspectRatio = width < 600 ? 1.05 : 0.83;
+        final childAspectRatio = width < 600 ? 1.05 : 0.81;
 
         final projects = _buildProjects();
 
@@ -73,20 +81,12 @@ class ProjectsPage extends StatelessWidget {
         title: 'CRYPTO - APP',
         description:
             'Aplikasi keamanan file berbasis Java Desktop yang berfungsi untuk melakukan enkripsi dan dekripsi file menggunakan algoritma AES (Advanced Encryption Standard) dengan mode CBC, serta pengamanan password menggunakan BCrypt. Aplikasi ini dilengkapi dengan manajemen user, logging, dan statistik performa enkripsi.',
-        technologies: [
-          'Java',
-          'MySQL',
-          'JavaSwing',
-          'AES',
-          'BCrypt',
-          'Netbeans',
-        ],
+        technologies: ['Java', 'MySQL', 'AES', 'BCrypt', 'Netbeans'],
         imageUrl: '../../assets/images/project/aes.png',
         githubUrl: 'https://github.com/isrohadi18/crypto-file-aes-bcrypt',
         demoUrl: 'https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8',
         demoType: DemoType.video,
-        downloadUrl:
-            'https://github.com/isrohadi18/crypto-file-aes-bcrypt/blob/main/CyrptoFileAES.exe',
+        downloadUrl: '../../web/file/CyrptoFileAES.exe',
         isAssetImage: true,
         isFeatured: true,
       ),
@@ -105,13 +105,7 @@ class ProjectsPage extends StatelessWidget {
         title: 'Aplikasi Pengelola Buku',
         description:
             'Aplikasi Pengelola Buku adalah aplikasi desktop berbasis Java yang dirancang untuk membantu pengelolaan data buku secara rapi, cepat, dan terstruktur. Aplikasi ini cocok digunakan oleh sekolah, koperasi sekolah, admin gudang buku, maupun staff tata usaha yang membutuhkan sistem pencatatan buku yang mudah digunakan.',
-        technologies: [
-          'Java',
-          'MySQL',
-          'Netbeans',
-          'JavaSwing',
-          'JasperReports',
-        ],
+        technologies: ['Java', 'MySQL', 'Netbeans', 'JasperReports'],
         imageUrl: '../../assets/images/project/lks.png',
         githubUrl: 'https://github.com/isrohadi18/App-Pengelola-Buku-Lks',
         demoUrl:
@@ -356,7 +350,7 @@ class ProjectCard extends StatelessWidget {
                         ProjectActionButton(
                           label: 'Download',
                           icon: Icons.download,
-                          onPressed: () => _launch(downloadUrl!),
+                          onPressed: () => _downloadFile(downloadUrl!),
                         ),
                     ],
                   ),
