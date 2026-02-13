@@ -78,7 +78,7 @@ class _AboutPageState extends State<AboutPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'I\'m a Computer Science student focusing on functional application development and familiar with various programming languages. I have experience developing full-stack applications, including front-end interfaces, back-end systems, and database integration. My projects involve real-world use cases, such as management systems and web platforms, which have helped me understand application flow. If you\'re concerned about spacing between lines of code and semicolons, let\'s talk about it.',
+                    'I\'m a Computer Science student focusing on functional application development and familiar with various programming languages. I have experience developing full-stack applications, including front-end interfaces, back-end systems, and database integration. My projects involve real-world use cases, such as file security applications, management system applications, and website platforms. If you\'re worried about spacing between lines of code and semicolons, let\'s talk about it.',
                     textAlign: TextAlign.justify,
                     style: const TextStyle(
                       fontSize: AboutmeTextStyle.aboutSize,
@@ -424,7 +424,7 @@ class EducationCard extends StatelessWidget {
                         degree,
                         style: const TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           color: Colors.grey,
                         ),
                       ),
@@ -491,12 +491,12 @@ class EducationCard extends StatelessWidget {
                   url,
                   mode: LaunchMode.externalApplication,
                 )) {
-                  throw 'Tidak dapat membuka link verifikasi';
+                  throw 'Unable to open verification link';
                 }
               },
               icon: const Icon(Icons.verified_outlined, size: 18),
               label: const Text(
-                'Verifikasi Pendidikan (PDDIKTI)',
+                'Education Verification (PDDIKTI)',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -504,7 +504,7 @@ class EducationCard extends StatelessWidget {
             const SizedBox(height: 6),
 
             Text(
-              '*Data pendidikan dapat diverifikasi melalui website resmi pemerintah',
+              '*Education data can be verified through the official government website',
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.grey.shade500,

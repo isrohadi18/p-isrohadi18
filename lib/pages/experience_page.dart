@@ -99,7 +99,7 @@ final List<Experience> experienceList = [
     role: 'Technical Assistant',
     logo: '../../assets/images/experience/companygc.png',
     highlights: [
-      'Maintaining the store and handling customer complaints',
+      'Managing the store and handling customer complaints',
       'Installing software, updating operating systems, and troubleshooting hardware issues.',
       'Assisting technicians with projects outside the assisting technicians with projects outside the store, both within the company and at schools, as requested by customers.',
     ],
@@ -111,9 +111,9 @@ final List<Experience> experienceList = [
     role: 'Information Technology Staff',
     logo: '../../assets/images/experience/companyibs.png',
     highlights: [
-      'Maintaining and maintaining the stability of network infrastructure lan/wan , as well as troubleshooting hardware and software issues, such as routers, switches, and firewalls.',
+      'Responsible for maintaining and safeguarding the stability of the LAN/WAN network infrastructure, as well as troubleshooting hardware issues, such as routers, switches, servers, and other devices.',
       'Monitoring the performance of company servers and websites to ensure their stability.',
-      'Installing software, updating operating installing software, updating operating systems, and installing cctv.',
+      'Installing software, updating operating systems, and device drivers.',
     ],
   ),
 
@@ -123,7 +123,7 @@ final List<Experience> experienceList = [
     role: 'Graphic Design Marketing',
     logo: '../../assets/images/experience/companyibs.png',
     highlights: [
-      'Create a product design that will be uploaded on the companynn\'s social media every day.',
+      'Creating product designs for daily posts on the company\'s social media channels.',
       'Developing strategies with the team and developing customer interest in the companyn\'s products online.',
       'Design project request in each division. Creating designs on food product packaging.',
     ],
@@ -232,6 +232,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                           Expanded(
                             child: Text(
                               item,
+                              textAlign: TextAlign.justify,
                               style: const TextStyle(
                                 fontSize: ExperienceTextStyle.bulletSize,
                               ),

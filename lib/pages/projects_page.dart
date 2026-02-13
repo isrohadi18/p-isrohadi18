@@ -1,41 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter/foundation.dart';
-import 'dart:html' as html; // Web only
-
-void _downloadFile(String url) {
-  final anchor =
-      html.AnchorElement(href: url)
-        ..setAttribute("download", "")
-        ..click();
-}
-
-void downloadByPlatform({
-  required String exeUrl,
-  required String apkUrl,
-  required String dmgUrl,
-}) {
-  if (!kIsWeb) return;
-
-  final userAgent = html.window.navigator.userAgent.toLowerCase();
-
-  String selectedUrl;
-
-  if (userAgent.contains('windows')) {
-    selectedUrl = exeUrl;
-  } else if (userAgent.contains('android')) {
-    selectedUrl = apkUrl;
-  } else if (userAgent.contains('mac')) {
-    selectedUrl = dmgUrl;
-  } else {
-    selectedUrl = exeUrl; // fallback
-  }
-
-  html.AnchorElement(href: selectedUrl)
-    ..setAttribute("download", "")
-    ..click();
-}
 
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({super.key});
@@ -114,7 +79,7 @@ class ProjectsPage extends StatelessWidget {
         demoUrl: 'https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8',
         demoType: DemoType.video,
         downloadUrl:
-            'https://github.com/isrohadi18/p-isrohadi18/tree/main/web/file/download/CyrptoFileAES.exe',
+            'https://github.com/isrohadi18/p-isrohadi18/releases/download/downlaodaes/CyrptoFileAES.zip',
         isAssetImage: true,
         isFeatured: true,
       ),
@@ -374,15 +339,15 @@ class ProjectCard extends StatelessWidget {
                           onPressed: () => _launch(demoUrl!),
                         ),
 
-                      if (downloadUrl != null)
+                      if (downloadUrl != null && downloadUrl!.isNotEmpty)
                         ProjectActionButton(
                           label: 'Download',
                           icon: Icons.download,
-                          onPressed: () {
-                            downloadByPlatform(
-                              exeUrl: "https://yourdomain.com/app_windows.exe",
-                              apkUrl: "https://yourdomain.com/app_android.apk",
-                              dmgUrl: "https://yourdomain.com/app_mac.dmg",
+                          onPressed: () async {
+                            final Uri uri = Uri.parse(downloadUrl!);
+                            await launchUrl(
+                              uri,
+                              mode: LaunchMode.externalApplication,
                             );
                           },
                         ),
