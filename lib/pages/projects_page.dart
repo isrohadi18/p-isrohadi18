@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'dart:html' as html;
+import 'package:flutter/foundation.dart';
+import 'dart:html' as html; // Web only
 
 void _downloadFile(String url) {
   final anchor =
       html.AnchorElement(href: url)
         ..setAttribute("download", "")
         ..click();
+}
+
+void downloadByPlatform({
+  required String exeUrl,
+  required String apkUrl,
+  required String dmgUrl,
+}) {
+  if (!kIsWeb) return;
+
+  final userAgent = html.window.navigator.userAgent.toLowerCase();
+
+  String selectedUrl;
+
+  if (userAgent.contains('windows')) {
+    selectedUrl = exeUrl;
+  } else if (userAgent.contains('android')) {
+    selectedUrl = apkUrl;
+  } else if (userAgent.contains('mac')) {
+    selectedUrl = dmgUrl;
+  } else {
+    selectedUrl = exeUrl; // fallback
+  }
+
+  html.AnchorElement(href: selectedUrl)
+    ..setAttribute("download", "")
+    ..click();
 }
 
 class ProjectsPage extends StatelessWidget {
@@ -86,7 +113,8 @@ class ProjectsPage extends StatelessWidget {
         githubUrl: 'https://github.com/isrohadi18/crypto-file-aes-bcrypt',
         demoUrl: 'https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8',
         demoType: DemoType.video,
-        downloadUrl: '../../web/file/CyrptoFileAES.exe',
+        downloadUrl:
+            'https://github.com/isrohadi18/p-isrohadi18/tree/main/web/file/download/CyrptoFileAES.exe',
         isAssetImage: true,
         isFeatured: true,
       ),
@@ -350,7 +378,13 @@ class ProjectCard extends StatelessWidget {
                         ProjectActionButton(
                           label: 'Download',
                           icon: Icons.download,
-                          onPressed: () => _downloadFile(downloadUrl!),
+                          onPressed: () {
+                            downloadByPlatform(
+                              exeUrl: "https://yourdomain.com/app_windows.exe",
+                              apkUrl: "https://yourdomain.com/app_android.apk",
+                              dmgUrl: "https://yourdomain.com/app_mac.dmg",
+                            );
+                          },
                         ),
                     ],
                   ),

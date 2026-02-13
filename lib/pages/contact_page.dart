@@ -184,7 +184,10 @@ class _ContactPageState extends State<ContactPage> {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: const Text('Send Message'),
+            child: const Text(
+              'Send Message',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
