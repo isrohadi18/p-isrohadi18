@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    'Web Developer',
+                    'Fullstack Developer',
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                     speed: const Duration(milliseconds: 100),
                   ),
                   TypewriterAnimatedText(
-                    'Fullstack Developer',
+                    'Web Developer',
                     speed: const Duration(milliseconds: 100),
                   ),
                 ],
@@ -96,7 +96,10 @@ class HomePage extends StatelessWidget {
                         }
                       },
                       icon: const Icon(Icons.download),
-                      label: const Text('Download CV'),
+                      label: const Text(
+                        'Download CV',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 24,
@@ -125,8 +128,11 @@ class HomePage extends StatelessWidget {
                       );
                     }
                   },
-                  icon: const Icon(Icons.whatshot),
-                  label: const Text('Contact Me'),
+                  icon: const Icon(Icons.phone),
+                  label: const Text(
+                    'Contact Me',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,

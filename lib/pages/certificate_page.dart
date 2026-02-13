@@ -404,10 +404,10 @@ class _CertificateCardState extends State<CertificateCard> {
 
                   if (widget.isNewest)
                     Container(
-                      margin: const EdgeInsets.only(left: 8),
+                      margin: const EdgeInsets.only(right: 10),
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
+                        horizontal: 12,
+                        vertical: 4,
                       ),
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primary,
@@ -417,7 +417,7 @@ class _CertificateCardState extends State<CertificateCard> {
                         'NEW',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 10,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

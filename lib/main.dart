@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
       valueListenable: themeNotifier,
       builder: (_, ThemeMode currentMode, __) {
         return MaterialApp(
-          title: 'Rysa Laksana Portfolio',
+          title: 'Rohadi Dwi Junianto',
           themeMode: currentMode,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(
