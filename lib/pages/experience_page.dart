@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../main.dart';
 
 bool isMobileLayout(BuildContext context) {
   return MediaQuery.of(context).size.width < 768;
@@ -10,32 +11,37 @@ class ExperiencePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = isMobileLayout(context);
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final isMobile = isMobileLayout(context);
 
-    return CustomScrollView(
-      slivers: [
-        SliverPersistentHeader(
-          pinned: true,
-          delegate: ExperienceHeaderDelegate(),
-        ),
+        return CustomScrollView(
+          slivers: [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: ExperienceHeaderDelegate(),
+            ),
 
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              final exp = experienceList[index];
-              return isMobile
-                  ? ExperienceCard(experience: exp)
-                  : TimelineItem(
-                    experience: exp,
-                    isLast: index == experienceList.length - 1,
-                  );
-            }, childCount: experienceList.length),
-          ),
-        ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final exp = experienceList[index];
+                  return isMobile
+                      ? ExperienceCard(experience: exp)
+                      : TimelineItem(
+                        experience: exp,
+                        isLast: index == experienceList.length - 1,
+                      );
+                }, childCount: experienceList.length),
+              ),
+            ),
 
-        const SliverToBoxAdapter(child: SizedBox(height: 64)),
-      ],
+            const SliverToBoxAdapter(child: SizedBox(height: 64)),
+          ],
+        );
+      },
     );
   }
 }
@@ -95,7 +101,7 @@ class Experience {
 final List<Experience> experienceList = [
   Experience(
     company: 'GALLERY COMPUTER STORE',
-    period: 'Februari 2020 – April 2021',
+    period: 'Feb 2020 – Apr 2021',
     role: 'Technical Assistant',
     logo: '../../assets/images/experience/companygc.png',
     highlights: [
@@ -107,7 +113,7 @@ final List<Experience> experienceList = [
 
   Experience(
     company: 'PT INDOSPS BOGATAMA SUKSES',
-    period: 'June 2021 – May 2022',
+    period: 'Jun 2021 – Jul 2022',
     role: 'Information Technology Staff',
     logo: '../../assets/images/experience/companyibs.png',
     highlights: [
@@ -119,7 +125,7 @@ final List<Experience> experienceList = [
 
   Experience(
     company: 'PT INDOSPS BOGATAMA SUKSES',
-    period: 'June 2022 – July 2024',
+    period: 'Jun 2022 – Jul 2024',
     role: 'Graphic Design Marketing',
     logo: '../../assets/images/experience/companyibs.png',
     highlights: [
@@ -212,7 +218,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
 
                   // ROLE
                   Text(
-                    exp.role,
+                    EnIdExp(context, exp.role),
                     style: const TextStyle(
                       fontSize: ExperienceTextStyle.roleSize,
                       fontWeight: FontWeight.w500,
@@ -231,7 +237,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                           const Text('•  '),
                           Expanded(
                             child: Text(
-                              item,
+                              EnIdExp(context, item),
                               textAlign: TextAlign.justify,
                               style: const TextStyle(
                                 fontSize: ExperienceTextStyle.bulletSize,
@@ -313,7 +319,8 @@ class CompanyAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: 'Company: $companyName',
+      message: EnIdCompany(context, 'Company: $companyName'),
+
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(8),
@@ -386,16 +393,20 @@ class ExperienceHeaderDelegate extends SliverPersistentHeaderDelegate {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
-            'Experience',
+          bhsText(
+            context: context,
+            en: 'Experience',
+            id: 'Pengalaman',
             style: theme.textTheme.headlineLarge?.copyWith(
               color: theme.colorScheme.primary,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 4),
-          Text(
-            'Professional background and job role',
+          bhsText(
+            context: context,
+            en: 'Professional background and job role',
+            id: 'Latar belakang profesional dan peran pekerjaan',
             style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
           ),
         ],
@@ -405,6 +416,55 @@ class ExperienceHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+    return true;
   }
+}
+
+String EnIdCompany(BuildContext context, String text) {
+  final isEnglish = MyApp.languageNotifier.value == 'en';
+
+  if (isEnglish) return text;
+
+  return text.replaceFirst('Company:', 'Perusahaan:');
+}
+
+String EnIdExp(BuildContext context, String text) {
+  final isEnglish = MyApp.languageNotifier.value == 'en';
+
+  if (isEnglish) return text;
+
+  const Map<String, String> idMap = {
+    'Technical Assistant': 'Asisten Teknisi',
+    'Information Technology Staff': 'Staf Teknologi Informasi',
+    'Graphic Design Marketing': 'Desain Grafis Marketing',
+
+    'Managing the store and handling customer complaints':
+        'Mengelola toko dan menangani keluhan pelanggan',
+
+    'Installing software, updating operating systems, and troubleshooting hardware issues.':
+        'Menginstal software, memperbarui sistem operasi, dan troubleshooting hardware.',
+
+    'Assisting technicians with projects outside the assisting technicians with projects outside the store, both within the company and at schools, as requested by customers.':
+        'Membantu teknisi dalam proyek-proyek di luar toko, baik di dalam perusahaan maupun di sekolah-sekolah, sesuai permintaan pelanggan.',
+
+    'Responsible for maintaining and safeguarding the stability of the LAN/WAN network infrastructure, as well as troubleshooting hardware issues, such as routers, switches, servers, and other devices.':
+        'Bertanggung jawab menjaga stabilitas infrastruktur jaringan LAN/WAN serta troubleshooting perangkat seperti router, switch, dan server.',
+
+    'Monitoring the performance of company servers and websites to ensure their stability.':
+        'Memantau performa server dan website perusahaan untuk memastikan kestabilannya.',
+
+    'Installing software, updating operating systems, and device drivers.':
+        'Menginstal perangkat lunak, memperbarui sistem operasi, dan driver sistem.',
+
+    'Creating product designs for daily posts on the company\'s social media channels.':
+        'Membuat desain produk untuk postingan harian media sosial perusahaan.',
+
+    'Developing strategies with the team and developing customer interest in the companyn\'s products online.':
+        'Mengembangkan strategi bersama tim untuk meningkatkan minat pelanggan terhadap produk perusahaan secara online.',
+
+    'Design project request in each division. Creating designs on food product packaging.':
+        'Mengerjakan permintaan desain tiap divisi dan membuat desain kemasan produk makanan.',
+  };
+
+  return idMap[text] ?? text;
 }

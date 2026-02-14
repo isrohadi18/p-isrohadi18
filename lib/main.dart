@@ -21,7 +21,7 @@ final List<Map<String, dynamic>> navItems = [
   {
     'title': 'Experience',
     'icon': Icons.timeline_rounded,
-    'page': const ExperiencePage(),
+    'page': ExperiencePage(),
   },
   {
     'title': 'Projects',
@@ -133,7 +133,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
           {
             'title': AppText.get('experience', lang),
             'icon': Icons.timeline_rounded,
-            'page': const ExperiencePage(),
+            'page': ExperiencePage(),
           },
           {
             'title': AppText.get('projects', lang),
@@ -417,7 +417,7 @@ class AppText {
   static String get(String key, String lang) {
     final Map<String, Map<String, String>> data = {
       'home': {'en': 'Home', 'id': 'Beranda'},
-      'about': {'en': 'About', 'id': 'Tentang'},
+      'about': {'en': 'Profile', 'id': 'Profil'},
       'experience': {'en': 'Experience', 'id': 'Pengalaman'},
       'projects': {'en': 'Projects', 'id': 'Proyek'},
       'certificate': {'en': 'Certificate', 'id': 'Sertifikat'},

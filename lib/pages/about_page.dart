@@ -107,7 +107,6 @@ class _AboutPageState extends State<AboutPage> {
                       const SizedBox(height: 1.6),
                       bhsText(
                         context: context,
-
                         en:
                             'And if you\'re concerned about code structure, spacing, or semicolons — let’s talk about it.',
 
@@ -125,7 +124,7 @@ class _AboutPageState extends State<AboutPage> {
 
                         style: Theme.of(
                           context,
-                        ).textTheme.headlineSmall?.copyWith(
+                        ).textTheme.headlineMedium?.copyWith(
                           color:
                               isDark
                                   ? Theme.of(context).colorScheme.primary
@@ -368,7 +367,7 @@ class _AboutPageState extends State<AboutPage> {
 
                         style: Theme.of(
                           context,
-                        ).textTheme.headlineSmall?.copyWith(
+                        ).textTheme.headlineMedium?.copyWith(
                           color:
                               isDark
                                   ? Theme.of(context).colorScheme.primary
@@ -700,7 +699,7 @@ class SectionTitle extends StatelessWidget {
           padding: const EdgeInsets.only(left: 0), //
           child: Text(
             title,
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.bold,
             ),
