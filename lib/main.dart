@@ -11,7 +11,7 @@ void main() {
   runApp(const MyApp());
 }
 
-final List<Map<String, dynamic>> _navItems = [
+final List<Map<String, dynamic>> navItems = [
   {'title': 'Home', 'icon': Icons.home_rounded, 'page': const HomePage()},
   {
     'title': 'About',
@@ -46,6 +46,10 @@ class MyApp extends StatelessWidget {
   static final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(
     ThemeMode.system,
   );
+
+  static final ValueNotifier<String> languageNotifier = ValueNotifier(
+    'en',
+  ); // default English
 
   @override
   Widget build(BuildContext context) {
@@ -112,108 +116,166 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final isMobile = width < 600;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final navItems = [
+          {
+            'title': AppText.get('home', lang),
+            'icon': Icons.home_rounded,
+            'page': const HomePage(),
+          },
+          {
+            'title': AppText.get('about', lang),
+            'icon': Icons.person_outline_rounded,
+            'page': const AboutPage(),
+          },
+          {
+            'title': AppText.get('experience', lang),
+            'icon': Icons.timeline_rounded,
+            'page': const ExperiencePage(),
+          },
+          {
+            'title': AppText.get('projects', lang),
+            'icon': Icons.code_rounded,
+            'page': const ProjectsPage(),
+          },
+          {
+            'title': AppText.get('certificate', lang),
+            'icon': Icons.school_rounded,
+            'page': const CertificatePage(),
+          },
+          {
+            'title': AppText.get('contact', lang),
+            'icon': Icons.mail_outline_rounded,
+            'page': const ContactPage(),
+          },
+        ];
 
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor:
-            isDark
-                ? Colors.black.withOpacity(0.8)
-                : Colors.white.withOpacity(0.8),
-        flexibleSpace: ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(color: Colors.transparent),
-          ),
-        ),
-        title:
-            isMobile
-                ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.menu),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => _buildMobileMenu(),
-                        );
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-                      onPressed: () {
-                        MyApp.themeNotifier.value =
-                            isDark ? ThemeMode.light : ThemeMode.dark;
-                      },
-                    ),
-                  ],
-                )
-                : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(_navItems.length, (index) {
-                        final item = _navItems[index];
-                        return AnimatedNavButton(
-                          title: item['title'],
-                          icon: item['icon'],
-                          isSelected: _selectedIndex == index,
-                          onTap: () => _scrollToIndex(index),
-                        );
-                      }),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              isDark ? Icons.light_mode : Icons.dark_mode,
-                            ),
-                            onPressed: () {
-                              MyApp.themeNotifier.value =
-                                  isDark ? ThemeMode.light : ThemeMode.dark;
-                            },
+        final width = MediaQuery.of(context).size.width;
+        final isMobile = width < 600;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+
+        return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor:
+                isDark
+                    ? Colors.black.withOpacity(0.8)
+                    : Colors.white.withOpacity(0.8),
+
+            title:
+                isMobile
+                    ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.menu),
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder:
+                                  (context) => _buildMobileMenu(lang, navItems),
+                            );
+                          },
+                        ),
+
+                        IconButton(
+                          icon: Icon(
+                            isDark ? Icons.light_mode : Icons.dark_mode,
                           ),
-                          const SizedBox(width: 16),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-      ),
+                          onPressed: () {
+                            MyApp.themeNotifier.value =
+                                isDark ? ThemeMode.light : ThemeMode.dark;
+                          },
+                        ),
 
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) => setState(() => _selectedIndex = index),
-        scrollDirection: Axis.vertical,
-        physics:
-            isMobile
-                ? const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                )
-                : const ClampingScrollPhysics(),
-        children:
-            _navItems.map((item) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  top: kToolbarHeight + MediaQuery.of(context).padding.top,
-                ),
-                child: SafeArea(top: false, child: item['page'] as Widget),
-              );
-            }).toList(),
-      ),
+                        TextButton(
+                          onPressed: () {
+                            MyApp.languageNotifier.value =
+                                lang == 'en' ? 'id' : 'en';
+                          },
+                          child: Text(
+                            lang == 'en' ? 'IND' : 'ENG',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    )
+                    : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Spacer(),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(navItems.length, (index) {
+                            final item = navItems[index];
+                            return AnimatedNavButton(
+                              title: item['title'] as String,
+                              icon: item['icon'] as IconData,
+
+                              isSelected: _selectedIndex == index,
+                              onTap: () => _scrollToIndex(index),
+                            );
+                          }),
+                        ),
+
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  isDark ? Icons.light_mode : Icons.dark_mode,
+                                ),
+                                onPressed: () {
+                                  MyApp.themeNotifier.value =
+                                      isDark ? ThemeMode.light : ThemeMode.dark;
+                                },
+                              ),
+                              const SizedBox(width: 8),
+                              TextButton(
+                                onPressed: () {
+                                  MyApp.languageNotifier.value =
+                                      lang == 'en' ? 'id' : 'en';
+                                },
+                                child: Text(
+                                  lang == 'en' ? 'IND' : 'ENG',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+          ),
+
+          body: PageView(
+            controller: _pageController,
+            onPageChanged: (index) => setState(() => _selectedIndex = index),
+            scrollDirection: Axis.vertical,
+            children:
+                navItems.map((item) {
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      top: kToolbarHeight + MediaQuery.of(context).padding.top,
+                    ),
+                    child: SafeArea(top: false, child: item['page'] as Widget),
+                  );
+                }).toList(),
+          ),
+        );
+      },
     );
   }
 
-  Widget _buildMobileMenu() {
+  Widget _buildMobileMenu(String lang, List<Map<String, dynamic>> navItems) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SafeArea(
@@ -226,8 +288,8 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               // 🔹 MENU NAV (STEP 4 DI SINI)
-              ...List.generate(_navItems.length, (index) {
-                final item = _navItems[index];
+              ...List.generate(navItems.length, (index) {
+                final item = navItems[index];
                 return ListTile(
                   leading: Icon(item['icon']),
                   title: Text(item['title']),
@@ -238,6 +300,17 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                   },
                 );
               }),
+
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: Text(
+                  lang == 'en' ? 'Switch to Indonesian' : 'Ganti ke English',
+                ),
+                onTap: () {
+                  MyApp.languageNotifier.value = lang == 'en' ? 'id' : 'en';
+                  Navigator.pop(context);
+                },
+              ),
 
               const Divider(),
 
@@ -322,5 +395,22 @@ class AnimatedNavButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class AppText {
+  static String get(String key, String lang) {
+    final Map<String, Map<String, String>> data = {
+      'home': {'en': 'Home', 'id': 'Beranda'},
+      'about': {'en': 'About', 'id': 'Tentang'},
+      'experience': {'en': 'Experience', 'id': 'Pengalaman'},
+      'projects': {'en': 'Projects', 'id': 'Proyek'},
+      'certificate': {'en': 'Certificate', 'id': 'Sertifikat'},
+      'contact': {'en': 'Contact', 'id': 'Kontak'},
+      'lightMode': {'en': 'Light Mode', 'id': 'Mode Terang'},
+      'darkMode': {'en': 'Dark Mode', 'id': 'Mode Gelap'},
+    };
+
+    return data[key]?[lang] ?? '';
   }
 }
