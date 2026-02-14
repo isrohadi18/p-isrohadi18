@@ -58,17 +58,17 @@ class _CertificatePageState extends State<CertificatePage> {
     CertificateModel(
       title: 'Intro to Software Engineering',
       organization: 'Coding Camp RevoU',
-      year: 'Diterbitkan pada 16 January 2026',
+      year: 'Published on January 16, 2026',
       credentialUrl:
           'https://drive.google.com/file/d/1MoWcQGvNhktSTWhDkrpXVDc_Mg3sq81D/view?usp=drive_link',
       skills: ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
       insight:
-          'Melalui program ini, saya membangun fondasi kuat dalam pengembangan perangkat lunak. Saya tidak hanya belajar cara menulis kode, tetapi juga memahami bagaimana sebuah aplikasi dirancang, dikembangkan, dan dikelola secara terstruktur. Program ini membentuk pola pikir saya sebagai seorang problem solver yang sistematis, bukan sekadar coder.',
+          'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.',
     ),
     CertificateModel(
       title: 'Membentuk Pribadi Cerdas Digital',
       organization: 'Kominfo',
-      year: 'Diterbitkan pada 29 July 2023',
+      year: 'Published on July 29, 2023',
       credentialUrl:
           'https://drive.google.com/file/d/1iIdkyOPowq-43auhkO_5MlFJAxDUX7tV/view?usp=drive_link',
       skills: [
@@ -77,12 +77,12 @@ class _CertificatePageState extends State<CertificatePage> {
         'Data Privacy Fundamentals',
       ],
       insight:
-          'Program ini memperkuat pemahaman saya tentang pentingnya etika dan tanggung jawab dalam dunia digital. Saya belajar bahwa teknologi bukan hanya soal kemampuan teknis, tetapi juga tentang bagaimana menggunakannya secara aman, bijak, dan profesional.',
+          'This program strengthened my understanding of the importance of ethics and responsibility in the digital world. I learned that technology isn\'t just about technical skills, but also about how to use it safely, wisely, and professionally.',
     ),
     CertificateModel(
       title: 'Mengenal Profesi IT Dan Hukum Cyber',
       organization: 'Universitas Pancasila',
-      year: 'Diterbitkan pada 14 July 2022',
+      year: 'Published on July 14, 2022',
       credentialUrl:
           'https://drive.google.com/file/d/1i7J5L0gpBu9k6j39Y6596FYGe2Cd6qtZ/view?usp=drive_link',
       skills: [
@@ -91,22 +91,22 @@ class _CertificatePageState extends State<CertificatePage> {
         'Legal Risk Awareness in Digital Systems',
       ],
       insight:
-          'Sertifikat ini memberikan perspektif bahwa dunia IT selalu berjalan berdampingan dengan regulasi dan hukum. Saya memahami pentingnya kepatuhan terhadap aturan dalam pengembangan dan penggunaan sistem digital, terutama terkait keamanan data dan hukum siber.',
+          'This certificate provides perspective on how the IT world always coexists with regulations and laws. I understand the importance of regulatory compliance in the development and use of digital systems, particularly regarding data security and cyber law.',
     ),
     CertificateModel(
       title: 'Improve Your Portofolio With UI/UX Design Trend',
       organization: 'Hima If X Buildwith Angga',
-      year: 'Diterbitkan pada 31 October 2021',
+      year: 'Published on October 31, 2021',
       credentialUrl:
           'https://drive.google.com/file/d/17b2WewXQvUvVOHDUJVbVqCA8iKFufkFC/view?usp=drive_link',
       skills: ['Figma', 'UI Design Principles', 'UX Thinking'],
       insight:
-          'Melalui program ini, saya belajar melihat sebuah produk dari sudut pandang pengguna. Saya memahami bahwa sistem yang baik bukan hanya berjalan dengan benar, tetapi juga harus nyaman dan mudah digunakan. Hal ini membantu saya menjadi developer yang lebih berorientasi pada pengalaman pengguna.',
+          'Through this program, I learned to see a product from the user\'s perspective. I understood that a good system not only works correctly but also needs to be convenient and easy to use. This helped me become a more user-experience-oriented developer.',
     ),
     CertificateModel(
       title: 'Performance Reconnaissance For Ethical Hacking',
       organization: 'PT XAI SYNDICATE INTERNASIONAL',
-      year: 'Diterbitkan pada 26 September 2021',
+      year: 'Published on September 26, 2021',
       credentialUrl:
           'https://drive.google.com/file/d/1VF962b67pUe-nK3IzsrsVe8gfG2Elkml/view?usp=drive_link',
       skills: [
@@ -115,12 +115,12 @@ class _CertificatePageState extends State<CertificatePage> {
         'Basic Penetration Testing',
       ],
       insight:
-          'Program ini memperkenalkan saya pada tahap awal penetration testing, khususnya dalam proses reconnaissance. Saya memahami bagaimana sebuah sistem dapat dianalisis dari sudut pandang keamanan, serta pentingnya membangun aplikasi dengan mindset security-first.',
+          'This program introduced me to the early stages of penetration testing, particularly the reconnaissance process. I understood how a system can be analyzed from a security perspective, as well as the importance of building applications with a security-first mindset.',
     ),
     CertificateModel(
       title: 'Konfigurasi Cisco Router untuk CCNA',
       organization: 'Skill Academy By Ruangguru',
-      year: 'Diterbitkan pada 03 December 2020',
+      year: 'Published on December 3, 2020',
       credentialUrl:
           'https://drive.google.com/file/d/1jt7nVCSNLcwAJNx_ii55bTOU3gh0fmJP/view?usp=drive_link',
       skills: [
@@ -130,12 +130,12 @@ class _CertificatePageState extends State<CertificatePage> {
         'Subnetting',
       ],
       insight:
-          'Melalui pelatihan ini, saya mempelajari dasar konfigurasi perangkat jaringan, khususnya Cisco router. Saya memahami bagaimana jaringan dirancang, dikonfigurasi, dan dioptimalkan untuk memastikan komunikasi data berjalan dengan baik.',
+          'Through this training, I learned the basics of network device configuration, particularly Cisco routers. I understand how networks are designed, configured, and optimized to ensure smooth data communication.',
     ),
     CertificateModel(
       title: 'Sukses Interview/ Wawancara Kerja',
       organization: 'Skill Academy By Ruangguru',
-      year: 'Diterbitkan pada 01 December 2020',
+      year: 'Published on December 1, 2020',
       credentialUrl:
           'https://drive.google.com/file/d/13Ogtb9ddT2zN-QIoO7xYyAa1UvribUz5/view?usp=drive_link',
       skills: [
@@ -146,12 +146,12 @@ class _CertificatePageState extends State<CertificatePage> {
         'CV Optimization',
       ],
       insight:
-          'Program ini membantu saya mempersiapkan diri secara profesional untuk menghadapi dunia kerja. Saya belajar menyampaikan kemampuan dan pengalaman secara terstruktur serta membangun komunikasi yang lebih percaya diri.',
+          'This program helped me prepare professionally for the working world. I learned to structure my skills and experience and build more confident communication skills.',
     ),
     CertificateModel(
       title: 'Computer and Network Engineering Qualification II',
       organization: 'Badan Nasional Sertifikasi Profesi',
-      year: 'Diterbitkan pada December 2019',
+      year: 'Published in December 2019',
       credentialUrl:
           'https://drive.google.com/file/d/1S9soCji_UqqfNxWAV1Bvlyp4_bOX2q0i/view?usp=sharing',
       skills: [
@@ -162,7 +162,7 @@ class _CertificatePageState extends State<CertificatePage> {
         'Switch',
       ],
       insight:
-          'Sertifikasi ini merupakan validasi kompetensi teknis saya di bidang komputer dan jaringan sesuai standar nasional. Proses asesmen memastikan bahwa kemampuan saya tidak hanya berbasis teori, tetapi juga praktik langsung di lapangan.',
+          'This certification validates my technical competency in computers and networking, meeting national standards. The assessment process ensures that my skills are not only theoretical but also practical in the field.',
     ),
   ];
 

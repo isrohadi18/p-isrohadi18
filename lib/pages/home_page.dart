@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,6 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = MyApp.languageNotifier.value;
+
     return Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
@@ -88,16 +90,20 @@ class HomePage extends StatelessWidget {
                         );
                         if (!await launchUrl(url)) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Could not download CV'),
+                            SnackBar(
+                              content: Text(
+                                lang == 'en'
+                                    ? 'Failed to Download CV'
+                                    : 'Gagal Mengunduh CV',
+                              ),
                               backgroundColor: Colors.red,
                             ),
                           );
                         }
                       },
                       icon: const Icon(Icons.download),
-                      label: const Text(
-                        'Download CV',
+                      label: Text(
+                        lang == 'en' ? 'Download CV' : 'Unduh CV',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -121,16 +127,20 @@ class HomePage extends StatelessWidget {
                     );
                     if (!await launchUrl(url)) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Could not open WhatsApp'),
+                        SnackBar(
+                          content: Text(
+                            lang == 'en'
+                                ? 'Failed to open WhatsApp'
+                                : 'Gagal membuka WhatsApp',
+                          ),
                           backgroundColor: Colors.red,
                         ),
                       );
                     }
                   },
                   icon: const Icon(Icons.phone),
-                  label: const Text(
-                    'Contact Me',
+                  label: Text(
+                    lang == 'en' ? 'Contact Me' : 'Kontak Saya',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
