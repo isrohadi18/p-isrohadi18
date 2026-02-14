@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../main.dart';
 
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({super.key});
@@ -206,159 +207,189 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final isMobile = width < 600;
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final width = MediaQuery.of(context).size.width;
+        final isMobile = width < 600;
+        final isEnglish = lang == 'en';
 
-    return Card(
-      elevation: isFeatured ? 8 : 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side:
-            isFeatured
-                ? BorderSide(
-                  color: Theme.of(context).colorScheme.primary,
-                  width: 1.5,
-                )
-                : BorderSide.none,
-      ),
-      child: InkWell(
-        onTap: null,
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          children: [
-            // Image section with fixed height
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(12),
-                      ),
-                      image: DecorationImage(
-                        image:
-                            isAssetImage
-                                ? AssetImage(imageUrl) as ImageProvider
-                                : NetworkImage(imageUrl),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-
-                  if (isFeatured)
-                    Positioned(
-                      top: 10,
-                      left: 10,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
+        return Card(
+          elevation: isFeatured ? 8 : 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side:
+                isFeatured
+                    ? BorderSide(
+                      color: Theme.of(context).colorScheme.primary,
+                      width: 1.5,
+                    )
+                    : BorderSide.none,
+          ),
+          child: InkWell(
+            onTap: null,
+            borderRadius: BorderRadius.circular(12),
+            child: Column(
+              children: [
+                // Image section with fixed height
+                AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Stack(
+                    children: [
+                      Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Text(
-                          '⭐ FEATURED PROJECT',
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 0.5,
+                          borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(12),
+                          ),
+                          image: DecorationImage(
+                            image:
+                                isAssetImage
+                                    ? AssetImage(imageUrl) as ImageProvider
+                                    : NetworkImage(imageUrl),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                    ),
-                ],
-              ),
-            ),
-            // Content section
-            Padding(
-              padding: EdgeInsets.all(isMobile ? 12 : 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min, // 🔥 KUNCI ANTI OVERFLOW
-                children: [
-                  // Title
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: isMobile ? 12 : 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 8),
-                  // Description
-                  ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: isMobile ? 48 : 72),
-                    child: Text(
-                      description,
-                      maxLines: isMobile ? 3 : 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: isMobile ? 10 : 12,
-                        color: Colors.grey[600],
-                        height: 1.4, // line height biar rapi
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Wrap(
-                    spacing: 6,
-                    runSpacing: 6,
-                    children:
-                        technologies
-                            .map((tech) => TechBadge(label: tech))
-                            .toList(),
-                  ),
-                  const SizedBox(height: 8),
 
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      ProjectActionButton(
-                        label: 'GitHub',
-                        icon: Icons.code,
-                        onPressed: () => _launch(githubUrl),
-                      ),
-
-                      if (demoUrl != null && demoType != DemoType.none)
-                        ProjectActionButton(
-                          label:
-                              demoType == DemoType.video
-                                  ? 'Demo Video'
-                                  : 'Demo Web',
-                          icon:
-                              demoType == DemoType.video
-                                  ? Icons.play_circle_outline
-                                  : Icons.open_in_new,
-                          onPressed: () => _launch(demoUrl!),
-                        ),
-
-                      if (downloadUrl != null && downloadUrl!.isNotEmpty)
-                        ProjectActionButton(
-                          label: 'Download',
-                          icon: Icons.download,
-                          onPressed: () async {
-                            final Uri uri = Uri.parse(downloadUrl!);
-                            await launchUrl(
-                              uri,
-                              mode: LaunchMode.externalApplication,
-                            );
-                          },
+                      if (isFeatured)
+                        Positioned(
+                          top: 10,
+                          left: 10,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: bhsText(
+                              context: context,
+                              en: '⭐ FEATURED PROJECT',
+                              id: '⭐ PROYEK UNGGULAN',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ),
                         ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                // Content section
+                Padding(
+                  padding: EdgeInsets.all(isMobile ? 12 : 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min, // 🔥 KUNCI ANTI OVERFLOW
+                    children: [
+                      // Title
+                      Text(
+                        EnIdTitle(context, title),
+                        style: TextStyle(
+                          fontSize: isMobile ? 12 : 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 8),
+                      // Description
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: isMobile ? 48 : 72,
+                        ),
+                        child: Text(
+                          EnIdDesc(context, description),
+                          maxLines: isMobile ? 3 : 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: isMobile ? 10 : 12,
+                            color: Colors.grey[600],
+                            height: 1.5, // line height biar rapi
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children:
+                            technologies
+                                .map((tech) => TechBadge(label: tech))
+                                .toList(),
+                      ),
+                      const SizedBox(height: 13),
+
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          ProjectActionButton(
+                            label: 'GitHub',
+                            icon: Icons.code,
+                            onPressed: () => _launch(githubUrl),
+                          ),
+
+                          if (demoUrl != null && demoType != DemoType.none)
+                            ProjectActionButton(
+                              label:
+                                  demoType == DemoType.video
+                                      ? (isEnglish
+                                          ? 'Demo Video'
+                                          : 'Video Demo')
+                                      : (isEnglish
+                                          ? 'Demo Web'
+                                          : 'Lihat Website'),
+                              icon:
+                                  demoType == DemoType.video
+                                      ? Icons.play_circle_outline
+                                      : Icons.open_in_browser,
+                              onPressed: () => _launch(demoUrl!),
+                            ),
+
+                          if (downloadUrl != null && downloadUrl!.isNotEmpty)
+                            ProjectActionButton(
+                              label:
+                                  MyApp.languageNotifier.value == 'en'
+                                      ? 'Download'
+                                      : 'Unduh',
+
+                              icon: Icons.download,
+                              onPressed: () async {
+                                final Uri uri = Uri.parse(downloadUrl!);
+
+                                if (await launchUrl(
+                                  uri,
+                                  mode: LaunchMode.externalApplication,
+                                )) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        MyApp.languageNotifier.value == 'en'
+                                            ? 'Failed to Download Application'
+                                            : 'Gagal Mengunduh Aplikasi.',
+                                      ),
+                                      backgroundColor: Colors.red,
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -410,27 +441,34 @@ class ProjectActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final colorScheme = Theme.of(context).colorScheme;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return OutlinedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 16, color: colorScheme.primary),
-      label: Text(
-        label,
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: colorScheme.primary,
-        ),
-      ),
-      style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        side: BorderSide(
-          color: colorScheme.primary.withOpacity(isDark ? 0.6 : 0.8),
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      ),
+        return OutlinedButton.icon(
+          onPressed: onPressed,
+          icon: Icon(icon, size: 16, color: colorScheme.primary),
+          label: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: colorScheme.primary,
+            ),
+          ),
+          style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            side: BorderSide(
+              color: colorScheme.primary.withOpacity(isDark ? 0.6 : 0.8),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -499,16 +537,20 @@ class ProjectsHeaderDelegate extends SliverPersistentHeaderDelegate {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
-            'My Project',
+          bhsText(
+            context: context,
+            en: 'My Project',
+            id: 'Proyek saya',
             style: theme.textTheme.headlineLarge?.copyWith(
               color: theme.colorScheme.primary,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 4),
-          Text(
-            'Selected works and implementations',
+          bhsText(
+            context: context,
+            en: 'Selected works and their applications',
+            id: 'Karya-karya terpilih dan penerapannya',
             style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
           ),
         ],
@@ -520,4 +562,47 @@ class ProjectsHeaderDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;
   }
+}
+
+String EnIdTitle(BuildContext context, String text) {
+  final isEnglish = MyApp.languageNotifier.value == 'en';
+
+  if (isEnglish) return text;
+
+  const Map<String, String> idMap = {
+    'CRYPTO - APP': 'CRYPTO - APLIKASI',
+    'Khodam Check Application (.exe)': 'Aplikasi Cek Khodam (.exe)',
+    'Book Management Application': 'Aplikasi Pengelola Buku',
+    'Digital Solutions Application Techlogo Profile Website':
+        'Website Profil Perusahaan Techlogo Digital Solutions',
+    'Smart Calculator for Calculating Good Deeds':
+        'Kalkulator Cerdas Perhitungan Amal',
+  };
+
+  return idMap[text] ?? text;
+}
+
+String EnIdDesc(BuildContext context, String text) {
+  final isEnglish = MyApp.languageNotifier.value == 'en';
+
+  if (isEnglish) return text;
+
+  const Map<String, String> idMap = {
+    'A Java-based desktop file security application that encrypts and decrypts files using the Advanced Encryption Standard (AES) algorithm in CBC mode, and password protection using BCrypt. It features user management, logging, and encryption performance statistics.':
+        'Aplikasi keamanan file berbasis Java Desktop yang melakukan enkripsi dan dekripsi menggunakan algoritma AES mode CBC serta proteksi password BCrypt. Dilengkapi manajemen user, logging, dan statistik performa enkripsi.',
+
+    'The Khodam Check app is an interactive tool that allows you to check the presence and type of khodam that may be accompanying you. With a user-friendly interface and the latest Electron technology, this app offers an entertaining experience for users interested in the mystical world.':
+        'Aplikasi Cek Khodam adalah alat interaktif untuk mengecek keberadaan dan jenis khodam. Dibangun dengan Electron dan antarmuka ramah pengguna untuk pengalaman yang menghibur.',
+
+    'The Book Management application is a Java-based desktop application designed to help manage book data neatly, quickly, and in a structured manner. This application is suitable for use by schools, school cooperatives, book warehouse administrators, and administrative staff who need an easy-to-use bookkeeping system.':
+        'Aplikasi Pengelola Buku berbasis Java Desktop untuk mengelola data buku secara rapi dan terstruktur. Cocok untuk sekolah, koperasi, admin gudang, dan staff tata usaha.',
+
+    'TechLogo Nexus is a modern company profile website designed to represent an IT & Digital Solutions company. This project showcases a clean UI, responsive layout, and interactive features using HTML, CSS, and JavaScript.':
+        'TechLogo Nexus adalah website company profile modern untuk perusahaan IT & Digital Solutions dengan UI clean, layout responsif, dan fitur interaktif berbasis HTML, CSS, dan JavaScript.',
+
+    'A pure HTML, CSS, and JavaScript-based calculator application designed to help users calculate their Zakat al-Mal, Zakat al-Fitr, and Infaq obligations quickly, accurately, and completely offline. This application is ideal for personal use, community use, or religious institutions like mosques, as it does not require a backend or internet connection.':
+        'Aplikasi kalkulator berbasis HTML, CSS, dan JavaScript untuk menghitung Zakat Mal, Zakat Fitrah, dan Infaq secara cepat dan offline tanpa backend.',
+  };
+
+  return idMap[text] ?? text;
 }
