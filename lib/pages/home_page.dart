@@ -10,154 +10,160 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lang = MyApp.languageNotifier.value;
-
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        image: DecorationImage(
-          image: NetworkImage(
-            'https://images.unsplash.com/photo-1557683316-973673baf926',
-          ),
-          fit: BoxFit.cover,
-          opacity: Theme.of(context).brightness == Brightness.dark ? 0.05 : 0.1,
-        ),
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const CircleAvatar(
-              radius: 80,
-              backgroundImage: AssetImage(
-                '../../assets/images/home/profile.png',
+    return ValueListenableBuilder(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        return Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            image: DecorationImage(
+              image: NetworkImage(
+                'https://images.unsplash.com/photo-1557683316-973673baf926',
               ),
-            ).animate().fadeIn(duration: 600.ms).scale(delay: 200.ms),
-            const SizedBox(height: 20),
-            Text(
-                  'Rohadi Dwi Junianto',
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-                .animate()
-                .fadeIn(duration: 600.ms)
-                .slideY(begin: 0.3, delay: 300.ms),
-            const SizedBox(height: 10),
-            DefaultTextStyle(
-              style: Theme.of(
-                context,
-              ).textTheme.headlineSmall!.copyWith(color: Colors.grey),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    'Bachelor of Informatics Engineering',
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    'UI/UX designers',
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    'Fullstack Developer',
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    'Digital Strategy & Design',
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    'Information Technology Professional',
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                  TypewriterAnimatedText(
-                    'Web Developer',
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                ],
-                repeatForever: true,
-              ),
+              fit: BoxFit.cover,
+              opacity:
+                  Theme.of(context).brightness == Brightness.dark ? 0.05 : 0.1,
             ),
-            const SizedBox(height: 30),
-            Row(
+          ),
+          child: Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton.icon(
-                      onPressed: () async {
-                        final Uri url = Uri.parse(
-                          'https://drive.google.com/file/d/1Ci2baGwcGqTHBFlOCjuVo9d7ak-c7fbv/view?usp=sharing',
-                        );
-                        if (!await launchUrl(url)) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                lang == 'en'
-                                    ? 'Failed to Download CV'
-                                    : 'Gagal Mengunduh CV',
-                              ),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
-                      },
-                      icon: const Icon(Icons.download),
-                      label: Text(
-                        lang == 'en' ? 'Download CV' : 'Unduh CV',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 16,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
+                const CircleAvatar(
+                  radius: 80,
+                  backgroundImage: AssetImage(
+                    '../../assets/images/home/profile.png',
+                  ),
+                ).animate().fadeIn(duration: 600.ms).scale(delay: 200.ms),
+                const SizedBox(height: 20),
+                Text(
+                      'Rohadi Dwi Junianto',
+                      style: Theme.of(context).textTheme.headlineLarge
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     )
                     .animate()
-                    .fadeIn(delay: 800.ms)
-                    .slideX(begin: -0.3, delay: 800.ms),
-                const SizedBox(width: 16),
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    final Uri url = Uri.parse(
-                      'https://wa.me/628988064287?text=Hello%20Rohadi%2C%20I%20want%20to%20ask%20about...',
-                    );
-                    if (!await launchUrl(url)) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            lang == 'en'
-                                ? 'Failed to open WhatsApp'
-                                : 'Gagal membuka WhatsApp',
+                    .fadeIn(duration: 600.ms)
+                    .slideY(begin: 0.3, delay: 300.ms),
+                const SizedBox(height: 10),
+                DefaultTextStyle(
+                  style: Theme.of(
+                    context,
+                  ).textTheme.headlineSmall!.copyWith(color: Colors.grey),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        'Bachelor of Informatics Engineering',
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                      TypewriterAnimatedText(
+                        'UI/UX designers',
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                      TypewriterAnimatedText(
+                        'Fullstack Developer',
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                      TypewriterAnimatedText(
+                        'Digital Strategy & Design',
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                      TypewriterAnimatedText(
+                        'Information Technology Professional',
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                      TypewriterAnimatedText(
+                        'Web Developer',
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                    ],
+                    repeatForever: true,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                          onPressed: () async {
+                            final Uri url = Uri.parse(
+                              'https://drive.google.com/file/d/1Ci2baGwcGqTHBFlOCjuVo9d7ak-c7fbv/view?usp=sharing',
+                            );
+                            if (!await launchUrl(url)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    lang == 'en'
+                                        ? 'Failed to Download CV'
+                                        : 'Gagal Mengunduh CV',
+                                  ),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          },
+                          icon: const Icon(Icons.download),
+                          label: Text(
+                            lang == 'en' ? 'Download CV' : 'Unduh CV',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                  },
-                  icon: const Icon(Icons.phone),
-                  label: Text(
-                    lang == 'en' ? 'Contact Me' : 'Kontak Saya',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                ).animate().fadeIn(delay: 800.ms).slideX(begin: 0.3, delay: 800.ms),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 16,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                        )
+                        .animate()
+                        .fadeIn(delay: 800.ms)
+                        .slideX(begin: -0.3, delay: 800.ms),
+                    const SizedBox(width: 16),
+                    ElevatedButton.icon(
+                          onPressed: () async {
+                            final Uri url = Uri.parse(
+                              'https://wa.me/628988064287?text=Hello%20Rohadi%2C%20I%20want%20to%20ask%20about...',
+                            );
+                            if (!await launchUrl(url)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    lang == 'en'
+                                        ? 'Failed to open WhatsApp'
+                                        : 'Gagal membuka WhatsApp',
+                                  ),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          },
+                          icon: const Icon(Icons.phone),
+                          label: Text(
+                            lang == 'en' ? 'Contact Me' : 'Kontak Saya',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 16,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                        )
+                        .animate()
+                        .fadeIn(delay: 800.ms)
+                        .slideX(begin: 0.3, delay: 800.ms),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

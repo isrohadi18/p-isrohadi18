@@ -331,6 +331,21 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
   }
 }
 
+Widget bhsText({
+  required BuildContext context,
+  required String en,
+  required String id,
+  TextStyle? style,
+  TextAlign? textAlign,
+}) {
+  return ValueListenableBuilder(
+    valueListenable: MyApp.languageNotifier,
+    builder: (_, lang, __) {
+      return Text(lang == 'en' ? en : id, style: style, textAlign: textAlign);
+    },
+  );
+}
+
 class AnimatedNavButton extends StatelessWidget {
   final String title;
   final IconData icon;

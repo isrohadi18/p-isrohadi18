@@ -1,5 +1,5 @@
 // ignore_for_file: deprecated_member_use
-
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -51,202 +51,354 @@ class _AboutPageState extends State<AboutPage> {
     });
   }
 
+  String tr(String en, String id, String lang) {
+    return lang == 'en' ? en : id;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final width = MediaQuery.of(context).size.width;
-    final isMobile = width < 600;
-    final paddingleft = MediaQuery.of(context).padding.left;
+    return ValueListenableBuilder(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+        final width = MediaQuery.of(context).size.width;
+        final isMobile = width < 600;
+        final paddingleft = MediaQuery.of(context).padding.left;
 
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      padding: EdgeInsets.fromLTRB(
-        isMobile ? 16 : 32,
-        paddingleft, // Add padding for AppBar
-        isMobile ? 16 : 32,
-        isMobile ? 16 : 32,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionTitle(title: 'About Me'),
-          const SizedBox(height: 10),
-          Expanded(
-            child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'I\'m a Computer Science student focusing on functional application development and familiar with various programming languages. I have experience developing full-stack applications, including front-end interfaces, back-end systems, and database integration. My projects involve real-world use cases, such as file security applications, management system applications, and website platforms. If you\'re worried about spacing between lines of code and semicolons, let\'s talk about it.',
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(
-                      fontSize: AboutmeTextStyle.aboutSize,
-                      height: 1.6,
-                    ),
-                  ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.2),
-                  const SizedBox(height: 25),
-                  Text(
-                    'Skills',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color:
-                          isDark
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.primary,
-
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ).animate().fadeIn(delay: 400.ms),
-                  const SizedBox(height: 15),
-                  SingleChildScrollView(
-                    controller:
-                        _skillsScrollController, // Use skills scroll controller here
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children:
-                          [
-                                const SkillChip(skill: 'HTML')
-                                    .animate()
-                                    .fadeIn(delay: 500.ms)
-                                    .slideX(begin: -1, end: 0, delay: 500.ms),
-                                const SkillChip(skill: 'CSS')
-                                    .animate()
-                                    .fadeIn(delay: 600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 600.ms),
-                                const SkillChip(skill: 'JavaScript')
-                                    .animate()
-                                    .fadeIn(delay: 700.ms)
-                                    .slideX(begin: -1, end: 0, delay: 700.ms),
-                                const SkillChip(skill: 'PHP')
-                                    .animate()
-                                    .fadeIn(delay: 800.ms)
-                                    .slideX(begin: -1, end: 0, delay: 800.ms),
-                                const SkillChip(skill: 'Tailwind')
-                                    .animate()
-                                    .fadeIn(delay: 900.ms)
-                                    .slideX(begin: -1, end: 0, delay: 900.ms),
-                                const SkillChip(skill: 'Java')
-                                    .animate()
-                                    .fadeIn(delay: 1000.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1000.ms),
-                                const SkillChip(skill: 'Flutter')
-                                    .animate()
-                                    .fadeIn(delay: 1100.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1100.ms),
-                                const SkillChip(skill: 'Dart')
-                                    .animate()
-                                    .fadeIn(delay: 1200.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1200.ms),
-                                const SkillChip(skill: 'MySQL')
-                                    .animate()
-                                    .fadeIn(delay: 1300.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1300.ms),
-                                const SkillChip(skill: 'VSCode')
-                                    .animate()
-                                    .fadeIn(delay: 1400.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1400.ms),
-                                const SkillChip(skill: 'Git')
-                                    .animate()
-                                    .fadeIn(delay: 1500.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1500.ms),
-                                const SkillChip(skill: 'Github')
-                                    .animate()
-                                    .fadeIn(delay: 1500.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1500.ms),
-                                const SkillChip(skill: 'phpMyAdmin')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Netbeans')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Arduino')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Figma')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Balsamiq')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Drawio')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Photoshop')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Illustrator')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'CorelDRAW')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Capcut')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Canva')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Visio')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Word')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                                const SkillChip(skill: 'Excel')
-                                    .animate()
-                                    .fadeIn(delay: 1600.ms)
-                                    .slideX(begin: -1, end: 0, delay: 1600.ms),
-                              ]
-                              .map(
-                                (chip) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 2,
-                                  ),
-                                  child: chip,
-                                ),
-                              )
-                              .toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  Text(
-                    'Education',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color:
-                          isDark
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ).animate().fadeIn(delay: 1300.ms),
-                  const SizedBox(height: 15),
-                  const EducationCard(
-                    university: 'INDRAPRASTA PGRI UNIVERSITY',
-                    degree: 'Bachelor - Informatics Engineering',
-                    year: '2021/2025',
-                    gpa: '3.45',
-                    linkVerifikasi:
-                        'https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/95rAqqeLm78ul9xYRP8NbZbdHoe_IbjvXgefdWdaDVKxYH-1Idy0u9uqIwC_Uqz9PzHUZA==',
-                  ).animate().fadeIn(delay: 1400.ms).slideX(begin: 0.2),
-                ],
-              ),
-            ),
+        return Container(
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.fromLTRB(
+            isMobile ? 16 : 32,
+            paddingleft, // Add padding for AppBar
+            isMobile ? 16 : 32,
+            isMobile ? 16 : 32,
           ),
-        ],
-      ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SectionTitle(
+                title:
+                    MyApp.languageNotifier.value == 'en'
+                        ? 'About Me'
+                        : 'Tentang Saya',
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 5),
+                      bhsText(
+                        context: context,
+                        en:
+                            'I am a Computer Science student with a strong focus on functional application development and solid proficiency in various programming languages. I have hands-on experience building full-stack applications, covering front-end interfaces, back-end systems, and database integration. My projects are based on real-world use cases, including file security applications, management system solutions, and web-based platforms.',
+                        // en: 'And if you're concerned about code structure, spacing, or semicolons — let’s talk about it.',
+                        id:
+                            'Saya adalah mahasiswa Ilmu Komputer yang berfokus pada pengembangan aplikasi fungsional serta memiliki pemahaman yang baik dalam berbagai bahasa pemrograman. Saya berpengalaman mengembangkan aplikasi full-stack, mencakup perancangan antarmuka front-end, pengelolaan sistem back-end, hingga integrasi basis data. Proyek yang saya kerjakan berbasis pada kebutuhan dunia nyata, seperti aplikasi keamanan file, sistem manajemen, dan platform berbasis web.',
+                        // id: 'Jika Anda peduli pada struktur kode, kerapihan penulisan, maupun detail kecil seperti spasi dan titik koma — mari kita diskusikan.',
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          fontSize: AboutmeTextStyle.aboutSize,
+                          height: 1.6,
+                        ),
+                      ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.2),
+                      const SizedBox(height: 1.6),
+                      bhsText(
+                        context: context,
+
+                        en:
+                            'And if you\'re concerned about code structure, spacing, or semicolons — let’s talk about it.',
+
+                        id:
+                            'Jika Anda peduli pada struktur kode, kerapihan penulisan, maupun detail kecil seperti spasi dan titik koma — Mari kita diskusikan.',
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          fontSize: AboutmeTextStyle.aboutSize,
+                          height: 1.6,
+                        ),
+                      ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.2),
+                      const SizedBox(height: 25),
+                      Text(
+                        lang == 'en' ? 'Skills Tools' : 'Keterampilan',
+
+                        style: Theme.of(
+                          context,
+                        ).textTheme.headlineSmall?.copyWith(
+                          color:
+                              isDark
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.primary,
+
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ).animate().fadeIn(delay: 400.ms),
+                      const SizedBox(height: 15),
+                      SingleChildScrollView(
+                        controller:
+                            _skillsScrollController, // Use skills scroll controller here
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children:
+                              [
+                                    const SkillChip(skill: 'HTML')
+                                        .animate()
+                                        .fadeIn(delay: 500.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 500.ms,
+                                        ),
+                                    const SkillChip(skill: 'CSS')
+                                        .animate()
+                                        .fadeIn(delay: 600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 600.ms,
+                                        ),
+                                    const SkillChip(skill: 'JavaScript')
+                                        .animate()
+                                        .fadeIn(delay: 700.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 700.ms,
+                                        ),
+                                    const SkillChip(skill: 'PHP')
+                                        .animate()
+                                        .fadeIn(delay: 800.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 800.ms,
+                                        ),
+                                    const SkillChip(skill: 'Tailwind')
+                                        .animate()
+                                        .fadeIn(delay: 900.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 900.ms,
+                                        ),
+                                    const SkillChip(skill: 'Java')
+                                        .animate()
+                                        .fadeIn(delay: 1000.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1000.ms,
+                                        ),
+                                    const SkillChip(skill: 'Flutter')
+                                        .animate()
+                                        .fadeIn(delay: 1100.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1100.ms,
+                                        ),
+                                    const SkillChip(skill: 'Dart')
+                                        .animate()
+                                        .fadeIn(delay: 1200.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1200.ms,
+                                        ),
+                                    const SkillChip(skill: 'MySQL')
+                                        .animate()
+                                        .fadeIn(delay: 1300.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1300.ms,
+                                        ),
+                                    const SkillChip(skill: 'VSCode')
+                                        .animate()
+                                        .fadeIn(delay: 1400.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1400.ms,
+                                        ),
+                                    const SkillChip(skill: 'Git')
+                                        .animate()
+                                        .fadeIn(delay: 1500.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1500.ms,
+                                        ),
+                                    const SkillChip(skill: 'Github')
+                                        .animate()
+                                        .fadeIn(delay: 1500.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1500.ms,
+                                        ),
+                                    const SkillChip(skill: 'phpMyAdmin')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Netbeans')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Arduino')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Figma')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Balsamiq')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Drawio')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Photoshop')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Illustrator')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'CorelDRAW')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Capcut')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Canva')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Visio')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Word')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                    const SkillChip(skill: 'Excel')
+                                        .animate()
+                                        .fadeIn(delay: 1600.ms)
+                                        .slideX(
+                                          begin: -1,
+                                          end: 0,
+                                          delay: 1600.ms,
+                                        ),
+                                  ]
+                                  .map(
+                                    (chip) => Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 2,
+                                      ),
+                                      child: chip,
+                                    ),
+                                  )
+                                  .toList(),
+                        ),
+                      ),
+                      const SizedBox(height: 25),
+                      Text(
+                        lang == 'en' ? 'Education' : 'Pendidikan',
+
+                        style: Theme.of(
+                          context,
+                        ).textTheme.headlineSmall?.copyWith(
+                          color:
+                              isDark
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ).animate().fadeIn(delay: 1300.ms),
+                      const SizedBox(height: 15),
+                      EducationCard(
+                        university:
+                            lang == 'en'
+                                ? 'INDRAPRASTA PGRI UNIVERSITY'
+                                : 'UNIVERSITAS INDRAPRASTA PGRI',
+                        degree:
+                            lang == 'en'
+                                ? 'Bachelor - Informatics Engineering'
+                                : 'Sarjana - Teknik Informatika',
+                        year: '2021/2025',
+                        gpa: '3.45',
+                        linkVerifikasi:
+                            'https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/95rAqqeLm78ul9xYRP8NbZbdHoe_IbjvXgefdWdaDVKxYH-1Idy0u9uqIwC_Uqz9PzHUZA==',
+                      ).animate().fadeIn(delay: 1400.ms).slideX(begin: 0.2),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -438,8 +590,11 @@ class EducationCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'Graduation Year',
+                      bhsText(
+                        context: context,
+                        en: 'Graduation Year',
+                        id: 'Tahun Lulus',
+
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12,
@@ -468,8 +623,10 @@ class EducationCard extends StatelessWidget {
                           ).colorScheme.primary.withOpacity(0.15),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Text(
-                          'GPA $gpa',
+                        child: bhsText(
+                          context: context,
+                          en: 'GPA $gpa',
+                          id: 'IPK $gpa',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -491,20 +648,30 @@ class EducationCard extends StatelessWidget {
                   url,
                   mode: LaunchMode.externalApplication,
                 )) {
-                  throw 'Unable to open verification link';
+                  throw MyApp.languageNotifier.value == 'en'
+                      ? 'Unable to open verification link'
+                      : 'Tidak dapat membuka link verifikasi';
                 }
               },
               icon: const Icon(Icons.verified_outlined, size: 18),
-              label: const Text(
-                'Education Verification (PDDIKTI)',
+              label: bhsText(
+                context: context,
+                en: 'Education Verification (PDDIKTI)',
+                id: 'Verifikasi Pendidikan (PDDIKTI)',
+
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
 
             const SizedBox(height: 6),
 
-            Text(
-              '*Education data can be verified through the official government website',
+            bhsText(
+              context: context,
+              en:
+                  '*Education data can be verified through the official government website',
+              id:
+                  '*Data pendidikan dapat diverifikasi melalui situs web resmi pemerintah.',
+
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.grey.shade500,
