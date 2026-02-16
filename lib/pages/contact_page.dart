@@ -33,7 +33,22 @@ class _ContactPageState extends State<ContactPage> {
   final _messageController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    MyApp.languageNotifier.addListener(_refreshFormLanguage);
+  }
+
+  void _refreshFormLanguage() {
+    if (!_hasSubmitted) return;
+    _formKey.currentState!.reset();
+    _formKey.currentState!.validate();
+  }
+
+  @override
   void dispose() {
+    MyApp.languageNotifier.removeListener(_refreshFormLanguage);
+
     _nameController.dispose();
     _emailController.dispose();
     _messageController.dispose();
@@ -153,7 +168,6 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
-  @override
   Widget _buildContactForm() {
     return ValueListenableBuilder<String>(
       valueListenable: MyApp.languageNotifier,
@@ -348,7 +362,11 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
+  bool _hasSubmitted = false;
+
   void _submitForm() async {
+    _hasSubmitted = true;
+
     if (_formKey.currentState!.validate()) {
       final name = _nameController.text;
       final email = _emailController.text;
@@ -517,28 +535,41 @@ class ContactCTA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final isMobile = width < 600;
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final width = MediaQuery.of(context).size.width;
+        final isMobile = width < 600;
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 24),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-        ),
-      ),
-      child: Text(
-        'Have a project in mind, collaboration idea, or just want to say hi?\n'
-        'Feel free to reach out — I’d love to connect 👋',
-        style: TextStyle(
-          fontSize: isMobile ? 13 : 14,
-          height: 1.5,
-          color: Theme.of(context).textTheme.bodyMedium?.color,
-        ),
-      ),
+        return Container(
+          margin: const EdgeInsets.only(bottom: 24),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+            ),
+          ),
+          child: Text(
+            bhs(
+              context,
+              en:
+                  'Have a project in mind, collaboration idea, or just want to say hi?\n'
+                  'Feel free to reach out — Let\'s get to know each other 👋',
+              id:
+                  'Punya proyek, ide kolaborasi, atau sekadar ingin menyapa?\n'
+                  'Jangan ragu untuk menghubungi saya — Mari kita saling mengenal. 👋',
+            ),
+            style: TextStyle(
+              fontSize: isMobile ? 13 : 14,
+              height: 1.5,
+              color: Theme.of(context).textTheme.bodyMedium?.color,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -567,7 +598,7 @@ class QuickContactButtons extends StatelessWidget {
           ElevatedButton.icon(
             onPressed:
                 () => _launch(
-                  'mailto:rysalaksanabhakti@gmail.com'
+                  'mailto:rohadii861@gmail.com'
                   '?subject=Portfolio Contact',
                 ),
             icon: const Icon(Icons.email),
@@ -611,32 +642,46 @@ class AvailabilityStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.green.withOpacity(isDark ? 0.15 : 0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.green.withOpacity(0.4)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Icon(Icons.circle, color: Colors.green, size: 10),
-          const SizedBox(width: 8),
-
-          /// 🔥 INI KUNCI ANTI OVERFLOW
-          Flexible(
-            child: Text(
-              'Currently open for internship, freelance, or full-time opportunities',
-              softWrap: true,
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
-            ),
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: Colors.green.withOpacity(isDark ? 0.15 : 0.1),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.green.withOpacity(0.4)),
           ),
-        ],
-      ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(Icons.circle, color: Colors.green, size: 10),
+              const SizedBox(width: 8),
+
+              /// 🔥 INI KUNCI ANTI OVERFLOW
+              Flexible(
+                child: Text(
+                  bhs(
+                    context,
+                    en:
+                        'Currently open for internship, freelance, or full-time opportunities',
+                    id:
+                        'Saat ini terbuka untuk peluang magang, lepas, atau penuh waktu',
+                  ),
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
