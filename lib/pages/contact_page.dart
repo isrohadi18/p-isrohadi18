@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../main.dart';
+
+String bhs(BuildContext context, {required String en, required String id}) {
+  return MyApp.languageNotifier.value == 'en' ? en : id;
+}
+
+String? requiredValidator(
+  BuildContext context,
+  String? value, {
+  required String en,
+  required String id,
+}) {
+  if (value == null || value.isEmpty) {
+    return MyApp.languageNotifier.value == 'en' ? en : id;
+  }
+  return null;
+}
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -25,30 +42,40 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final isMobile = width < 900;
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final width = MediaQuery.of(context).size.width;
+        final isMobile = width < 900;
 
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      padding: EdgeInsets.all(isMobile ? 16 : 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionTitle(title: 'Contact Me'),
-          const SizedBox(height: 15),
-          Expanded(
-            child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
-                ],
+        return Container(
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.all(isMobile ? 16 : 32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SectionTitle(
+                title:
+                    MyApp.languageNotifier.value == 'en'
+                        ? 'Contact Me'
+                        : 'Kontak Saya',
               ),
-            ),
+              const SizedBox(height: 15),
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -126,71 +153,101 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
+  @override
   Widget _buildContactForm() {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextFormField(
-            controller: _nameController,
-            decoration: _inputDecoration(label: 'Name', icon: Icons.person),
-            validator:
-                (value) =>
-                    value == null || value.isEmpty
-                        ? 'Please enter your name'
-                        : null,
-          ),
-
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: _emailController,
-            decoration: _inputDecoration(label: 'Email', icon: Icons.email),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              }
-              if (!RegExp(
-                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-              ).hasMatch(value)) {
-                return 'Please enter a valid email';
-              }
-              return null;
-            },
-          ),
-
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: _messageController,
-            maxLines: 6,
-            decoration: _inputDecoration(
-              label: 'Message',
-              icon: Icons.message,
-              isMessage: false,
-            ),
-            validator:
-                (value) =>
-                    value == null || value.isEmpty
-                        ? 'Please enter your message'
-                        : null,
-          ),
-
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: _submitForm,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        return Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextFormField(
+                controller: _nameController,
+                decoration: _inputDecoration(
+                  label: bhs(context, en: 'Name', id: 'Nama'),
+                  icon: Icons.person,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return bhs(
+                      context,
+                      en: 'Please enter your name',
+                      id: 'Silahkan masukkan nama anda',
+                    );
+                  }
+                  return null;
+                },
               ),
-            ),
-            child: const Text(
-              'Send Message',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+
+              const SizedBox(height: 16),
+
+              TextFormField(
+                controller: _emailController,
+                decoration: _inputDecoration(label: 'Email', icon: Icons.email),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return bhs(
+                      context,
+                      en: 'Please enter your email',
+                      id: 'Silahkan masukkan email anda',
+                    );
+                  }
+                  if (!RegExp(
+                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                  ).hasMatch(value)) {
+                    return bhs(
+                      context,
+                      en: 'Please enter a valid email',
+                      id: 'Masukkan email yang valid',
+                    );
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 16),
+
+              TextFormField(
+                controller: _messageController,
+                maxLines: 6,
+                decoration: _inputDecoration(
+                  label: bhs(context, en: 'Message', id: 'Pesan'),
+                  icon: Icons.message,
+                  isMessage: false,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return bhs(
+                      context,
+                      en: 'Please enter your message',
+                      id: 'Silahkan masukkan pesan anda',
+                    );
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 24),
+
+              ElevatedButton(
+                onPressed: _submitForm,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text(
+                  bhs(context, en: 'Send Message', id: 'Kirim Pesan'),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -202,7 +259,7 @@ class _ContactPageState extends State<ContactPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Get in touch',
+          bhs(context, en: 'Get in touch', id: 'Hubungi Kami'),
           style: TextStyle(
             fontSize: isMobile ? 20 : 24,
             fontWeight: FontWeight.bold,

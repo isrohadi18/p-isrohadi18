@@ -134,42 +134,6 @@ class ProjectsPage extends StatelessWidget {
   }
 }
 
-class SectionTitle extends StatelessWidget {
-  final String title;
-  final String subtitle;
-
-  const SectionTitle({super.key, required this.title, required this.subtitle});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 0), //
-          child: Text(
-            title,
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            ),
-          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.2),
-        ),
-        const SizedBox(height: 2),
-        Padding(
-          padding: const EdgeInsets.only(left: 10), //
-          child: Text(
-            subtitle,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
-          ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.15),
-        ),
-      ],
-    );
-  }
-}
-
 enum DemoType { none, video, web }
 
 class ProjectCard extends StatelessWidget {
