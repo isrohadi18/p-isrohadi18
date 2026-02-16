@@ -214,18 +214,19 @@ class _ExperienceCardState extends State<ExperienceCard> {
                     ],
                   ),
 
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 5),
 
                   // ROLE
                   Text(
                     EnIdExp(context, exp.role),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: ExperienceTextStyle.roleSize,
-                      fontWeight: FontWeight.w500,
+                      color: Colors.grey.withOpacity(0.8),
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
 
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 10),
 
                   // HIGHLIGHTS
                   ...exp.highlights.map(
@@ -363,8 +364,8 @@ class CompanyAvatar extends StatelessWidget {
 }
 
 class ExperienceTextStyle {
-  static const double companySize = 16;
-  static const double roleSize = 15;
+  static const double companySize = 18;
+  static const double roleSize = 16;
   static const double periodSize = 14;
   static const double bulletSize = 14;
 }
