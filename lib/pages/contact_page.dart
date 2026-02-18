@@ -71,9 +71,7 @@ class _ContactPageState extends State<ContactPage> {
             children: [
               SectionTitle(
                 title:
-                    MyApp.languageNotifier.value == 'en'
-                        ? 'Contact Me'
-                        : 'Kontak Saya',
+                    MyApp.languageNotifier.value == 'en' ? 'Contact' : 'Kontak',
               ),
               const SizedBox(height: 15),
               Expanded(
@@ -266,65 +264,73 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   Widget _buildContactInfoCore() {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth < 600;
+    return ValueListenableBuilder<String>(
+      valueListenable: MyApp.languageNotifier,
+      builder: (context, lang, _) {
+        final screenWidth = MediaQuery.of(context).size.width;
+        final isMobile = screenWidth < 600;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          bhs(context, en: 'Get in touch', id: 'Hubungi Kami'),
-          style: TextStyle(
-            fontSize: isMobile ? 20 : 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 13),
-
-        ContactInfo(
-          icon: Icons.email,
-          title: 'Email',
-          content: 'rysalaksanabhakti@gmail.com',
-          action: ElevatedButton.icon(
-            onPressed: () {
-              launchUrl(
-                Uri.parse(
-                  'mailto:rysalaksanabhakti@gmail.com?subject=Portfolio Contact',
-                ),
-              );
-            },
-            icon: const Icon(Icons.email),
-            label: const Text('Send Email'),
-          ),
-        ),
-
-        ContactInfo(
-          icon: Icons.phone,
-          title: 'Phone',
-          content: '+62 831 1177 8069',
-          action: ElevatedButton.icon(
-            onPressed: () {
-              launchUrl(
-                Uri.parse(
-                  'https://wa.me/6283111778069?text=Hello,%20I%20found%20your%20portfolio',
-                ),
-                mode: LaunchMode.externalApplication,
-              );
-            },
-            icon: Image.network(
-              'https://img.icons8.com/color/24/whatsapp.png',
-              width: 18,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              bhs(context, en: 'Contact Me', id: 'Kontak Saya'),
+              style: TextStyle(
+                fontSize: isMobile ? 20 : 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            label: const Text('WhatsApp'),
-          ),
-        ),
+            const SizedBox(height: 13),
 
-        const ContactInfo(
-          icon: Icons.location_on,
-          title: 'Location',
-          content: 'Malang, Indonesia',
-        ),
-      ],
+            ContactInfo(
+              icon: Icons.email,
+              title: 'Email',
+              content: 'rohadii861@gmail.com',
+              action: ElevatedButton.icon(
+                onPressed: () {
+                  launchUrl(
+                    Uri.parse(
+                      "mailto:rohadii861@gmail.com?subject=Portfolio%20Contact&body=Hello%20Rohadi,%0A%0AI%20found%20your%20portfolio%20and%20want%20to%20connect.%0A%0AThank%20you.",
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.email),
+                label: Text(
+                  bhs(
+                    context,
+                    en: 'Send Message Email',
+                    id: 'Kirim Pesan Email',
+                  ),
+                ),
+              ),
+            ),
+
+            ContactInfo(
+              icon: Icons.phone,
+              title: MyApp.languageNotifier.value == 'en' ? 'Phone' : 'Telepon',
+              content: '+62 898 8064 287',
+              action: ElevatedButton.icon(
+                onPressed: () {
+                  launchUrl(
+                    Uri.parse(
+                      'https://wa.me/628988064287?text=Hello%20Rohadi,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.%0A%0AThank%20you.',
+                    ),
+                    mode: LaunchMode.externalApplication,
+                  );
+                },
+                icon: Image.network('../../assets/images/wtsp.png', width: 20),
+                label: const Text('WhatsApp'),
+              ),
+            ),
+
+            const ContactInfo(
+              icon: Icons.location_on,
+              title: 'Location',
+              content: 'Malang, Indonesia',
+            ),
+          ],
+        );
+      },
     );
   }
 
