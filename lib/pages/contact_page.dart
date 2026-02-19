@@ -287,12 +287,15 @@ class _ContactPageState extends State<ContactPage> {
               title: 'Email',
               content: 'rohadii861@gmail.com',
               action: ElevatedButton.icon(
-                onPressed: () {
-                  launchUrl(
-                    Uri.parse(
-                      "mailto:rohadii861@gmail.com?subject=Portfolio%20Contact&body=Hello%20Rohadi,%0A%0AI%20found%20your%20portfolio%20and%20want%20to%20connect.%0A%0AThank%20you.",
-                    ),
+                onPressed: () async {
+                  final Uri url = Uri.parse(
+                    "https://mail.google.com/mail/?view=cm&fs=1"
+                    "&to=rohadii861@gmail.com"
+                    "&su=Portfolio Contact"
+                    "&body=Hello,%20I%20found%20your%20portfolio",
                   );
+
+                  await launchUrl(url, mode: LaunchMode.externalApplication);
                 },
                 icon: const Icon(Icons.email),
                 label: Text(
@@ -323,10 +326,11 @@ class _ContactPageState extends State<ContactPage> {
               ),
             ),
 
-            const ContactInfo(
+            ContactInfo(
               icon: Icons.location_on,
-              title: 'Location',
-              content: 'Malang, Indonesia',
+              title:
+                  MyApp.languageNotifier.value == 'en' ? 'Location' : 'Lokasi',
+              content: 'Jakarta - Indonesia',
             ),
           ],
         );
@@ -338,8 +342,8 @@ class _ContactPageState extends State<ContactPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Follow Me',
+        Text(
+          bhs(context, en: 'Follow Me', id: 'Ikuti Saya'),
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
@@ -349,17 +353,17 @@ class _ContactPageState extends State<ContactPage> {
           children: const [
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/github.png',
-              url: 'https://github.com/Rysalb',
+              url: 'https://github.com/isrohadi18',
               tooltip: 'GitHub',
             ),
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/linkedin.png',
-              url: 'https://www.linkedin.com/in/rysa-laksana/',
+              url: 'https://www.linkedin.com/in/isrohadii18/',
               tooltip: 'LinkedIn',
             ),
             SocialButton(
               iconUrl: 'https://img.icons8.com/ios-glyphs/30/instagram-new.png',
-              url: 'https://www.instagram.com/rysalaksana/',
+              url: 'https://www.instagram.com/isrohadii_0',
               tooltip: 'Instagram',
             ),
           ],
@@ -389,17 +393,11 @@ $message
 
       try {
         // Use JS interop to open email in new tab with pre-filled content
-        final Uri emailUri = Uri(
-          scheme: 'mailto',
-          path: 'rysalaksanabhakti@gmail.com',
-          query: {'subject': 'Portfolio Contact from $name', 'body': emailBody}
-              .entries
-              .fold(
-                '',
-                (prev, e) =>
-                    '$prev&${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
-              )
-              .substring(1),
+        final Uri emailUri = Uri.parse(
+          "https://mail.google.com/mail/?view=cm&fs=1"
+          "&to=rohadii861@gmail.com"
+          "&su=Portfolio Contact from $name"
+          "&body=${Uri.encodeComponent(emailBody)}",
         );
 
         // Use window.open for web
