@@ -16,7 +16,12 @@ class _CertificatePageState extends State<CertificatePage> {
 
   final Map<String, List<String>> categoryMap = {
     'Software Engineering': ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
-    'UI/UX Design': ['Figma', 'UI Design Principles', 'UX Thinking'],
+    'UI/UX Design': [
+      'Figma',
+      'Photoshoop',
+      'UI Design Principles',
+      'UX Thinking',
+    ],
     'Cyber Security': [
       'OSINT Fundamentals',
       'Security-Oriented Mindset',
@@ -57,6 +62,17 @@ class _CertificatePageState extends State<CertificatePage> {
   // DATA CERTIFICATE
   static final List<CertificateModel> certificates = [
     CertificateModel(
+      title: 'UI/UX Design Introduction',
+      organization: 'MySkill',
+      year: 'Published on February 10, 2026',
+      credentialUrl:
+          'https://drive.google.com/file/d/1ZWtTvEXwlM-SIm3yd-OGF4KQgwWPcQsY/view?usp=sharing',
+      skills: ['Figma', 'Draw.io', 'UI Design Principles', 'UX Thinking'],
+      insight:
+          'Through this Short Class program, I built a strong foundation in developing design principles. Not only did I create a design with a visual appeal that matched the features, but I also learned how to make the design visually appealing to the user.',
+      isbadgeNew: true,
+    ),
+    CertificateModel(
       title: 'Intro to Software Engineering',
       organization: 'Coding Camp RevoU',
       year: 'Published on January 16, 2026',
@@ -65,6 +81,7 @@ class _CertificatePageState extends State<CertificatePage> {
       skills: ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
       insight:
           'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.',
+      isbadgeNew: true,
     ),
     CertificateModel(
       title: 'Forming a Digital Smart Personality',
@@ -100,7 +117,13 @@ class _CertificatePageState extends State<CertificatePage> {
       year: 'Published on October 31, 2021',
       credentialUrl:
           'https://drive.google.com/file/d/17b2WewXQvUvVOHDUJVbVqCA8iKFufkFC/view?usp=drive_link',
-      skills: ['Figma', 'UI Design Principles', 'UX Thinking'],
+      skills: [
+        'photoshoop',
+        'Illustrator',
+        'CorelDraw',
+        'UI Design Principles',
+        'UX Thinking',
+      ],
       insight:
           'Through this program, I learned to see a product from the user\'s perspective. I understood that a good system not only works correctly but also needs to be convenient and easy to use. This helped me become a more user-experience-oriented developer.',
     ),
@@ -193,16 +216,6 @@ class _CertificatePageState extends State<CertificatePage> {
     return ValueListenableBuilder<String>(
       valueListenable: MyApp.languageNotifier,
       builder: (context, lang, _) {
-        final newestCertificate = certificates.reduce((a, b) {
-          final yearA = int.parse(
-            RegExp(r'\d{4}').firstMatch(a.year)!.group(0)!,
-          );
-          final yearB = int.parse(
-            RegExp(r'\d{4}').firstMatch(b.year)!.group(0)!,
-          );
-          return yearA > yearB ? a : b;
-        });
-
         final filteredCertificates =
             selectedSkill == 'All'
                 ? certificates
@@ -307,7 +320,7 @@ class _CertificatePageState extends State<CertificatePage> {
                                         expandedIndex == index ? null : index;
                                   });
                                 },
-                                isNewest: cert == newestCertificate,
+                                isbadgeNew: cert.isbadgeNew,
                               )
                               .animate(delay: (500 * index).ms)
                               .fadeIn(duration: 400.ms)
@@ -326,6 +339,26 @@ class _CertificatePageState extends State<CertificatePage> {
   }
 }
 
+class CertificateModel {
+  final String title;
+  final String organization;
+  final String year;
+  final String? credentialUrl;
+  final List<String> skills;
+  final String insight;
+  final bool isbadgeNew;
+
+  CertificateModel({
+    required this.title,
+    required this.organization,
+    required this.year,
+    this.credentialUrl,
+    this.skills = const [],
+    this.insight = '',
+    this.isbadgeNew = false,
+  });
+}
+
 class CertificateCard extends StatefulWidget {
   final String title;
   final String organization;
@@ -335,7 +368,7 @@ class CertificateCard extends StatefulWidget {
   final String insight;
   final bool isExpanded;
   final VoidCallback onTap;
-  final bool isNewest;
+  final bool isbadgeNew;
 
   const CertificateCard({
     super.key,
@@ -347,7 +380,7 @@ class CertificateCard extends StatefulWidget {
     required this.insight,
     required this.isExpanded,
     required this.onTap,
-    this.isNewest = false,
+    this.isbadgeNew = false,
   });
 
   @override
@@ -415,7 +448,7 @@ class _CertificateCardState extends State<CertificateCard> {
                     ),
                   ),
 
-                  if (widget.isNewest)
+                  if (widget.isbadgeNew)
                     Container(
                       margin: const EdgeInsets.only(right: 10),
                       padding: const EdgeInsets.symmetric(
@@ -537,24 +570,6 @@ class _CertificateCardState extends State<CertificateCard> {
   }
 }
 
-class CertificateModel {
-  final String title;
-  final String organization;
-  final String year;
-  final String? credentialUrl;
-  final List<String> skills;
-  final String insight;
-
-  CertificateModel({
-    required this.title,
-    required this.organization,
-    required this.year,
-    this.credentialUrl,
-    this.skills = const [],
-    this.insight = '',
-  });
-}
-
 class CertificateHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   double get minExtent => 100;
@@ -671,6 +686,8 @@ String EnIdTittle(BuildContext context, String text) {
   if (isEnglish) return text;
 
   const Map<String, String> idMap = {
+    'UI/UX Design Introduction': 'Pengenalan Desain UI/UX',
+
     'Intro to Software Engineering': 'Pengantar Rekayasa Perangkat Lunak',
 
     'Forming a Digital Smart Personality':
@@ -709,6 +726,7 @@ String EnIdYear(BuildContext context, String text) {
     'Published on July 14, 2022': 'Diterbitkan pada 14 Juli 2022',
     'Published on July 29, 2023': 'Diterbitkan pada 29 Juli 2023',
     'Published on January 16, 2026': 'Diterbitkan pada 16 Januari 2026',
+    'Published on February 10, 2026': 'Diterbitkan pada 10 Februari 2026',
   };
 
   return idMap[text] ?? text;
@@ -720,6 +738,9 @@ String EnIdInsight(BuildContext context, String text) {
   if (isEnglish) return text;
 
   const Map<String, String> idMap = {
+    'Through this Short Class program, I built a strong foundation in developing design principles. Not only did I create a design with a visual appeal that matched the features, but I also learned how to make the design visually appealing to the user.':
+        'Melalui program Kelas Singkat ini, saya membangun fondasi yang kuat dalam mengembangkan prinsip-prinsip desain. Saya tidak hanya menciptakan desain dengan daya tarik visual yang sesuai dengan fitur-fiturnya, tetapi saya juga belajar bagaimana membuat desain tersebut menarik secara visual bagi pengguna.',
+
     'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.':
         'Melalui program ini, saya membangun landasan yang kuat dalam pengembangan perangkat lunak. Saya belajar tidak hanya bagaimana menulis kode tetapi juga bagaimana aplikasi dirancang, dikembangkan, dan dipelihara secara terstruktur. Program ini membentuk pola pikir saya sebagai pemecah masalah yang sistematis, bukan sekadar pembuat kode.',
 

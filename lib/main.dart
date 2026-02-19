@@ -153,7 +153,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
         ];
 
         final width = MediaQuery.of(context).size.width;
-        final isMobile = width < 600;
+        final isMobile = width < 650;
         final isDark = Theme.of(context).brightness == Brightness.dark;
 
         return Scaffold(
@@ -165,6 +165,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                     ? Colors.black.withOpacity(0.8)
                     : Colors.white.withOpacity(0.8),
 
+            // Tampilan Mobile
             title:
                 isMobile
                     ? Row(
@@ -181,33 +182,43 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                           },
                         ),
 
-                        IconButton(
-                          icon: Icon(
-                            isDark ? Icons.light_mode : Icons.dark_mode,
-                          ),
-                          onPressed: () {
-                            MyApp.themeNotifier.value =
-                                isDark ? ThemeMode.light : ThemeMode.dark;
-                          },
-                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                MyApp.languageNotifier.value =
+                                    lang == 'en' ? 'id' : 'en';
+                              },
+                              child: Text(
+                                lang == 'en' ? 'IND' : 'ENG',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
 
-                        TextButton(
-                          onPressed: () {
-                            MyApp.languageNotifier.value =
-                                lang == 'en' ? 'id' : 'en';
-                          },
-                          child: Text(
-                            lang == 'en' ? 'IND' : 'ENG',
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                            const SizedBox(width: 0),
+
+                            IconButton(
+                              icon: Icon(
+                                isDark ? Icons.light_mode : Icons.dark_mode,
+                              ),
+                              onPressed: () {
+                                MyApp.themeNotifier.value =
+                                    isDark ? ThemeMode.light : ThemeMode.dark;
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     )
+                    // Tampilan Dekstop
                     : Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Spacer(),
 
+                        // NAV MENU DI TENGAH
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(navItems.length, (index) {
@@ -225,31 +236,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                         Expanded(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  isDark ? Icons.light_mode : Icons.dark_mode,
-                                ),
-                                onPressed: () {
-                                  MyApp.themeNotifier.value =
-                                      isDark ? ThemeMode.light : ThemeMode.dark;
-                                },
-                              ),
-                              const SizedBox(width: 8),
-                              TextButton(
-                                onPressed: () {
-                                  MyApp.languageNotifier.value =
-                                      lang == 'en' ? 'id' : 'en';
-                                },
-                                child: Text(
-                                  lang == 'en' ? 'IND' : 'ENG',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 16),
-                            ],
+                            children: const [SettingsDropdown()],
                           ),
                         ),
                       ],
@@ -281,7 +268,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
     return SafeArea(
       child: Container(
         constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.85,
+          maxHeight: MediaQuery.of(context).size.height * 0.48,
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -301,17 +288,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                 );
               }),
 
-              ListTile(
-                leading: const Icon(Icons.language),
-                title: Text(
-                  lang == 'en' ? 'Switch to Indonesian' : 'Ganti ke English',
-                ),
-                onTap: () {
-                  MyApp.languageNotifier.value = lang == 'en' ? 'id' : 'en';
-                  Navigator.pop(context);
-                },
-              ),
-
               const Divider(),
 
               ListTile(
@@ -320,6 +296,17 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                 onTap: () {
                   MyApp.themeNotifier.value =
                       isDark ? ThemeMode.light : ThemeMode.dark;
+                  Navigator.pop(context);
+                },
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: Text(
+                  lang == 'en' ? 'Switch to Indonesian' : 'Ganti ke English',
+                ),
+                onTap: () {
+                  MyApp.languageNotifier.value = lang == 'en' ? 'id' : 'en';
                   Navigator.pop(context);
                 },
               ),
@@ -409,6 +396,57 @@ class AnimatedNavButton extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class SettingsDropdown extends StatelessWidget {
+  const SettingsDropdown({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return PopupMenuButton<String>(
+      icon: const Icon(Icons.settings_rounded),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      onSelected: (value) {
+        if (value == 'theme') {
+          MyApp.themeNotifier.value = isDark ? ThemeMode.light : ThemeMode.dark;
+        }
+
+        if (value == 'lang') {
+          MyApp.languageNotifier.value =
+              MyApp.languageNotifier.value == 'en' ? 'id' : 'en';
+        }
+      },
+      itemBuilder:
+          (context) => [
+            PopupMenuItem(
+              value: 'theme',
+              child: Row(
+                children: [
+                  Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                  const SizedBox(width: 10),
+                  Text(isDark ? 'Light Mode' : 'Dark Mode'),
+                ],
+              ),
+            ),
+            PopupMenuItem(
+              value: 'lang',
+              child: Row(
+                children: [
+                  const Icon(Icons.language),
+                  const SizedBox(width: 10),
+                  Text(
+                    MyApp.languageNotifier.value == 'en'
+                        ? 'Switch to Indonesian'
+                        : 'Switch to English',
+                  ),
+                ],
+              ),
+            ),
+          ],
     );
   }
 }
