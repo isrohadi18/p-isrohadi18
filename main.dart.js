@@ -10371,7 +10371,7 @@ _.r=g
 _.w=h
 _.x=i},
 Q9:function Q9(){},
-azX(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9){return new A.A9(j,b,a0,a2,a1,B.Gm,a5,n,k,a6,a8,a9,s,o,b0,b8,b5,b3,h,q,!1,i,e,a7,b9,a3,p,b2,b6,r,b1,b4,f,c,d,m,g,a4,b7,null)},
+azX(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9){return new A.A9(j,b,a0,a2,a1,B.Gn,a5,n,k,a6,a8,a9,s,o,b0,b8,b5,b3,h,q,!1,i,e,a7,b9,a3,p,b2,b6,r,b1,b4,f,c,d,m,g,a4,b7,null)},
 aP5(a,b,c,d,e,f){var s,r,q,p=a.a-d.gcS()
 d.gbx()
 d.gbB()
@@ -87101,9 +87101,9 @@ $S:108}
 A.ajG.prototype={
 $3(a,b,c){var s,r,q=null,p="en",o=A.b5(a,q,t.w).w,n=$.bB(),m=J.d(n.a,p)?"Contact Me":"Kontak Saya"
 m=A.bd(m,q,q,q,q,A.cm(q,q,q,q,q,q,q,q,q,q,q,o.a.a<600?20:24,q,q,B.W,q,q,!0,q,q,q,q,q,q,q,q),q,q)
-o=A.a25(B.Go,A.bd(J.d(n.a,p)?"Send Message Email":"Kirim Pesan Email",q,q,q,q,q,q,q),new A.ajE(),q)
+o=A.a25(B.Gl,A.bd(J.d(n.a,p)?"Send Message Email":"Kirim Pesan Email",q,q,q,q,q,q,q),new A.ajE(),q)
 s=J.d(n.a,p)?"Phone":"Telepon"
-r=A.a25(A.h7(B.o4,q,q,15),B.VT,new A.ajF(),q)
+r=A.a25(A.h7(B.o4,q,q,5),B.VT,new A.ajF(),q)
 n=J.d(n.a,p)?"Location":"Lokasi"
 return A.cp(A.b([m,B.zp,new A.ry(B.kf,"Email","rohadii861@gmail.com",o,q),new A.ry(B.G6,s,"+62 898 8064 287",r,q),new A.ry(B.G0,n,"Jakarta - Indonesia",q,q)],t.p),B.S,q,B.x,B.A)},
 $S:555}
@@ -87148,7 +87148,7 @@ A.HU.prototype={
 G(a){return new A.dm($.bB(),new A.ZE(),null,null,t.d)}}
 A.ZE.prototype={
 $3(a,b,c){var s=null,r=A.at(B.c.aL(255*(A.G(a).ax.a===B.O?0.15:0.1)),B.cp.C()>>>16&255,B.cp.C()>>>8&255,B.cp.C()&255),q=A.ce(12),p=A.I6(A.at(102,B.cp.C()>>>16&255,B.cp.C()>>>8&255,B.cp.C()&255))
-return A.dh(s,A.dl(A.b([B.Gn,B.ln,new A.h2(1,B.ka,A.bd(J.d($.bB().a,"en")?"Currently open for internship, freelance, or full-time opportunities":"Saat ini terbuka untuk peluang magang, lepas, atau penuh waktu",s,s,s,!0,B.Uw,s,s),s)],t.p),B.S,B.x,B.bp,0),B.t,s,s,new A.cj(r,s,p,q,s,s,B.aa),s,s,s,B.ny,s,s,s)},
+return A.dh(s,A.dl(A.b([B.Go,B.ln,new A.h2(1,B.ka,A.bd(J.d($.bB().a,"en")?"Currently open for internship, freelance, or full-time opportunities":"Saat ini terbuka untuk peluang magang, lepas, atau penuh waktu",s,s,s,!0,B.Uw,s,s),s)],t.p),B.S,B.x,B.bp,0),B.t,s,s,new A.cj(r,s,p,q,s,s,B.aa),s,s,s,B.ny,s,s,s)},
 $S:52}
 A.Nt.prototype={
 G(a){var s=null,r=A.G(a).ok.d
@@ -87235,7 +87235,7 @@ q=A.G(a).ok.f.bs(B.c0)
 q=A.j8(new A.ww(A.b([A.Cn("Bachelor of Informatics Engineering",B.aF),A.Cn("UI/UX designers",B.aF),A.Cn("Fullstack Developer",B.aF),A.Cn("Digital Strategy & Design",B.aF),A.Cn("Information Technology Professional",B.aF),A.Cn("Web Developer",B.aF)],t.u6),!0,l),l,l,B.bD,!0,q,l,l,B.aw)
 p=b==="en"
 o=p?"Download CV":"Unduh CV"
-o=A.cv(A.bN(A.bK(A.a25(B.Gl,A.bd(o,l,l,l,l,A.cm(l,l,l,l,l,l,l,l,l,l,l,l,l,l,B.W,l,l,!0,l,l,l,l,l,l,l,l),l,l),new A.a4p(a,b),A.aua(l,l,l,l,l,l,l,l,l,l,l,l,B.jz,l,new A.c5(A.ce(30),B.n),l,l,l,l,l)),l),A.al(k,0),l),-0.3,A.al(k,0),l)
+o=A.cv(A.bN(A.bK(A.a25(B.Gm,A.bd(o,l,l,l,l,A.cm(l,l,l,l,l,l,l,l,l,l,l,l,l,l,B.W,l,l,!0,l,l,l,l,l,l,l,l),l,l),new A.a4p(a,b),A.aua(l,l,l,l,l,l,l,l,l,l,l,l,B.jz,l,new A.c5(A.ce(30),B.n),l,l,l,l,l)),l),A.al(k,0),l),-0.3,A.al(k,0),l)
 n=A.h7(B.o4,l,l,l)
 p=p?"Contact Me":"Kontak Saya"
 m=t.p
@@ -91308,11 +91308,12 @@ B.FZ=new A.bS(57926,"MaterialIcons",null,!1)
 B.Gj=new A.f8(B.FZ,null,null,null,null)
 B.Ge=new A.bS(983396,"MaterialIcons",null,!1)
 B.Gk=new A.f8(B.Ge,null,null,null,null)
-B.Gl=new A.f8(B.o6,null,null,null,null)
+B.Gl=new A.f8(B.kf,5,null,null,null)
+B.Gm=new A.f8(B.o6,null,null,null,null)
 B.G_=new A.bS(58214,"MaterialIcons",null,!1)
 B.o8=new A.f8(B.G_,null,null,null,null)
 B.FU=new A.bS(57657,"MaterialIcons",null,!1)
-B.Gm=new A.f8(B.FU,null,null,null,null)
+B.Gn=new A.f8(B.FU,null,null,null,null)
 B.FV=new A.bS(57699,"MaterialIcons",null,!1)
 B.E_=new A.t(1,0.9098039215686274,0.9607843137254902,0.9137254901960784,B.e)
 B.D6=new A.t(1,0.7843137254901961,0.9019607843137255,0.788235294117647,B.e)
@@ -91326,8 +91327,7 @@ B.Dk=new A.t(1,0.1803921568627451,0.49019607843137253,0.19607843137254902,B.e)
 B.D1=new A.t(1,0.10588235294117647,0.3686274509803922,0.12549019607843137,B.e)
 B.L3=new A.cS([50,B.E_,100,B.D6,200,B.DO,300,B.E6,400,B.Du,500,B.E1,600,B.E5,700,B.CP,800,B.Dk,900,B.D1],t.pl)
 B.cp=new A.kG(B.L3,1,0.2980392156862745,0.6862745098039216,0.3137254901960784,B.e)
-B.Gn=new A.f8(B.FV,10,B.cp,null,null)
-B.Go=new A.f8(B.kf,15,null,null,null)
+B.Go=new A.f8(B.FV,10,B.cp,null,null)
 B.Gp=new A.f8(B.kh,null,null,null,null)
 B.GA=new A.t_(0,"repeat")
 B.GB=new A.t_(1,"repeatX")
