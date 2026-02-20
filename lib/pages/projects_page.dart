@@ -75,7 +75,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'A Java-based desktop file security application that encrypts and decrypts files using the Advanced Encryption Standard (AES) algorithm in CBC mode, and password protection using BCrypt. It features user management, logging, and encryption performance statistics.',
         technologies: ['Java', 'MySQL', 'AES', 'BCrypt', 'Netbeans'],
-        imageUrl: '../../assets/images/project/aes.png',
+        imageUrl: 'assets/images/project/aes.png',
         githubUrl: 'https://github.com/isrohadi18/crypto-file-aes-bcrypt',
         demoUrl: 'https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8',
         demoType: DemoType.video,
@@ -89,7 +89,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'The Khodam Check app is an interactive tool that allows you to check the presence and type of khodam that may be accompanying you. With a user-friendly interface and the latest Electron technology, this app offers an entertaining experience for users interested in the mystical world.',
         technologies: ['HTML', 'CSS', 'JavaScript', 'Electron', 'Node.Js'],
-        imageUrl: '../../assets/images/project/khodam.png',
+        imageUrl: 'assets/images/project/khodam.png',
         githubUrl: 'https://github.com/isrohadi18/Khodam-app',
         demoUrl: '',
         demoType: DemoType.web,
@@ -100,7 +100,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'The Book Management application is a Java-based desktop application designed to help manage book data neatly, quickly, and in a structured manner. This application is suitable for use by schools, school cooperatives, book warehouse administrators, and administrative staff who need an easy-to-use bookkeeping system.',
         technologies: ['Java', 'MySQL', 'Netbeans', 'JasperReports'],
-        imageUrl: '../../assets/images/project/lks.png',
+        imageUrl: 'assets/images/project/lks.png',
         githubUrl: 'https://github.com/isrohadi18/App-Pengelola-Buku-Lks',
         demoUrl:
             'https://www.youtube.com/watch?v=77W9XhZUtYI&list=PLtcA926v9yHFdFkaujmU_D_d8-eAmVIn9&index=2',
@@ -113,7 +113,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'TechLogo Nexus is a modern company profile website designed to represent an IT & Digital Solutions company. This project showcases a clean UI, responsive layout, and interactive features using HTML, CSS, and JavaScript.',
         technologies: ['HTML', 'CSS', 'JavaScript'],
-        imageUrl: '../../assets/images/project/techlogo.png',
+        imageUrl: 'assets/images/project/techlogo.png',
         githubUrl: 'https://github.com/isrohadi18/CodingCamp-RohadiDJ',
         demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
         demoType: DemoType.web,
@@ -124,7 +124,7 @@ class ProjectsPage extends StatelessWidget {
         description:
             'A pure HTML, CSS, and JavaScript-based calculator application designed to help users calculate their Zakat al-Mal, Zakat al-Fitr, and Infaq obligations quickly, accurately, and completely offline. This application is ideal for personal use, community use, or religious institutions like mosques, as it does not require a backend or internet connection.',
         technologies: ['HTML', 'CSS', 'JavaScript'],
-        imageUrl: '../../assets/images/project/amalbaik.png',
+        imageUrl: 'assets/images/project/amalbaik.png',
         githubUrl: 'https://github.com/isrohadi18/App-hisabamalbaik',
         demoUrl: 'https://isrohadi18.github.io/CodingCamp-RohadiDJ/',
         demoType: DemoType.web,

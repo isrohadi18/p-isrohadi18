@@ -893,7 +893,7 @@ a.l()
 return l},
 ky(a){return new A.Ky(a)},
 aQM(a){var s,r,q,p,o,n,m
-$label0$0:for(s=a.length,r=0;r<6;++r){q=B.HH[r]
+$label0$0:for(s=a.length,r=0;r<6;++r){q=B.HG[r]
 p=q.c
 o=p.length
 if(s<o)continue $label0$0
@@ -23049,7 +23049,7 @@ t.Dn.a(a)
 s=J.bG(a)
 r=s.h(a,0)
 r.toString
-switch(B.HQ[A.eI(r)].a){case 0:s=s.hh(a,1)
+switch(B.HP[A.eI(r)].a){case 0:s=s.hh(a,1)
 r=s[0]
 r.toString
 A.eI(r)
@@ -27389,7 +27389,7 @@ $1(a){this.a.b=A.aDo(a.getOutputBounds(A.cK(this.b)))},
 $S:2}
 A.rh.prototype={
 gabT(){var s,r,q=new Float32Array(20)
-for(s=this.a,r=0;r<20;++r)if(B.b.t(B.HF,r))q[r]=s[r]/255
+for(s=this.a,r=0;r<20;++r)if(B.b.t(B.HE,r))q[r]=s[r]/255
 else q[r]=s[r]
 return q},
 rM(){return $.b1.b9().ColorFilter.MakeMatrix(this.gabT())},
@@ -86756,32 +86756,32 @@ A.ahh.prototype={
 $1(a){return new A.bs(B.Ft,a,null)},
 $S:544}
 A.cy.prototype={
-a6S(a){switch(a.toLowerCase()){case"html":return"../../assets/icons/skills/html.png"
-case"css":return"../../assets/icons/skills/css.png"
-case"javascript":return"../../assets/icons/skills/javascript.png"
-case"php":return"../../assets/icons/skills/php.png"
-case"tailwind":return"../../assets/icons/skills/tailwind.png"
-case"java":return"../../assets/icons/skills/java.png"
-case"flutter":return"../../assets/icons/skills/flutter.png"
-case"dart":return"../../assets/icons/skills/dart.png"
-case"mysql":return"../../assets/icons/skills/mysql.png"
-case"vscode":return"../../assets/icons/skills/vscode.png"
-case"git":return"../../assets/icons/skills/git.png"
-case"github":return"../../assets/icons/skills/github.png"
-case"phpmyadmin":return"../../assets/icons/skills/phpmyadmin.png"
-case"netbeans":return"../../assets/icons/skills/netbeans.png"
-case"arduino":return"../../assets/icons/skills/arduino.png"
-case"figma":return"../../assets/icons/skills/figma.png"
-case"balsamiq":return"../../assets/icons/skills/balsamiq.png"
-case"drawio":return"../../assets/icons/skills/drawio.png"
-case"photoshop":return"../../assets/icons/skills/photoshop.png"
-case"illustrator":return"../../assets/icons/skills/illustrator.png"
-case"coreldraw":return"../../assets/icons/skills/coreldraw.png"
-case"capcut":return"../../assets/icons/skills/capcut.png"
-case"canva":return"../../assets/icons/skills/canva.png"
-case"visio":return"../../assets/icons/skills/visio.png"
-case"word":return"../../assets/icons/skills/word.png"
-case"excel":return"../../assets/icons/skills/excel.png"
+a6S(a){switch(a.toLowerCase()){case"html":return"assets/icons/skills/html.png"
+case"css":return"assets/icons/skills/css.png"
+case"javascript":return"assets/icons/skills/javascript.png"
+case"php":return"assets/icons/skills/php.png"
+case"tailwind":return"assets/icons/skills/tailwind.png"
+case"java":return"assets/icons/skills/java.png"
+case"flutter":return"assets/icons/skills/flutter.png"
+case"dart":return"assets/icons/skills/dart.png"
+case"mysql":return"assets/icons/skills/mysql.png"
+case"vscode":return"assets/icons/skills/vscode.png"
+case"git":return"assets/icons/skills/git.png"
+case"github":return"assets/icons/skills/github.png"
+case"phpmyadmin":return"assets/icons/skills/phpmyadmin.png"
+case"netbeans":return"assets/icons/skills/netbeans.png"
+case"arduino":return"assets/icons/skills/arduino.png"
+case"figma":return"assets/icons/skills/figma.png"
+case"balsamiq":return"assets/icons/skills/balsamiq.png"
+case"drawio":return"assets/icons/skills/drawio.png"
+case"photoshop":return"assets/icons/skills/photoshop.png"
+case"illustrator":return"assets/icons/skills/illustrator.png"
+case"coreldraw":return"assets/icons/skills/coreldraw.png"
+case"capcut":return"assets/icons/skills/capcut.png"
+case"canva":return"assets/icons/skills/canva.png"
+case"visio":return"assets/icons/skills/visio.png"
+case"word":return"assets/icons/skills/word.png"
+case"excel":return"assets/icons/skills/excel.png"
 default:return""}},
 G(a){var s,r=null,q=A.G(a).ax.a===B.O,p=q?0:2,o=q?B.je:B.k,n=A.ce(15),m=A.G(a),l=q?0.4:0.2
 l=m.ax.b.aP(l)
@@ -87091,7 +87091,7 @@ $3(a,b,c){var s,r,q=null,p="en",o=A.b5(a,q,t.w).w,n=$.bB(),m=J.d(n.a,p)?"Contact
 m=A.bd(m,q,q,q,q,A.cm(q,q,q,q,q,q,q,q,q,q,q,o.a.a<600?20:24,q,q,B.W,q,q,!0,q,q,q,q,q,q,q,q),q,q)
 o=A.a24(B.Gn,A.bd(J.d(n.a,p)?"Send Message Email":"Kirim Pesan Email",q,q,q,q,q,q,q),new A.ajC(),q)
 s=J.d(n.a,p)?"Phone":"Telepon"
-r=A.a24(A.aup("../../assets/images/wtsp.png",q,q,20),B.VT,new A.ajD(),q)
+r=A.a24(A.aup("assets/images/wtsp.png",q,q,20),B.VT,new A.ajD(),q)
 n=J.d(n.a,p)?"Location":"Lokasi"
 return A.cp(A.b([m,B.zp,new A.ry(B.kf,"Email","rohadii861@gmail.com",o,q),new A.ry(B.o6,s,"+62 898 8064 287",r,q),new A.ry(B.G0,n,"Jakarta - Indonesia",q,q)],t.p),B.S,q,B.x,B.A)},
 $S:555}
@@ -87250,7 +87250,7 @@ A.Ma.prototype={
 G(a){return A.aux(new A.aaL(this))}}
 A.aaL.prototype={
 $2(a,b){var s=b.b,r=s>1200,q=r?1200:s,p=r?(s-1200)/2:20,o=B.i.eq(B.c.h_(q/350),1,4),n=s<600?1.05:0.81
-return A.atV(A.b([new A.uc(new A.ac(p,10,p,10),A.av7(new A.aaJ(),!0),null),new A.uc(new A.ac(p,20,p,20),new A.O0(new A.aeS(o,30,30,n),A.aAr(new A.aaK(B.Hg),5),null),null)],t.p))},
+return A.atV(A.b([new A.uc(new A.ac(p,10,p,10),A.av7(new A.aaJ(),!0),null),new A.uc(new A.ac(p,20,p,20),new A.O0(new A.aeS(o,30,30,n),A.aAr(new A.aaK(B.HU),5),null),null)],t.p))},
 $S:560}
 A.aaK.prototype={
 $2(a,b){var s=null
@@ -90810,7 +90810,7 @@ B.cI=new A.rd(1,1,"isTrue")
 B.fy=new A.rd(2,2,"isFalse")
 B.ec=new A.rd(3,3,"mixed")
 B.CD=new A.rf(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.AK=new A.nV("../../assets/images/home/profile.png",null,null)
+B.AK=new A.nV("assets/images/home/profile.png",null,null)
 B.CE=new A.x3(null,null,B.AK,80,null)
 B.fz=new A.du(0,B.n)
 B.mF=new A.xb(null)
@@ -91391,19 +91391,8 @@ B.Hb=new A.oW(1,"titleHeight")
 B.Hc=new A.oW(2,"top")
 B.ok=new A.oW(3,"center")
 B.Hd=new A.oW(4,"bottom")
-B.HE=s(["Java","MySQL","AES","BCrypt","Netbeans"],t.s)
-B.Nn=new A.kV("CRYPTO - APP",u.g,B.HE,"../../assets/images/project/aes.png","https://github.com/isrohadi18/crypto-file-aes-bcrypt","https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8","https://github.com/isrohadi18/p-isrohadi18/releases/download/downlaodaes/CyrptoFileAES.zip",B.jr,!0,null)
-B.Jb=s(["HTML","CSS","JavaScript","Electron","Node.Js"],t.s)
-B.js=new A.xD(2,"web")
-B.Np=new A.kV("Khodam Check Application (.exe)",u.X,B.Jb,"../../assets/images/project/khodam.png","https://github.com/isrohadi18/Khodam-app","",null,B.js,!1,null)
-B.I8=s(["Java","MySQL","Netbeans","JasperReports"],t.s)
-B.No=new A.kV("Book Management Application",u.C,B.I8,"../../assets/images/project/lks.png","https://github.com/isrohadi18/App-Pengelola-Buku-Lks","https://www.youtube.com/watch?v=77W9XhZUtYI&list=PLtcA926v9yHFdFkaujmU_D_d8-eAmVIn9&index=2","",B.jr,!1,null)
-B.oo=s(["HTML","CSS","JavaScript"],t.s)
-B.Nq=new A.kV(u.H,u.N,B.oo,"../../assets/images/project/techlogo.png","https://github.com/isrohadi18/CodingCamp-RohadiDJ",u.h,null,B.js,!1,null)
-B.Nr=new A.kV(u.a,u.B,B.oo,"../../assets/images/project/amalbaik.png","https://github.com/isrohadi18/App-hisabamalbaik",u.h,null,B.js,!1,null)
-B.Hg=s([B.Nn,B.Np,B.No,B.Nq,B.Nr],A.ar("B<kV>"))
 B.ol=s(["text","multiline","number","phone","datetime","emailAddress","url","visiblePassword","name","address","none","webSearch","twitter"],t.s)
-B.HF=s([4,9,14,19],t.t)
+B.HE=s([4,9,14,19],t.t)
 B.J4=s([137,80,78,71,13,10,26,10],t.Z)
 B.Gw=new A.mh(0,"png")
 B.GE=new A.jj(B.Gw,!1,0,"png")
@@ -91412,21 +91401,32 @@ B.J5=s([71,73,70,56,55,97],t.Z)
 B.Gt=new A.kz(B.J5,B.hi,1,"gif87a")
 B.Ix=s([71,73,70,56,57,97],t.Z)
 B.Gs=new A.kz(B.Ix,B.hi,2,"gif89a")
-B.Hh=s([255,216,255],t.Z)
+B.Hg=s([255,216,255],t.Z)
 B.Gx=new A.mh(2,"jpeg")
 B.GI=new A.jj(B.Gx,!1,3,"jpeg")
-B.Gv=new A.kz(B.Hh,B.GI,3,"jpeg")
+B.Gv=new A.kz(B.Hg,B.GI,3,"jpeg")
 B.HZ=s([82,73,70,70,null,null,null,null,87,69,66,80],t.Z)
 B.Gr=new A.kz(B.HZ,B.ob,4,"webp")
-B.HT=s([66,77],t.Z)
+B.HS=s([66,77],t.Z)
 B.Gy=new A.mh(4,"bmp")
 B.GG=new A.jj(B.Gy,!1,6,"bmp")
-B.Gq=new A.kz(B.HT,B.GG,5,"bmp")
-B.HH=s([B.Gu,B.Gt,B.Gs,B.Gv,B.Gr,B.Gq],A.ar("B<kz>"))
+B.Gq=new A.kz(B.HS,B.GG,5,"bmp")
+B.HG=s([B.Gu,B.Gt,B.Gs,B.Gv,B.Gr,B.Gq],A.ar("B<kz>"))
 B.lY=new A.F7(0,"named")
 B.At=new A.F7(1,"anonymous")
-B.HQ=s([B.lY,B.At],A.ar("B<F7>"))
+B.HP=s([B.lY,B.At],A.ar("B<F7>"))
 B.om=s([0,4,12,1,5,13,3,7,15],t.t)
+B.HD=s(["Java","MySQL","AES","BCrypt","Netbeans"],t.s)
+B.Nr=new A.kV("CRYPTO - APP",u.g,B.HD,"assets/images/project/aes.png","https://github.com/isrohadi18/crypto-file-aes-bcrypt","https://youtu.be/xfjKTzfe644?si=X6Jnd1TJnoAapqy8","https://github.com/isrohadi18/p-isrohadi18/releases/download/downlaodaes/CyrptoFileAES.zip",B.jr,!0,null)
+B.Jb=s(["HTML","CSS","JavaScript","Electron","Node.Js"],t.s)
+B.js=new A.xD(2,"web")
+B.Np=new A.kV("Khodam Check Application (.exe)",u.X,B.Jb,"assets/images/project/khodam.png","https://github.com/isrohadi18/Khodam-app","",null,B.js,!1,null)
+B.I8=s(["Java","MySQL","Netbeans","JasperReports"],t.s)
+B.Nq=new A.kV("Book Management Application",u.C,B.I8,"assets/images/project/lks.png","https://github.com/isrohadi18/App-Pengelola-Buku-Lks","https://www.youtube.com/watch?v=77W9XhZUtYI&list=PLtcA926v9yHFdFkaujmU_D_d8-eAmVIn9&index=2","",B.jr,!1,null)
+B.oo=s(["HTML","CSS","JavaScript"],t.s)
+B.Nn=new A.kV(u.H,u.N,B.oo,"assets/images/project/techlogo.png","https://github.com/isrohadi18/CodingCamp-RohadiDJ",u.h,null,B.js,!1,null)
+B.No=new A.kV(u.a,u.B,B.oo,"assets/images/project/amalbaik.png","https://github.com/isrohadi18/App-hisabamalbaik",u.h,null,B.js,!1,null)
+B.HU=s([B.Nr,B.Np,B.Nq,B.Nn,B.No],A.ar("B<kV>"))
 B.XW=new A.fO(0,1)
 B.Y0=new A.fO(0.5,1)
 B.Y3=new A.fO(0.5375,0.75)
@@ -91447,7 +91447,7 @@ B.aS=new A.la(4,"start")
 B.ih=new A.la(5,"end")
 B.I0=s([B.d2,B.dT,B.d3,B.c5,B.aS,B.ih],A.ar("B<la>"))
 B.I9=s([2,1.13276676],t.n)
-B.Hj=s([2.18349805,1.20311921],t.n)
+B.Hi=s([2.18349805,1.20311921],t.n)
 B.IX=s([2.33888662,1.28698796],t.n)
 B.IZ=s([2.48660575,1.36351941],t.n)
 B.I3=s([2.62226596,1.44717976],t.n)
@@ -91457,7 +91457,7 @@ B.Ic=s([4.08649929,2.23811846],t.n)
 B.In=s([4.85481134,2.47563463],t.n)
 B.I4=s([5.62945551,2.72948597],t.n)
 B.Ia=s([6.43023796,2.98020421],t.n)
-B.on=s([B.I9,B.Hj,B.IX,B.IZ,B.I3,B.I5,B.Iv,B.Ic,B.In,B.I4,B.Ia],t.zg)
+B.on=s([B.I9,B.Hi,B.IX,B.IZ,B.I3,B.I5,B.Iv,B.Ic,B.In,B.I4,B.Ia],t.zg)
 B.I2=s([B.iV,B.iW],A.ar("B<wK>"))
 B.bd=new A.jR(0,"label")
 B.aV=new A.jR(1,"avatar")
@@ -92120,51 +92120,51 @@ B.kE=new A.bp(B.b9,[],A.ar("bp<v,@>"))
 B.ut=new A.bp(B.b9,[],A.ar("bp<BH,@>"))
 B.KW=new A.bp(B.b9,[],A.ar("bp<ff,cG>"))
 B.uq=new A.bp(B.b9,[],A.ar("bp<ff,oB<cG>>"))
-B.Hx=s([42,null,null,8589935146],t.Z)
-B.Hy=s([43,null,null,8589935147],t.Z)
-B.Hz=s([45,null,null,8589935149],t.Z)
-B.HA=s([46,null,null,8589935150],t.Z)
-B.HB=s([47,null,null,8589935151],t.Z)
-B.HC=s([48,null,null,8589935152],t.Z)
-B.HD=s([49,null,null,8589935153],t.Z)
-B.HG=s([50,null,null,8589935154],t.Z)
-B.HI=s([51,null,null,8589935155],t.Z)
-B.HJ=s([52,null,null,8589935156],t.Z)
-B.HK=s([53,null,null,8589935157],t.Z)
-B.HL=s([54,null,null,8589935158],t.Z)
-B.HM=s([55,null,null,8589935159],t.Z)
-B.HN=s([56,null,null,8589935160],t.Z)
-B.HP=s([57,null,null,8589935161],t.Z)
+B.Hw=s([42,null,null,8589935146],t.Z)
+B.Hx=s([43,null,null,8589935147],t.Z)
+B.Hy=s([45,null,null,8589935149],t.Z)
+B.Hz=s([46,null,null,8589935150],t.Z)
+B.HA=s([47,null,null,8589935151],t.Z)
+B.HB=s([48,null,null,8589935152],t.Z)
+B.HC=s([49,null,null,8589935153],t.Z)
+B.HF=s([50,null,null,8589935154],t.Z)
+B.HH=s([51,null,null,8589935155],t.Z)
+B.HI=s([52,null,null,8589935156],t.Z)
+B.HJ=s([53,null,null,8589935157],t.Z)
+B.HK=s([54,null,null,8589935158],t.Z)
+B.HL=s([55,null,null,8589935159],t.Z)
+B.HM=s([56,null,null,8589935160],t.Z)
+B.HO=s([57,null,null,8589935161],t.Z)
 B.Ip=s([8589934852,8589934852,8589934853,null],t.Z)
-B.Hm=s([4294967555,null,4294967555,null],t.Z)
-B.Hn=s([4294968065,null,null,8589935154],t.Z)
-B.Ho=s([4294968066,null,null,8589935156],t.Z)
-B.Hp=s([4294968067,null,null,8589935158],t.Z)
-B.Hq=s([4294968068,null,null,8589935160],t.Z)
-B.Hv=s([4294968321,null,null,8589935157],t.Z)
+B.Hl=s([4294967555,null,4294967555,null],t.Z)
+B.Hm=s([4294968065,null,null,8589935154],t.Z)
+B.Hn=s([4294968066,null,null,8589935156],t.Z)
+B.Ho=s([4294968067,null,null,8589935158],t.Z)
+B.Hp=s([4294968068,null,null,8589935160],t.Z)
+B.Hu=s([4294968321,null,null,8589935157],t.Z)
 B.Iq=s([8589934848,8589934848,8589934849,null],t.Z)
-B.Hl=s([4294967423,null,null,8589935150],t.Z)
-B.Hr=s([4294968069,null,null,8589935153],t.Z)
-B.Hk=s([4294967309,null,null,8589935117],t.Z)
-B.Hs=s([4294968070,null,null,8589935159],t.Z)
-B.Hw=s([4294968327,null,null,8589935152],t.Z)
+B.Hk=s([4294967423,null,null,8589935150],t.Z)
+B.Hq=s([4294968069,null,null,8589935153],t.Z)
+B.Hj=s([4294967309,null,null,8589935117],t.Z)
+B.Hr=s([4294968070,null,null,8589935159],t.Z)
+B.Hv=s([4294968327,null,null,8589935152],t.Z)
 B.Ir=s([8589934854,8589934854,8589934855,null],t.Z)
-B.Ht=s([4294968071,null,null,8589935155],t.Z)
-B.Hu=s([4294968072,null,null,8589935161],t.Z)
+B.Hs=s([4294968071,null,null,8589935155],t.Z)
+B.Ht=s([4294968072,null,null,8589935161],t.Z)
 B.Is=s([8589934850,8589934850,8589934851,null],t.Z)
-B.uu=new A.cS(["*",B.Hx,"+",B.Hy,"-",B.Hz,".",B.HA,"/",B.HB,"0",B.HC,"1",B.HD,"2",B.HG,"3",B.HI,"4",B.HJ,"5",B.HK,"6",B.HL,"7",B.HM,"8",B.HN,"9",B.HP,"Alt",B.Ip,"AltGraph",B.Hm,"ArrowDown",B.Hn,"ArrowLeft",B.Ho,"ArrowRight",B.Hp,"ArrowUp",B.Hq,"Clear",B.Hv,"Control",B.Iq,"Delete",B.Hl,"End",B.Hr,"Enter",B.Hk,"Home",B.Hs,"Insert",B.Hw,"Meta",B.Ir,"PageDown",B.Ht,"PageUp",B.Hu,"Shift",B.Is],A.ar("cS<v,W<y?>>"))
-B.HO=s([B.oC,null,null,B.ui],t.L)
+B.uu=new A.cS(["*",B.Hw,"+",B.Hx,"-",B.Hy,".",B.Hz,"/",B.HA,"0",B.HB,"1",B.HC,"2",B.HF,"3",B.HH,"4",B.HI,"5",B.HJ,"6",B.HK,"7",B.HL,"8",B.HM,"9",B.HO,"Alt",B.Ip,"AltGraph",B.Hl,"ArrowDown",B.Hm,"ArrowLeft",B.Hn,"ArrowRight",B.Ho,"ArrowUp",B.Hp,"Clear",B.Hu,"Control",B.Iq,"Delete",B.Hk,"End",B.Hq,"Enter",B.Hj,"Home",B.Hr,"Insert",B.Hv,"Meta",B.Ir,"PageDown",B.Hs,"PageUp",B.Ht,"Shift",B.Is],A.ar("cS<v,W<y?>>"))
+B.HN=s([B.oC,null,null,B.ui],t.L)
 B.IV=s([B.u4,null,null,B.uj],t.L)
 B.I7=s([B.u5,null,null,B.uk],t.L)
 B.It=s([B.u6,null,null,B.cS],t.L)
 B.He=s([B.u7,null,null,B.ul],t.L)
 B.J6=s([B.u8,null,null,B.kA],t.L)
 B.J3=s([B.u9,null,null,B.eN],t.L)
-B.HU=s([B.ua,null,null,B.cT],t.L)
+B.HT=s([B.ua,null,null,B.cT],t.L)
 B.Ja=s([B.ub,null,null,B.eO],t.L)
 B.J2=s([B.uc,null,null,B.cU],t.L)
-B.HS=s([B.ud,null,null,B.kB],t.L)
-B.Hi=s([B.ue,null,null,B.cV],t.L)
+B.HR=s([B.ud,null,null,B.kB],t.L)
+B.Hh=s([B.ue,null,null,B.cV],t.L)
 B.I1=s([B.uf,null,null,B.eP],t.L)
 B.IW=s([B.ug,null,null,B.cW],t.L)
 B.IY=s([B.uh,null,null,B.eQ],t.L)
@@ -92178,14 +92178,14 @@ B.J0=s([B.kt,null,null,B.kB],t.L)
 B.HW=s([B.eK,B.eK,B.hu,null],t.L)
 B.IA=s([B.aL,null,null,B.cS],t.L)
 B.Ig=s([B.cP,null,null,B.eN],t.L)
-B.HR=s([B.hq,null,null,B.kz],t.L)
+B.HQ=s([B.hq,null,null,B.kz],t.L)
 B.Ih=s([B.cQ,null,null,B.eP],t.L)
 B.J1=s([B.ku,null,null,B.kA],t.L)
 B.HX=s([B.eM,B.eM,B.hw,null],t.L)
 B.Ii=s([B.eI,null,null,B.eO],t.L)
 B.IE=s([B.eJ,null,null,B.eQ],t.L)
 B.HY=s([B.co,B.co,B.cR,null],t.L)
-B.KZ=new A.cS(["*",B.HO,"+",B.IV,"-",B.I7,".",B.It,"/",B.He,"0",B.J6,"1",B.J3,"2",B.HU,"3",B.Ja,"4",B.J2,"5",B.HS,"6",B.Hi,"7",B.I1,"8",B.IW,"9",B.IY,"Alt",B.HV,"AltGraph",B.J7,"ArrowDown",B.Id,"ArrowLeft",B.Ie,"ArrowRight",B.If,"ArrowUp",B.J8,"Clear",B.J0,"Control",B.HW,"Delete",B.IA,"End",B.Ig,"Enter",B.HR,"Home",B.Ih,"Insert",B.J1,"Meta",B.HX,"PageDown",B.Ii,"PageUp",B.IE,"Shift",B.HY],A.ar("cS<v,W<f?>>"))
+B.KZ=new A.cS(["*",B.HN,"+",B.IV,"-",B.I7,".",B.It,"/",B.He,"0",B.J6,"1",B.J3,"2",B.HT,"3",B.Ja,"4",B.J2,"5",B.HR,"6",B.Hh,"7",B.I1,"8",B.IW,"9",B.IY,"Alt",B.HV,"AltGraph",B.J7,"ArrowDown",B.Id,"ArrowLeft",B.Ie,"ArrowRight",B.If,"ArrowUp",B.J8,"Clear",B.J0,"Control",B.HW,"Delete",B.IA,"End",B.Ig,"Enter",B.HQ,"Home",B.Ih,"Insert",B.J1,"Meta",B.HX,"PageDown",B.Ii,"PageUp",B.IE,"Shift",B.HY],A.ar("cS<v,W<f?>>"))
 B.Lw={"Technical Assistant":0,"Information Technology Staff":1,"Graphic Design Marketing":2,[u.p]:3,[u.m]:4,[u.Z]:5,[u.k]:6,[u.v]:7,[u.n]:8,[u.y]:9,[u.b]:10,[u.z]:11}
 B.L_=new A.bp(B.Lw,["Asisten Teknisi","Staf Teknologi Informasi","Desain Grafis Marketing","Mengelola toko dan menangani keluhan pelanggan","Menginstal software, memperbarui sistem operasi, dan troubleshooting hardware.","Membantu teknisi dalam proyek-proyek di luar toko, baik di dalam perusahaan maupun di sekolah-sekolah, sesuai permintaan pelanggan.","Bertanggung jawab menjaga stabilitas infrastruktur jaringan LAN/WAN serta troubleshooting perangkat seperti router, switch, dan server.","Memantau performa server dan website perusahaan untuk memastikan kestabilannya.","Menginstal perangkat lunak, memperbarui sistem operasi, dan driver sistem.","Membuat desain produk untuk postingan harian media sosial perusahaan.","Mengembangkan strategi bersama tim untuk meningkatkan minat pelanggan terhadap produk perusahaan secara online.","Mengerjakan permintaan desain tiap divisi dan membuat desain kemasan produk makanan."],t.l)
 B.LD={KeyA:0,KeyB:1,KeyC:2,KeyD:3,KeyE:4,KeyF:5,KeyG:6,KeyH:7,KeyI:8,KeyJ:9,KeyK:10,KeyL:11,KeyM:12,KeyN:13,KeyO:14,KeyP:15,KeyQ:16,KeyR:17,KeyS:18,KeyT:19,KeyU:20,KeyV:21,KeyW:22,KeyX:23,KeyY:24,KeyZ:25,Digit1:26,Digit2:27,Digit3:28,Digit4:29,Digit5:30,Digit6:31,Digit7:32,Digit8:33,Digit9:34,Digit0:35,Minus:36,Equal:37,BracketLeft:38,BracketRight:39,Backslash:40,Semicolon:41,Quote:42,Backquote:43,Comma:44,Period:45,Slash:46}
@@ -94273,8 +94273,8 @@ s($,"aTD","YJ",()=>A.aB0(B.zX))
 s($,"aTC","bB",()=>A.aB0("en"))
 s($,"aUB","wf",()=>{var q="UI Design Principles",p="Skill Academy By Ruangguru",o=t.s
 return A.b([A.lR("https://drive.google.com/file/d/1ZWtTvEXwlM-SIm3yd-OGF4KQgwWPcQsY/view?usp=sharing",u.I,!0,"MySkill",A.b(["Figma","Draw.io",q,"UX Thinking"],o),"UI/UX Design Introduction","Published on February 10, 2026"),A.lR("https://drive.google.com/file/d/1MoWcQGvNhktSTWhDkrpXVDc_Mg3sq81D/view?usp=drive_link",u.x,!0,"Coding Camp RevoU",A.b(["HTML","CSS","Javascript","Github","Git"],o),"Intro to Software Engineering","Published on January 16, 2026"),A.lR("https://drive.google.com/file/d/1iIdkyOPowq-43auhkO_5MlFJAxDUX7tV/view?usp=drive_link",u.O,!1,"Kementerian Komunikasi dan Informatika (KOMINFO)",A.b(["Digital Ethics","Cyber Awareness","Data Privacy Fundamentals"],o),"Forming a Digital Smart Personality","Published on July 29, 2023"),A.lR("https://drive.google.com/file/d/1i7J5L0gpBu9k6j39Y6596FYGe2Cd6qtZ/view?usp=drive_link",u.G,!1,"Universitas Pancasila",A.b(["Cyber Law Awarenes","IT Compliance","Legal Risk Awareness in Digital Systems"],o),u.D,"Published on July 14, 2022"),A.lR("https://drive.google.com/file/d/17b2WewXQvUvVOHDUJVbVqCA8iKFufkFC/view?usp=drive_link",u.M,!1,"Hima If X Buildwith Angga",A.b(["photoshoop","Illustrator","CorelDraw",q,"UX Thinking"],o),u.d,"Published on October 31, 2021"),A.lR("https://drive.google.com/file/d/1VF962b67pUe-nK3IzsrsVe8gfG2Elkml/view?usp=drive_link",u.o,!1,"PT XAI SYNDICATE INTERNASIONAL",A.b(["OSINT Fundamentals","Security-Oriented Mindset","Basic Penetration Testing"],o),u.L,"Published on September 26, 2021"),A.lR("https://drive.google.com/file/d/1jt7nVCSNLcwAJNx_ii55bTOU3gh0fmJP/view?usp=drive_link",u.K,!1,p,A.b(["Cisco CLI","IP Addres","Basic Routing Configuration","Subnetting"],o),"Konfigurasi Cisco Router For CCNA","Published on December 03, 2020"),A.lR("https://drive.google.com/file/d/13Ogtb9ddT2zN-QIoO7xYyAa1UvribUz5/view?usp=drive_link",u.i,!1,p,A.b(["Communication Skill","Personal Branding","Behavioral Interview Strategy","Confidence Building","CV Optimization"],o),"Successful Interview/Job Interview","Published on December 01, 2020"),A.lR("https://drive.google.com/file/d/1S9soCji_UqqfNxWAV1Bvlyp4_bOX2q0i/view?usp=sharing",u.r,!1,"Badan Nasional Sertifikasi Profesi (BNSP)",A.b(["LAN Network Settings","Mikrotik","IP Addressing Configuration","Router","Switch"],o),u.Y,"Published on December 09, 2019")],A.ar("B<rb>"))})
-s($,"aWu","ax0",()=>{var q="PT INDOSPS BOGATAMA SUKSES",p="../../assets/images/experience/companyibs.png",o=t.s
-return A.b([A.aua("GALLERY COMPUTER STORE",A.b([u.p,u.m,u.Z],o),"../../assets/images/experience/companygc.png","Feb 2020 \u2013 Apr 2021","Technical Assistant"),A.aua(q,A.b([u.k,u.v,u.n],o),p,"Jun 2021 \u2013 Jul 2022","Information Technology Staff"),A.aua(q,A.b([u.y,u.b,u.z],o),p,"Jun 2022 \u2013 Jul 2024","Graphic Design Marketing")],A.ar("B<JJ>"))})
+s($,"aWu","ax0",()=>{var q="PT INDOSPS BOGATAMA SUKSES",p="assets/images/experience/companyibs.png",o=t.s
+return A.b([A.aua("GALLERY COMPUTER STORE",A.b([u.p,u.m,u.Z],o),"assets/images/experience/companygc.png","Feb 2020 \u2013 Apr 2021","Technical Assistant"),A.aua(q,A.b([u.k,u.v,u.n],o),p,"Jun 2021 \u2013 Jul 2022","Information Technology Staff"),A.aua(q,A.b([u.y,u.b,u.z],o),p,"Jun 2022 \u2013 Jul 2024","Graphic Design Marketing")],A.ar("B<JJ>"))})
 s($,"aUo","awL",()=>new A.I())
 r($,"aMR","awK",()=>{var q=new A.a8I()
 q.a2v($.awL())

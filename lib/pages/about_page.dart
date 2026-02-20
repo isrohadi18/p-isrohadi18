@@ -410,57 +410,57 @@ class SkillChip extends StatelessWidget {
   String _getLogoUrl(String skill) {
     switch (skill.toLowerCase()) {
       case 'html':
-        return '../../assets/icons/skills/html.png';
+        return '${AppAssets.skillPath}html.png';
       case 'css':
-        return '../../assets/icons/skills/css.png';
+        return '${AppAssets.skillPath}css.png';
       case 'javascript':
-        return '../../assets/icons/skills/javascript.png';
+        return '${AppAssets.skillPath}javascript.png';
       case 'php':
-        return '../../assets/icons/skills/php.png';
+        return '${AppAssets.skillPath}php.png';
       case 'tailwind':
-        return '../../assets/icons/skills/tailwind.png';
+        return '${AppAssets.skillPath}tailwind.png';
       case 'java':
-        return '../../assets/icons/skills/java.png';
+        return '${AppAssets.skillPath}java.png';
       case 'flutter':
-        return '../../assets/icons/skills/flutter.png';
+        return '${AppAssets.skillPath}flutter.png';
       case 'dart':
-        return '../../assets/icons/skills/dart.png';
+        return '${AppAssets.skillPath}dart.png';
       case 'mysql':
-        return '../../assets/icons/skills/mysql.png';
+        return '${AppAssets.skillPath}mysql.png';
       case 'vscode':
-        return '../../assets/icons/skills/vscode.png';
+        return '${AppAssets.skillPath}vscode.png';
       case 'git':
-        return '../../assets/icons/skills/git.png';
+        return '${AppAssets.skillPath}git.png';
       case 'github':
-        return '../../assets/icons/skills/github.png';
+        return '${AppAssets.skillPath}github.png';
       case 'phpmyadmin':
-        return '../../assets/icons/skills/phpmyadmin.png';
+        return '${AppAssets.skillPath}phpmyadmin.png';
       case 'netbeans':
-        return '../../assets/icons/skills/netbeans.png';
+        return '${AppAssets.skillPath}netbeans.png';
       case 'arduino':
-        return '../../assets/icons/skills/arduino.png';
+        return '${AppAssets.skillPath}arduino.png';
       case 'figma':
-        return '../../assets/icons/skills/figma.png';
+        return '${AppAssets.skillPath}figma.png';
       case 'balsamiq':
-        return '../../assets/icons/skills/balsamiq.png';
+        return '${AppAssets.skillPath}balsamiq.png';
       case 'drawio':
-        return '../../assets/icons/skills/drawio.png';
+        return '${AppAssets.skillPath}drawio.png';
       case 'photoshop':
-        return '../../assets/icons/skills/photoshop.png';
+        return '${AppAssets.skillPath}photoshop.png';
       case 'illustrator':
-        return '../../assets/icons/skills/illustrator.png';
+        return '${AppAssets.skillPath}illustrator.png';
       case 'coreldraw':
-        return '../../assets/icons/skills/coreldraw.png';
+        return '${AppAssets.skillPath}coreldraw.png';
       case 'capcut':
-        return '../../assets/icons/skills/capcut.png';
+        return '${AppAssets.skillPath}capcut.png';
       case 'canva':
-        return '../../assets/icons/skills/canva.png';
+        return '${AppAssets.skillPath}canva.png';
       case 'visio':
-        return '../../assets/icons/skills/visio.png';
+        return '${AppAssets.skillPath}visio.png';
       case 'word':
-        return '../../assets/icons/skills/word.png';
+        return '${AppAssets.skillPath}word.png';
       case 'excel':
-        return '../../assets/icons/skills/excel.png';
+        return '${AppAssets.skillPath}excel.png';
       default:
         return '';
     }
@@ -712,4 +712,8 @@ class SectionTitle extends StatelessWidget {
 
 class AboutmeTextStyle {
   static const double aboutSize = 15.5;
+}
+
+class AppAssets {
+  static const skillPath = 'assets/icons/skills/';
 }

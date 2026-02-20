@@ -67,7 +67,7 @@ final List<Experience> experienceList = [
     company: 'GALLERY COMPUTER STORE',
     period: 'Feb 2020 – Apr 2021',
     role: 'Technical Assistant',
-    logo: '../../assets/images/experience/companygc.png',
+    logo: 'assets/images/experience/companygc.png',
     highlights: [
       'Managing the store and handling customer complaints',
       'Installing software, updating operating systems, and troubleshooting hardware issues.',
@@ -79,7 +79,7 @@ final List<Experience> experienceList = [
     company: 'PT INDOSPS BOGATAMA SUKSES',
     period: 'Jun 2021 – Jul 2022',
     role: 'Information Technology Staff',
-    logo: '../../assets/images/experience/companyibs.png',
+    logo: 'assets/images/experience/companyibs.png',
     highlights: [
       'Responsible for maintaining and safeguarding the stability of the LAN/WAN network infrastructure, as well as troubleshooting hardware issues, such as routers, switches, servers, and other devices.',
       'Monitoring the performance of company servers and websites to ensure their stability.',
@@ -91,7 +91,7 @@ final List<Experience> experienceList = [
     company: 'PT INDOSPS BOGATAMA SUKSES',
     period: 'Jun 2022 – Jul 2024',
     role: 'Graphic Design Marketing',
-    logo: '../../assets/images/experience/companyibs.png',
+    logo: 'assets/images/experience/companyibs.png',
     highlights: [
       'Creating product designs for daily posts on the company\'s social media channels.',
       'Developing strategies with the team and developing customer interest in the companyn\'s products online.',

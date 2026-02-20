@@ -321,7 +321,7 @@ class _ContactPageState extends State<ContactPage> {
                     mode: LaunchMode.externalApplication,
                   );
                 },
-                icon: Image.network('../../assets/images/wtsp.png', width: 20),
+                icon: Image.network('assets/images/wtsp.png', width: 20),
                 label: const Text('WhatsApp'),
               ),
             ),
