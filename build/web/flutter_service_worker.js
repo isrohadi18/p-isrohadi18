@@ -3,8 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "8db91a91d687b56b5e8c645fa51093b1",
-"assets/AssetManifest.bin.json": "2cb63b15b8f18b31a32f8eeae3643a4a",
+const RESOURCES = {"assets/AssetManifest.bin": "538fc609c4834dd19d8250be67d3a16c",
+"assets/AssetManifest.bin.json": "2016bb8f15ef4a6666b7e0e7d3902727",
+"assets/assets/fonts/MaterialIcons-Regular.otf": "d5d9a63ed433e0cefd1a4dc606ae6334",
 "assets/assets/images/image_preview.png": "ac7219a6278aeac599b63c2b4409dd51",
 "assets/assets/images/wtsp.png": "ea28f2da75d2c019496d2706d04b8124",
 "assets/FontManifest.json": "67a28da3784fc091c2f816d615fbf08a",
@@ -31,13 +32,13 @@ const RESOURCES = {"assets/AssetManifest.bin": "8db91a91d687b56b5e8c645fa51093b1
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "file/download/CyrptoFileAES.exe": "2c2d2b1a280deb980c68f1f226215ac5",
 "flutter.js": "24bc71911b75b5f8135c949e27a2984e",
-"flutter_bootstrap.js": "2666c782673e7da8d5a3eb9b7e261522",
+"flutter_bootstrap.js": "1b2fb803dbbde560e361260cbe7252a5",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "8f5ab786b9e83b6097f8a715221fb076",
-"/": "8f5ab786b9e83b6097f8a715221fb076",
+"index.html": "c910f718966fcdf0ea43cf3cc7a7b88e",
+"/": "c910f718966fcdf0ea43cf3cc7a7b88e",
 "main.dart.js": "4ac97256e3bd0a383783fb877b08651e",
 "manifest.json": "e661dfa47ccad5f95d74e0278187af48",
 "version.json": "78d8bef27a1a2cb2dcbac12acafafa7e"};
