@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../main.dart';
 
 String bhs(BuildContext context, {required String en, required String id}) {
@@ -297,7 +298,7 @@ class _ContactPageState extends State<ContactPage> {
 
                   await launchUrl(url, mode: LaunchMode.externalApplication);
                 },
-                icon: const Icon(Icons.email),
+                icon: const Icon(Icons.email, size: 25),
                 label: Text(
                   bhs(
                     context,
@@ -321,7 +322,7 @@ class _ContactPageState extends State<ContactPage> {
                     mode: LaunchMode.externalApplication,
                   );
                 },
-                icon: Image.network('assets/images/wtsp.png', width: 20),
+                icon: Icon(FontAwesomeIcons.whatsapp, size: 25),
                 label: const Text('WhatsApp'),
               ),
             ),
@@ -623,7 +624,7 @@ class QuickContactButtons extends StatelessWidget {
                   'https://wa.me/6283111778069'
                   '?text=Hello,%20I%20found%20your%20portfolio',
                 ),
-            icon: const Icon(Icons.chat),
+            icon: Icon(FontAwesomeIcons.whatsapp),
             label: const Text('WhatsApp'),
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.symmetric(
