@@ -87232,7 +87232,7 @@ s=s.xX(new A.N9(l,!0,r,l,l,B.f,B.LU))
 r=A.G(a).ok.d
 r=A.Bn(A.bN(A.bK(A.bd("Rohadi Dwi Junianto",l,l,l,l,r==null?l:r.Tc(B.W),l,l),l),l,A.al(6e5,0)),0.3,l,A.al(3e5,0))
 q=A.G(a).ok.f.bs(B.c0)
-q=A.j8(new A.ww(A.b([A.Cn("Bachelor of Informatics Engineering",B.aF),A.Cn("UI/UX designers",B.aF),A.Cn("Fullstack Developer",B.aF),A.Cn("Digital Strategy & Design",B.aF),A.Cn("Information Technology Professional",B.aF),A.Cn("Web Developer",B.aF)],t.u6),!0,l),l,l,B.bD,!0,q,l,l,B.aw)
+q=A.j8(new A.ww(A.b([A.Cn("Bachelor of Informatics Engineering",B.aF),A.Cn("UI/UX designers",B.aF),A.Cn("Fullstack Developer",B.aF),A.Cn("Security & System Development Enthusiast",B.aF),A.Cn("Information Technology Professional",B.aF),A.Cn("Web Developer",B.aF)],t.u6),!0,l),l,l,B.bD,!0,q,l,l,B.aw)
 p=b==="en"
 o=p?"Download CV":"Unduh CV"
 o=A.cv(A.bN(A.bK(A.a25(B.Gl,A.bd(o,l,l,l,l,A.cm(l,l,l,l,l,l,l,l,l,l,l,l,l,l,B.W,l,l,!0,l,l,l,l,l,l,l,l),l,l),new A.a4p(a,b),A.aua(l,l,l,l,l,l,l,l,l,l,l,l,B.jz,l,new A.c5(A.ce(30),B.n),l,l,l,l,l)),l),A.al(k,0),l),-0.3,A.al(k,0),l)
