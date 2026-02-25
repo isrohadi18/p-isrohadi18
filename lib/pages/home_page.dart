@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -63,7 +64,7 @@ class HomePage extends StatelessWidget {
                         speed: const Duration(milliseconds: 100),
                       ),
                       TypewriterAnimatedText(
-                        'Digital Strategy & Design',
+                        'Security & System Development Enthusiast',
                         speed: const Duration(milliseconds: 100),
                       ),
                       TypewriterAnimatedText(
@@ -85,7 +86,7 @@ class HomePage extends StatelessWidget {
                     ElevatedButton.icon(
                           onPressed: () async {
                             final Uri url = Uri.parse(
-                              'https://drive.google.com/file/d/1Ci2baGwcGqTHBFlOCjuVo9d7ak-c7fbv/view?usp=sharing',
+                              'https://drive.google.com/file/d/1-V5vDU5Pz1qGqgLcA5BzABH0dZ87z2Hb/view?usp=sharing',
                             );
                             if (!await launchUrl(url)) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -137,7 +138,7 @@ class HomePage extends StatelessWidget {
                               );
                             }
                           },
-                          icon: const Icon(Icons.phone),
+                          icon: Icon(FontAwesomeIcons.whatsapp),
                           label: Text(
                             lang == 'en' ? 'Contact Me' : 'Kontak Saya',
                             style: TextStyle(fontWeight: FontWeight.bold),

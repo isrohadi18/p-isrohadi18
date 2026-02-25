@@ -298,7 +298,7 @@ class _ContactPageState extends State<ContactPage> {
 
                   await launchUrl(url, mode: LaunchMode.externalApplication);
                 },
-                icon: const Icon(Icons.email, size: 25),
+                icon: const Icon(Icons.email, size: 20),
                 label: Text(
                   bhs(
                     context,
@@ -322,7 +322,7 @@ class _ContactPageState extends State<ContactPage> {
                     mode: LaunchMode.externalApplication,
                   );
                 },
-                icon: Icon(FontAwesomeIcons.whatsapp, size: 25),
+                icon: Icon(FontAwesomeIcons.whatsapp, size: 20),
                 label: const Text('WhatsApp'),
               ),
             ),
@@ -606,7 +606,7 @@ class QuickContactButtons extends StatelessWidget {
                   'mailto:rohadii861@gmail.com'
                   '?subject=Portfolio Contact',
                 ),
-            icon: const Icon(Icons.email),
+            icon: const Icon(Icons.email, size: 20),
             label: const Text('Email Me'),
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(
@@ -624,7 +624,7 @@ class QuickContactButtons extends StatelessWidget {
                   'https://wa.me/6283111778069'
                   '?text=Hello,%20I%20found%20your%20portfolio',
                 ),
-            icon: Icon(FontAwesomeIcons.whatsapp),
+            icon: Icon(FontAwesomeIcons.whatsapp, size: 20),
             label: const Text('WhatsApp'),
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.symmetric(

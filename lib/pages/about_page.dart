@@ -410,57 +410,57 @@ class SkillChip extends StatelessWidget {
   String _getLogoUrl(String skill) {
     switch (skill.toLowerCase()) {
       case 'html':
-        return 'assets/icons/skills/html.png';
+        return 'assets/assets/icons/skills/html.png';
       case 'css':
-        return 'assets/icons/skills/css.png';
+        return 'assets/assets/icons/skills/css.png';
       case 'javascript':
-        return 'assets/icons/skills/javascript.png';
+        return 'assets/assets/icons/skills/javascript.png';
       case 'php':
-        return 'assets/icons/skills/php.png';
+        return 'assets/assets/icons/skills/php.png';
       case 'tailwind':
-        return 'assets/icons/skills/tailwind.png';
+        return 'assets/assets/icons/skills/tailwind.png';
       case 'java':
-        return 'assets/icons/skills/java.png';
+        return 'assets/assets/icons/skills/java.png';
       case 'flutter':
-        return 'assets/icons/skills/flutter.png';
+        return 'assets/assets/icons/skills/flutter.png';
       case 'dart':
-        return 'assets/icons/skills/dart.png';
+        return 'assets/assets/icons/skills/dart.png';
       case 'mysql':
-        return 'assets/icons/skills/mysql.png';
+        return 'assets/assets/icons/skills/mysql.png';
       case 'vscode':
-        return 'assets/icons/skills/vscode.png';
+        return 'assets/assets/icons/skills/vscode.png';
       case 'git':
-        return 'assets/icons/skills/git.png';
+        return 'assets/assets/icons/skills/git.png';
       case 'github':
-        return 'assets/icons/skills/github.png';
+        return 'assets/assets/icons/skills/github.png';
       case 'phpmyadmin':
-        return 'assets/icons/skills/phpmyadmin.png';
+        return 'assets/assets/icons/skills/phpmyadmin.png';
       case 'netbeans':
-        return 'assets/icons/skills/netbeans.png';
+        return 'assets/assets/icons/skills/netbeans.png';
       case 'arduino':
-        return 'assets/icons/skills/arduino.png';
+        return 'assets/assets/icons/skills/arduino.png';
       case 'figma':
-        return 'assets/icons/skills/figma.png';
+        return 'assets/assets/icons/skills/figma.png';
       case 'balsamiq':
-        return 'assets/icons/skills/balsamiq.png';
+        return 'assets/assets/icons/skills/balsamiq.png';
       case 'drawio':
-        return 'assets/icons/skills/drawio.png';
+        return 'assets/assets/icons/skills/drawio.png';
       case 'photoshop':
-        return 'assets/icons/skills/photoshop.png';
+        return 'assets/assets/icons/skills/photoshop.png';
       case 'illustrator':
-        return 'assets/icons/skills/illustrator.png';
+        return 'assets/assets/icons/skills/illustrator.png';
       case 'coreldraw':
-        return 'assets/icons/skills/coreldraw.png';
+        return 'assets/assets/icons/skills/coreldraw.png';
       case 'capcut':
-        return 'assets/icons/skills/capcut.png';
+        return 'assets/assets/icons/skills/capcut.png';
       case 'canva':
-        return 'assets/icons/skills/canva.png';
+        return 'assets/assets/icons/skills/canva.png';
       case 'visio':
-        return 'assets/icons/skills/visio.png';
+        return 'assets/assets/icons/skills/visio.png';
       case 'word':
-        return 'assets/icons/skills/word.png';
+        return 'assets/assets/icons/skills/word.png';
       case 'excel':
-        return 'assets/icons/skills/excel.png';
+        return 'assets/assets/icons/skills/excel.png';
       default:
         return '';
     }
