@@ -67,35 +67,47 @@ class _CertificatePageState extends State<CertificatePage> {
       year: 'Published on March 01, 2026',
       credentialUrl:
           'https://drive.google.com/file/d/1AsP_AEE8HQ3x5AHb9S-W4NycZ4OsAgng/view?usp=sharing',
-      skills: ['Basic English Communication', 'Grammar Fundamentals', 'Reading & Writing Basics', 'Vocabulary Development'],
+      skills: [
+        'Basic English Communication',
+        'Grammar Fundamentals',
+        'Reading & Writing Basics',
+        'Vocabulary Development',
+      ],
       insight:
           'This certificate demonstrates my basic ability to use English for everyday communication and professional contexts. Learning materials include understanding basic grammar, general vocabulary, and simple reading and writing skills.',
       isbadgeNew: true,
     ),
     CertificateModel(
-      title: '2',
-      organization: 'Coding Camp RevoU',
-      year: 'Published on January 16, 2026',
+      title: 'Figma for UI/UX Design',
+      organization: 'MySkill',
+      year: 'Published on February 28, 2026',
       credentialUrl:
-          'https://drive.google.com/file/d/1MoWcQGvNhktSTWhDkrpXVDc_Mg3sq81D/view?usp=drive_link',
-      skills: ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
+          'https://drive.google.com/file/d/1RjT9q2uh22hwwBEiljWMmNsJbTivZpR1/view?usp=sharing',
+      skills: [
+        'UI Design Fundamentals',
+        'UX Design Principles',
+        'Wireframing & Prototyping',
+        'Figma Design Tools',
+      ],
       insight:
-          'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.',
+          'This certificate validates my ability to use Figma to effectively design user interfaces and experiences. I studied the design process from making wireframes, prototyping, to design collaboration to produce an intuitive and user-friendly application display.',
       isbadgeNew: true,
     ),
     CertificateModel(
-      title: '3',
-      organization: 'Kementerian Komunikasi dan Informatika (KOMINFO)',
-      year: 'Published on July 29, 2023',
+      title: 'Intro to Applied AI, Analytics, and Automation',
+      organization: 'RevoU',
+      year: 'Published on February 27, 2026',
       credentialUrl:
-          'https://drive.google.com/file/d/1iIdkyOPowq-43auhkO_5MlFJAxDUX7tV/view?usp=drive_link',
+          'https://drive.google.com/file/d/1iNp-z1jqR8R6Tnebpwr5s33Mp0WY8Y5H/view?usp=sharing',
       skills: [
-        'Digital Ethics',
-        'Cyber Awareness',
-        'Data Privacy Fundamentals',
+        'Artificial Intelligence Fundamentals',
+        'Create Ai Gems Builder',
+        'Data Analytics Basics',
+        'Automation Concepts',
+        'Data-Driven Decision Making',
       ],
       insight:
-          'This program strengthened my understanding of the importance of ethics and responsibility in the digital world. I learned that technology isn\'t just about technical skills, but also about how to use it safely, wisely, and professionally.',
+          'This certificate shows my basic understanding of the application of Artificial Intelligence, data analysis, and automation concepts in business and technology contexts. I was also directed to make AI Gems. Through this material, I learned how AI and analytics can be used to process data, generate insights, and increase the efficiency of work processes through automation.',
     ),
     CertificateModel(
       title: 'UI/UX Design Introduction',
@@ -777,11 +789,11 @@ String EnIdInsight(BuildContext context, String text) {
     'This certificate demonstrates my basic ability to use English for everyday communication and professional contexts. Learning materials include understanding basic grammar, general vocabulary, and simple reading and writing skills.':
         'Sertifikat ini menunjukkan kemampuan dasar saya dalam menggunakan bahasa Inggris untuk komunikasi sehari-hari dan konteks profesional. Materi pembelajaran mencakup pemahaman tata bahasa dasar, kosakata umum, serta kemampuan membaca dan menulis sederhana.',
 
-    'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.':
-        'Melalui program ini, saya membangun landasan yang kuat dalam pengembangan perangkat lunak. Saya belajar tidak hanya bagaimana menulis kode tetapi juga bagaimana aplikasi dirancang, dikembangkan, dan dipelihara secara terstruktur. Program ini membentuk pola pikir saya sebagai pemecah masalah yang sistematis, bukan sekadar pembuat kode.',
+    'This certificate validates my ability to use Figma to effectively design user interfaces and experiences. I studied the design process from making wireframes, prototyping, to design collaboration to produce an intuitive and user-friendly application display.':
+        'Sertifikat ini memvalidasi kemampuan saya dalam menggunakan Figma untuk merancang antarmuka dan pengalaman pengguna secara efektif. Saya mempelajari proses desain mulai dari pembuatan wireframe, prototyping, hingga kolaborasi desain untuk menghasilkan tampilan aplikasi yang intuitif dan user-friendly.',
 
-    'This program strengthened my understanding of the importance of ethics and responsibility in the digital world. I learned that technology isn\'t just about technical skills, but also about how to use it safely, wisely, and professionally.':
-        'Program ini memperkuat pemahaman saya tentang pentingnya etika dan tanggung jawab di dunia digital. Saya belajar bahwa teknologi bukan hanya tentang keterampilan teknis, tetapi juga tentang bagaimana menggunakannya secara aman, bijaksana, dan profesional.',
+    'This certificate shows my basic understanding of the application of Artificial Intelligence, data analysis, and automation concepts in business and technology contexts. I was also directed to make AI Gems. Through this material, I learned how AI and analytics can be used to process data, generate insights, and increase the efficiency of work processes through automation.':
+        'Sertifikat ini menunjukkan pemahaman dasar saya mengenai penerapan Artificial Intelligence, analisis data, serta konsep otomatisasi dalam konteks bisnis dan teknologi. Saya Juga di arahkan untuk membuat AI Gems. Melalui materi ini, saya mempelajari bagaimana AI dan analitik dapat digunakan untuk mengolah data, menghasilkan insight, serta meningkatkan efisiensi proses kerja melalui otomasi.',
 
     'Through this Short Class program, I built a strong foundation in developing design principles. Not only did I create a design with a visual appeal that matched the features, but I also learned how to make the design visually appealing to the user.':
         'Melalui program Kelas Singkat ini, saya membangun fondasi yang kuat dalam mengembangkan prinsip-prinsip desain. Saya tidak hanya menciptakan desain dengan daya tarik visual yang sesuai dengan fitur-fiturnya, tetapi saya juga belajar bagaimana membuat desain tersebut menarik secara visual bagi pengguna.',
