@@ -62,11 +62,47 @@ class _CertificatePageState extends State<CertificatePage> {
   // DATA CERTIFICATE
   static final List<CertificateModel> certificates = [
     CertificateModel(
+      title: 'Basic English',
+      organization: 'MySkill',
+      year: 'Published on March 01, 2026',
+      credentialUrl:
+          'https://drive.google.com/file/d/1AsP_AEE8HQ3x5AHb9S-W4NycZ4OsAgng/view?usp=sharing',
+      skills: ['Basic English Communication', 'Grammar Fundamentals', 'Reading & Writing Basics', 'Vocabulary Development'],
+      insight:
+          'This certificate demonstrates my basic ability to use English for everyday communication and professional contexts. Learning materials include understanding basic grammar, general vocabulary, and simple reading and writing skills.',
+      isbadgeNew: true,
+    ),
+    CertificateModel(
+      title: '2',
+      organization: 'Coding Camp RevoU',
+      year: 'Published on January 16, 2026',
+      credentialUrl:
+          'https://drive.google.com/file/d/1MoWcQGvNhktSTWhDkrpXVDc_Mg3sq81D/view?usp=drive_link',
+      skills: ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
+      insight:
+          'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.',
+      isbadgeNew: true,
+    ),
+    CertificateModel(
+      title: '3',
+      organization: 'Kementerian Komunikasi dan Informatika (KOMINFO)',
+      year: 'Published on July 29, 2023',
+      credentialUrl:
+          'https://drive.google.com/file/d/1iIdkyOPowq-43auhkO_5MlFJAxDUX7tV/view?usp=drive_link',
+      skills: [
+        'Digital Ethics',
+        'Cyber Awareness',
+        'Data Privacy Fundamentals',
+      ],
+      insight:
+          'This program strengthened my understanding of the importance of ethics and responsibility in the digital world. I learned that technology isn\'t just about technical skills, but also about how to use it safely, wisely, and professionally.',
+    ),
+    CertificateModel(
       title: 'UI/UX Design Introduction',
       organization: 'MySkill',
       year: 'Published on February 10, 2026',
       credentialUrl:
-          'https://drive.google.com/file/d/1ZWtTvEXwlM-SIm3yd-OGF4KQgwWPcQsY/view?usp=sharing',
+          'https://drive.google.com/file/d/16RHn7yo3R4aKWOTqH_ZbchvEMALl3flt/view?usp=sharing',
       skills: ['Figma', 'Draw.io', 'UI Design Principles', 'UX Thinking'],
       insight:
           'Through this Short Class program, I built a strong foundation in developing design principles. Not only did I create a design with a visual appeal that matched the features, but I also learned how to make the design visually appealing to the user.',
@@ -738,6 +774,15 @@ String EnIdInsight(BuildContext context, String text) {
   if (isEnglish) return text;
 
   const Map<String, String> idMap = {
+    'This certificate demonstrates my basic ability to use English for everyday communication and professional contexts. Learning materials include understanding basic grammar, general vocabulary, and simple reading and writing skills.':
+        'Sertifikat ini menunjukkan kemampuan dasar saya dalam menggunakan bahasa Inggris untuk komunikasi sehari-hari dan konteks profesional. Materi pembelajaran mencakup pemahaman tata bahasa dasar, kosakata umum, serta kemampuan membaca dan menulis sederhana.',
+
+    'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.':
+        'Melalui program ini, saya membangun landasan yang kuat dalam pengembangan perangkat lunak. Saya belajar tidak hanya bagaimana menulis kode tetapi juga bagaimana aplikasi dirancang, dikembangkan, dan dipelihara secara terstruktur. Program ini membentuk pola pikir saya sebagai pemecah masalah yang sistematis, bukan sekadar pembuat kode.',
+
+    'This program strengthened my understanding of the importance of ethics and responsibility in the digital world. I learned that technology isn\'t just about technical skills, but also about how to use it safely, wisely, and professionally.':
+        'Program ini memperkuat pemahaman saya tentang pentingnya etika dan tanggung jawab di dunia digital. Saya belajar bahwa teknologi bukan hanya tentang keterampilan teknis, tetapi juga tentang bagaimana menggunakannya secara aman, bijaksana, dan profesional.',
+
     'Through this Short Class program, I built a strong foundation in developing design principles. Not only did I create a design with a visual appeal that matched the features, but I also learned how to make the design visually appealing to the user.':
         'Melalui program Kelas Singkat ini, saya membangun fondasi yang kuat dalam mengembangkan prinsip-prinsip desain. Saya tidak hanya menciptakan desain dengan daya tarik visual yang sesuai dengan fitur-fiturnya, tetapi saya juga belajar bagaimana membuat desain tersebut menarik secara visual bagi pengguna.',
 
