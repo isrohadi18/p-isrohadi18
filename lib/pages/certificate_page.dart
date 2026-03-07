@@ -19,7 +19,7 @@ class _CertificatePageState extends State<CertificatePage> {
     'UI/UX Design': [
       'Figma',
       'Photoshoop',
-      'UI Design Principles',
+      'UI/UX Design Principles',
       'UX Thinking',
     ],
     'Cyber Security': [
@@ -84,10 +84,12 @@ class _CertificatePageState extends State<CertificatePage> {
       credentialUrl:
           'https://drive.google.com/file/d/1RjT9q2uh22hwwBEiljWMmNsJbTivZpR1/view?usp=sharing',
       skills: [
+        'Figma',
         'UI Design Fundamentals',
-        'UX Design Principles',
+        'UI/UX Design Principles',
         'Wireframing & Prototyping',
         'Figma Design Tools',
+        'UX Thinking',
       ],
       insight:
           'This certificate validates my ability to use Figma to effectively design user interfaces and experiences. I studied the design process from making wireframes, prototyping, to design collaboration to produce an intuitive and user-friendly application display.',
@@ -108,6 +110,7 @@ class _CertificatePageState extends State<CertificatePage> {
       ],
       insight:
           'This certificate shows my basic understanding of the application of Artificial Intelligence, data analysis, and automation concepts in business and technology contexts. I was also directed to make AI Gems. Through this material, I learned how AI and analytics can be used to process data, generate insights, and increase the efficiency of work processes through automation.',
+      isbadgeNew: true,
     ),
     CertificateModel(
       title: 'UI/UX Design Introduction',
@@ -115,10 +118,14 @@ class _CertificatePageState extends State<CertificatePage> {
       year: 'Published on February 10, 2026',
       credentialUrl:
           'https://drive.google.com/file/d/16RHn7yo3R4aKWOTqH_ZbchvEMALl3flt/view?usp=sharing',
-      skills: ['Figma', 'Draw.io', 'UI Design Principles', 'UX Thinking'],
+      skills: [
+        'Figma',
+        'Adobe Software',
+        'UI/UX Design Principles',
+        'UX Thinking',
+      ],
       insight:
           'Through this Short Class program, I built a strong foundation in developing design principles. Not only did I create a design with a visual appeal that matched the features, but I also learned how to make the design visually appealing to the user.',
-      isbadgeNew: true,
     ),
     CertificateModel(
       title: 'Intro to Software Engineering',
@@ -129,7 +136,6 @@ class _CertificatePageState extends State<CertificatePage> {
       skills: ['HTML', 'CSS', 'Javascript', 'Github', 'Git'],
       insight:
           'Through this program, I built a strong foundation in software development. I learned not only how to write code but also how applications are designed, developed, and maintained in a structured manner. This program shaped my mindset as a systematic problem solver, not just a coder.',
-      isbadgeNew: true,
     ),
     CertificateModel(
       title: 'Forming a Digital Smart Personality',
@@ -169,7 +175,7 @@ class _CertificatePageState extends State<CertificatePage> {
         'photoshoop',
         'Illustrator',
         'CorelDraw',
-        'UI Design Principles',
+        'UI/UX Design Principles',
         'UX Thinking',
       ],
       insight:
