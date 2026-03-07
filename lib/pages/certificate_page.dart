@@ -788,7 +788,7 @@ String EnIdYear(BuildContext context, String text) {
     'Published on July 29, 2023': 'Diterbitkan pada 29 Juli 2023',
     'Published on January 16, 2026': 'Diterbitkan pada 16 Januari 2026',
     'Published on February 10, 2026': 'Diterbitkan pada 10 Februari 2026',
-    'Published on February 27, 2023': 'Diterbitkan pada 27 Februari 2026',
+    'Published on February 27, 2026': 'Diterbitkan pada 27 Februari 2026',
     'Published on February 28, 2026': 'Diterbitkan pada 28 Februari 2026',
     'Published on March 01, 2026': 'Diterbitkan pada 01 Maret 2026',
   };
