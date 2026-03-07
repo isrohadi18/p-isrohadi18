@@ -734,6 +734,13 @@ String EnIdTittle(BuildContext context, String text) {
   if (isEnglish) return text;
 
   const Map<String, String> idMap = {
+    'Basic English': 'Bahasa Inggris Dasar',
+
+    'Figma for UI/UX Design': 'Figma untuk Desain UI/UX',
+
+    'Intro to Applied AI, Analytics, and Automation':
+        'Pengantar AI Terapan, Analisis, dan Otomatisasi',
+
     'UI/UX Design Introduction': 'Pengenalan Desain UI/UX',
 
     'Intro to Software Engineering': 'Pengantar Rekayasa Perangkat Lunak',
@@ -775,6 +782,9 @@ String EnIdYear(BuildContext context, String text) {
     'Published on July 29, 2023': 'Diterbitkan pada 29 Juli 2023',
     'Published on January 16, 2026': 'Diterbitkan pada 16 Januari 2026',
     'Published on February 10, 2026': 'Diterbitkan pada 10 Februari 2026',
+    'Published on February 27, 2023': 'Diterbitkan pada 27 Februari 2026',
+    'Published on February 28, 2026': 'Diterbitkan pada 28 Februari 2026',
+    'Published on March 01, 2026': 'Diterbitkan pada 01 Maret 2026',
   };
 
   return idMap[text] ?? text;
